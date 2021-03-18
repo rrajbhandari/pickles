@@ -22,8 +22,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Abstractions;
 using System.Reflection;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+using System.Text.Json;
+//using System.Text.Json.Serialization;
 using NLog;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.ObjectModel;
@@ -105,15 +105,27 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Cucumber
 
             });
 
+            //JsonSerializerSettings settings = new JsonSerializerSettings
+            //{
+            //    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+            //    NullValueHandling = NullValueHandling.Ignore,
+            //    Converters = new List<JsonConverter> { new StringEnumConverter() }
+            //};
 
-            JsonSerializerSettings settings = new JsonSerializerSettings
+            //return JsonConvert.SerializeObject(toOutPut, Formatting.Indented, settings);
+
+            var options = new JsonSerializerOptions
             {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-                NullValueHandling = NullValueHandling.Ignore,
-                Converters = new List<JsonConverter> { new StringEnumConverter() }
+                WriteIndented = true,
+                IgnoreNullValues = true
+                
+                //, Converters =
+                //{
+                //    new JsonStringEnumConverter()
+                //}
             };
 
-            return JsonConvert.SerializeObject(toOutPut, Formatting.Indented, settings);
+            return JsonSerializer.Serialize(toOutPut, options);
         }
 
         private static string DetermineStatus(IFeatureElement fe)

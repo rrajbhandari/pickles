@@ -22,8 +22,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Abstractions;
-
-using Newtonsoft.Json;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
 {
@@ -41,7 +41,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
             {
                 using (var reader = new StreamReader(stream))
                 {
-                    result = JsonConvert.DeserializeObject<List<Feature>>(reader.ReadToEnd());
+                    result = JsonSerializer.Deserialize<List<Feature>>(reader.ReadToEnd());
                 }
             }
 

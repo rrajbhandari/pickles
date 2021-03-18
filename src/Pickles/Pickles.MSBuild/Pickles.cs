@@ -88,7 +88,6 @@ namespace PicklesDoc.Pickles.MSBuild
 
         private void CaptureConfiguration(IConfiguration configuration, IFileSystem fileSystem)
         {
-            Log.LogMessage("123");
             configuration.FeatureFolder = fileSystem.DirectoryInfo.FromDirectoryName(this.FeatureDirectory);
             configuration.OutputFolder = fileSystem.DirectoryInfo.FromDirectoryName(this.OutputDirectory);
             if (!string.IsNullOrEmpty(this.Language))

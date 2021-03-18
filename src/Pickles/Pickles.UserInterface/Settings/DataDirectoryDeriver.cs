@@ -19,7 +19,7 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.Deployment.Application;
+//using System.Deployment.Application;
 using System.Reflection;
 
 namespace PicklesDoc.Pickles.UserInterface.Settings
@@ -28,12 +28,12 @@ namespace PicklesDoc.Pickles.UserInterface.Settings
     {
         public static string DeriveDataDirectory()
         {
-            if (ApplicationDeployment.IsNetworkDeployed)
-            {
-                return ApplicationDeployment.CurrentDeployment.DataDirectory;
-            }
-            else
-            {
+            //if (ApplicationDeployment.IsNetworkDeployed)
+            //{
+            //    return ApplicationDeployment.CurrentDeployment.DataDirectory;
+            //}
+            //else
+            //{
                 Assembly entryAssembly = Assembly.GetEntryAssembly();
 
                 if (entryAssembly != null)
@@ -42,7 +42,7 @@ namespace PicklesDoc.Pickles.UserInterface.Settings
                 }
 
                 return string.Empty;
-            }
+            //}
         }
     }
 }

@@ -16,9 +16,8 @@ if errorlevel 1 goto handleerror1orhigher
 
 call InstallPackages.cmd
 
-rem FOR %%A IN (testRunnerMsBuild ) DO (
 FOR %%A IN (testRunnerCmd testRunnerMsBuild testRunnerPowerShell) DO (
-   call %%A.cmd %picklesVersion%
+  call %%A.cmd %picklesVersion%
   if errorlevel 1 goto handleerror1orhigher
 )
 
