@@ -1,113 +1,30 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{599BCF0C-8FB4-4727-A902-160C4E7D8FB0}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PicklesDoc.Pickles.TestFrameworks</RootNamespace>
     <AssemblyName>PicklesDoc.Pickles.TestFrameworks</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <TargetFramework>net48</TargetFramework>
+    <AssemblyTitle>PicklesDoc.Pickles.TestFrameworks</AssemblyTitle>
+    <Description>Supported test frameworks for inputting test results to Pickles</Description>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CodeFormattingExtensions.cs" />
-    <Compile Include="CucumberJson\CucumberJsonResults.cs" />
-    <Compile Include="CucumberJson\CucumberJsonSingleResults.cs" />
-    <Compile Include="CucumberJson\Element.cs" />
-    <Compile Include="CucumberJson\Feature.cs" />
-    <Compile Include="CucumberJson\Match.cs" />
-    <Compile Include="CucumberJson\Result.cs" />
-    <Compile Include="CucumberJson\Step.cs" />
-    <Compile Include="CucumberJson\Tag.cs" />
-    <Compile Include="CucumberJson\CucumberJsonSingleResultLoader.cs" />
-    <Compile Include="IScenarioOutlineExampleMatcher.cs" />
-    <Compile Include="ISingleResultLoader.cs" />
-    <Compile Include="NUnit\NUnit3\NUnit3ScenarioOutlineExampleMatcher.cs" />
-    <Compile Include="NUnit\NUnit3\NUnit3ExampleSignatureBuilder.cs" />
-    <Compile Include="SpecFlowNameMapping.cs" />
-    <Compile Include="VsTest\VsTestElementExtensions.cs" />
-    <Compile Include="VsTest\VsTestExampleSignatureBuilder.cs" />
-    <Compile Include="VsTest\VsTestResults.cs" />
-    <Compile Include="VsTest\VsTestScenarioOutlineExampleMatcher.cs" />
-    <Compile Include="VsTest\VsTestSingleResultLoader.cs" />
-    <Compile Include="VsTest\VsTestSingleResults.cs" />
-    <Compile Include="MsTest\MsTestElementExtensions.cs" />
-    <Compile Include="MsTest\MsTestExampleSignatureBuilder.cs" />
-    <Compile Include="MsTest\MsTestResults.cs" />
-    <Compile Include="MsTest\MsTestScenarioOutlineExampleMatcher.cs" />
-    <Compile Include="MsTest\MsTestSingleResults.cs" />
-    <Compile Include="MsTest\MsTestSingleResultLoader.cs" />
-    <Compile Include="MultipleTestRunsBase.cs" />
-    <Compile Include="NUnit\NUnit2\NUnit2ExampleSignatureBuilder.cs" />
-    <Compile Include="NUnit\NUnit2\NUnit2Results.cs" />
-    <Compile Include="NUnit\NUnit2\NUnit2SingleResults.cs" />
-    <Compile Include="NUnit\NUnit2\NUnit2SingleResultLoader.cs" />
-    <Compile Include="NUnit\NUnit3\NUnit3SingleResultLoader.cs" />
-    <Compile Include="NUnit\NUnit3\NUnit3Results.cs" />
-    <Compile Include="NUnit\NUnit3\NUnit3SingleResult.cs" />
-    <Compile Include="NUnit\NUnit3\results-example-nunit3.cs">
+    <Compile Update="NUnit\NUnit3\results-example-nunit3.cs">
       <DependentUpon>results-example-nunit3.xsd</DependentUpon>
     </Compile>
-    <Compile Include="NUnit\NUnit2\NUnit2ScenarioOutlineExampleMatcher.cs" />
-    <Compile Include="NUnit\NUnitSingleResultsBase.cs" />
-    <Compile Include="NUnit\NUnitXElementExtensions.cs" />
-    <Compile Include="NUnit\TestResultAndName.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SingleTestRunBase.cs" />
-    <Compile Include="SpecRun\Factory.cs" />
-    <Compile Include="SpecRun\SpecRunFeature.cs" />
-    <Compile Include="SpecRun\SpecRunScenario.cs" />
-    <Compile Include="SpecRun\SpecRunExampleSignatureBuilder.cs" />
-    <Compile Include="SpecRun\SpecRunResults.cs" />
-    <Compile Include="SpecRun\SpecRunScenarioOutlineExampleMatcher.cs" />
-    <Compile Include="SpecRun\SpecRunSingleResults.cs" />
-    <Compile Include="SpecRun\SpecRunSingleResultLoader.cs" />
-    <Compile Include="XDocumentLoader.cs" />
-    <Compile Include="XmlDeserializer.cs" />
-    <Compile Include="XUnit\XUnit1\XUnit1ScenarioOutlineExampleMatcher.cs" />
-    <Compile Include="XUnit\XUnit1\XUnit1SingleResultLoader.cs" />
-    <Compile Include="XUnit\XUnit2\XUnit2ScenarioOutlineExampleMatcher.cs" />
-    <Compile Include="XUnit\XUnit2\XUnit2SingleResultLoader.cs" />
-    <Compile Include="XUnit\XUnitExampleSignatureBuilder.cs" />
-    <Compile Include="XUnit\XUnit1\XUnit1Results.cs" />
-    <Compile Include="XUnit\XUnit1\XUnit1SingleResult.cs" />
-    <Compile Include="XUnit\XUnit2\results-example-xunit2.cs">
+    <Compile Update="XUnit\XUnit2\results-example-xunit2.cs">
       <DependentUpon>results-example-xunit2.xsd</DependentUpon>
     </Compile>
-    <Compile Include="XUnit\XUnit2\XUnit2Results.cs" />
-    <Compile Include="XUnit\XUnit2\XUnit2SingleResults.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="NUnit\NUnit3\results-example-nunit3.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -116,52 +33,19 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Pickles.ObjectModel\Pickles.ObjectModel.csproj">
-      <Project>{55382AFC-E050-4DF7-AA4F-0ABA71E2E169}</Project>
-      <Name>Pickles.ObjectModel</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\Pickles.ObjectModel\Pickles.ObjectModel.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces">
-      <Version>5.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="Newtonsoft.Json">
-      <Version>12.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="System.Buffers">
-      <Version>4.5.1</Version>
-    </PackageReference>
-    <PackageReference Include="System.IO.Abstractions">
-      <Version>2.1.0.178</Version>
-    </PackageReference>
-    <PackageReference Include="System.Memory">
-      <Version>4.5.4</Version>
-    </PackageReference>
-    <PackageReference Include="System.Numerics.Vectors">
-      <Version>4.5.0</Version>
-    </PackageReference>
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe">
-      <Version>5.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="System.Text.Encodings.Web">
-      <Version>5.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="System.Text.Json">
-      <Version>5.0.1</Version>
-    </PackageReference>
-    <PackageReference Include="System.Threading.Tasks.Extensions">
-      <Version>4.5.4</Version>
-    </PackageReference>
-    <PackageReference Include="System.ValueTuple">
-      <Version>4.5.0</Version>
-    </PackageReference>
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="5.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="System.Buffers" Version="4.5.1" />
+    <PackageReference Include="System.IO.Abstractions" Version="2.1.0.178" />
+    <PackageReference Include="System.Memory" Version="4.5.4" />
+    <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="5.0.0" />
+    <PackageReference Include="System.Text.Encodings.Web" Version="5.0.0" />
+    <PackageReference Include="System.Text.Json" Version="5.0.1" />
+    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

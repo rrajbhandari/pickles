@@ -1,38 +1,23 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{38BAD6E0-78AB-4AC3-91A8-BF72AF5EE394}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PicklesDoc.Pickles</RootNamespace>
     <AssemblyName>PicklesDoc.Pickles.Library</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <TargetFramework>net48</TargetFramework>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <TargetFrameworkProfile />
+    <AssemblyTitle>Pickles</AssemblyTitle>
+    <Description>A documentation generator for features written in the Gherkin language</Description>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>    
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Jint">
@@ -42,143 +27,47 @@
     <Reference Include="Strike.Jint">
       <HintPath>..\packages.nonnuget\Strike.Jint\Strike.Jint.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
-    <Reference Include="System.IO.Compression.FileSystem" />
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\VersionInfo.cs">
-      <Link>VersionInfo.cs</Link>
-    </Compile>
-    <Compile Include="CommandLineArgumentHelpTexts.cs" />
-    <Compile Include="Configuration.cs" />
-    <Compile Include="ConfigurationReporter.cs" />
-    <Compile Include="CultureAwareDialectProvider.cs" />
-    <Compile Include="DescriptionProcessor.cs" />
-    <Compile Include="DirectoryCrawler\ImageFileDetector.cs" />
-    <Compile Include="DirectoryCrawler\ParsingReport.cs" />
-    <Compile Include="EncodingDetector.cs" />
-    <Compile Include="Extensions\PathExtensions.cs" />
-    <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="DirectoryCrawler\FeatureNodeFactory.cs" />
-    <Compile Include="FeatureFilter.cs" />
-    <Compile Include="FeatureParseException.cs" />
-    <Compile Include="FeatureToggles\AlternateMarkdownProvider.cs" />
-    <Compile Include="FileSystemBasedFeatureParser.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="LanguageServices.cs" />
-    <Compile Include="LanguageServicesRegistry.cs" />
-    <Compile Include="MarkdownProvider.cs" />
-    <Compile Include="ObjectModel\Mapper.cs" />
-    <Compile Include="DirectoryCrawler\DirectoryTreeCrawler.cs" />
-    <Compile Include="FeatureParser.cs" />
-    <Compile Include="PicklesModule.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DirectoryCrawler\RelevantFileDetector.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
+    <Compile Include="..\VersionInfo.cs" Link="VersionInfo.cs" />
+    <Compile Update="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Runner.cs" />
-    <Compile Include="StrikeMarkdownProvider.cs" />
-    <Compile Include="TestFrameworks\NullTestResults.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <None Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\markdowndeep\markdowndeep.csproj">
-      <Project>{1cc9970a-4864-47be-83f9-22b292a743f5}</Project>
-      <Name>markdowndeep</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Pickles.DocumentationBuilders.Cucumber\Pickles.DocumentationBuilders.Cucumber.csproj">
-      <Project>{f69aac03-a2a6-4b3f-a4ef-accb145c64ad}</Project>
-      <Name>Pickles.DocumentationBuilders.Cucumber</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Pickles.DocumentationBuilders.Dhtml\Pickles.DocumentationBuilders.Dhtml.csproj">
-      <Project>{8AC3AAFA-84DD-4437-962B-E6C5D6078E09}</Project>
-      <Name>Pickles.DocumentationBuilders.Dhtml</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Pickles.DocumentationBuilders.Excel\Pickles.DocumentationBuilders.Excel.csproj">
-      <Project>{A875B066-443A-420E-A1F5-7870CFF0A50C}</Project>
-      <Name>Pickles.DocumentationBuilders.Excel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Pickles.DocumentationBuilders.Html\Pickles.DocumentationBuilders.Html.csproj">
-      <Project>{2C849AD2-D125-4754-8BBA-7C61FA6251E4}</Project>
-      <Name>Pickles.DocumentationBuilders.Html</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Pickles.DocumentationBuilders.Json\Pickles.DocumentationBuilders.Json.csproj">
-      <Project>{836020D1-A309-4367-9654-EBB7C3F60D97}</Project>
-      <Name>Pickles.DocumentationBuilders.Json</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Pickles.DocumentationBuilders.Markdown\Pickles.DocumentationBuilders.Markdown.csproj">
-      <Project>{732039f2-cad8-44bc-9647-ec0acaf59632}</Project>
-      <Name>Pickles.DocumentationBuilders.Markdown</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Pickles.DocumentationBuilders.Word\Pickles.DocumentationBuilders.Word.csproj">
-      <Project>{BDD5290E-BF98-436B-ADEE-A7479E22A875}</Project>
-      <Name>Pickles.DocumentationBuilders.Word</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Pickles.ObjectModel\Pickles.ObjectModel.csproj">
-      <Project>{55382AFC-E050-4DF7-AA4F-0ABA71E2E169}</Project>
-      <Name>Pickles.ObjectModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Pickles.TestFrameworks\Pickles.TestFrameworks.csproj">
-      <Project>{599BCF0C-8FB4-4727-A902-160C4E7D8FB0}</Project>
-      <Name>Pickles.TestFrameworks</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\markdowndeep\markdowndeep.csproj" />
+    <ProjectReference Include="..\Pickles.DocumentationBuilders.Cucumber\Pickles.DocumentationBuilders.Cucumber.csproj" />
+    <ProjectReference Include="..\Pickles.DocumentationBuilders.Dhtml\Pickles.DocumentationBuilders.Dhtml.csproj" />
+    <ProjectReference Include="..\Pickles.DocumentationBuilders.Excel\Pickles.DocumentationBuilders.Excel.csproj" />
+    <ProjectReference Include="..\Pickles.DocumentationBuilders.Html\Pickles.DocumentationBuilders.Html.csproj" />
+    <ProjectReference Include="..\Pickles.DocumentationBuilders.Json\Pickles.DocumentationBuilders.Json.csproj" />
+    <ProjectReference Include="..\Pickles.DocumentationBuilders.Markdown\Pickles.DocumentationBuilders.Markdown.csproj" />
+    <ProjectReference Include="..\Pickles.DocumentationBuilders.Word\Pickles.DocumentationBuilders.Word.csproj" />
+    <ProjectReference Include="..\Pickles.ObjectModel\Pickles.ObjectModel.csproj" />
+    <ProjectReference Include="..\Pickles.TestFrameworks\Pickles.TestFrameworks.csproj" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <PackageReference Include="Autofac">
-      <Version>4.8.0</Version>
-    </PackageReference>
-    <PackageReference Include="ClosedXML">
-      <Version>0.87.1</Version>
-    </PackageReference>
-    <PackageReference Include="DocumentFormat.OpenXml">
-      <Version>2.5</Version>
-    </PackageReference>
-    <PackageReference Include="FeatureSwitcher">
-      <Version>1.1.0</Version>
-    </PackageReference>
-    <PackageReference Include="Gherkin">
-      <Version>4.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="NDesk.Options">
-      <Version>0.2.1</Version>
-    </PackageReference>
-    <PackageReference Include="NLog">
-      <Version>4.5.3</Version>
-    </PackageReference>
-    <PackageReference Include="System.IO.Abstractions">
-      <Version>2.1.0.178</Version>
-    </PackageReference>
+    <PackageReference Include="Autofac" Version="4.8.0" />
+    <PackageReference Include="ClosedXML" Version="0.87.1" />
+    <PackageReference Include="DocumentFormat.OpenXml" Version="2.5" />
+    <PackageReference Include="FeatureSwitcher" Version="1.1.0" />
+    <PackageReference Include="Gherkin" Version="4.0.0" />
+    <PackageReference Include="NDesk.Options" Version="0.2.1" />
+    <PackageReference Include="NLog" Version="4.5.3" />
+    <PackageReference Include="System.IO.Abstractions" Version="2.1.0.178" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <ItemGroup>
+    <Compile Remove="DocumentationBuilders\Cucumber\CucumberDocumentationBuilder.cs" />
+  </ItemGroup>
 </Project>
