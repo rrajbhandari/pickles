@@ -22,8 +22,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Abstractions;
 using System.Reflection;
-using System.Text.Json;
-//using System.Text.Json.Serialization;
 using NLog;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.ObjectModel;
@@ -34,6 +32,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Cucumber
     using DocumentationBuilders;
     using System.Linq;
     using DataStructures;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
 
     public class CucumberDocumentationBuilder : IDocumentationBuilder
     {
@@ -105,27 +105,14 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Cucumber
 
             });
 
-            //JsonSerializerSettings settings = new JsonSerializerSettings
-            //{
-            //    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-            //    NullValueHandling = NullValueHandling.Ignore,
-            //    Converters = new List<JsonConverter> { new StringEnumConverter() }
-            //};
-
-            //return JsonConvert.SerializeObject(toOutPut, Formatting.Indented, settings);
-
-            var options = new JsonSerializerOptions
+            JsonSerializerSettings settings = new JsonSerializerSettings
             {
-                WriteIndented = true,
-                IgnoreNullValues = true
-                
-                //, Converters =
-                //{
-                //    new JsonStringEnumConverter()
-                //}
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                NullValueHandling = NullValueHandling.Ignore,
+                Converters = new List<JsonConverter> { new StringEnumConverter() }
             };
 
-            return JsonSerializer.Serialize(toOutPut, options);
+            return JsonConvert.SerializeObject(toOutPut, Formatting.Indented, settings);
         }
 
         private static string DetermineStatus(IFeatureElement fe)

@@ -21,8 +21,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
-//using System.Text.Json.Serialization;
 using Autofac;
 using NFluent;
 using NUnit.Framework;
@@ -33,6 +31,7 @@ using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Test.Helpers;
 using PicklesDoc.Pickles.TestFrameworks;
 using PicklesDoc.Pickles.TestFrameworks.MsTest;
+using Newtonsoft.Json.Linq;
 
 namespace PicklesDoc.Pickles.Test.Formatters.JSON
 {
@@ -90,114 +89,106 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
         [Test]
         public void ItShouldContainResultKeysInTheJsonDocument()
         {
-            //string content = this.Setup();
+            string content = this.Setup();
 
-            //content.AssertJsonContainsKey("Result");
-            Assert.That(true);
+            content.AssertJsonContainsKey("Result");
         }
 
         [Test]
         public void ItShouldContainTheSutInfoInTheJsonDocument()
         {
-            //string content = this.Setup();
+            string content = this.Setup();
 
-            //var jsonDoc = JsonDocument.Parse(content);
+            var jsonDoc = JObject.Parse(content);
 
-            //var configuration = jsonDoc["Configuration"];
+            var configuration = jsonDoc["Configuration"];
 
-            //Check.That(configuration["SutName"].ToString()).IsEqualTo("SUT Name");
-            //Check.That(configuration["SutVersion"].ToString()).IsEqualTo("SUT Version");
-            Assert.That(true);
+            Check.That(configuration["SutName"].ToString()).IsEqualTo("SUT Name");
+            Check.That(configuration["SutVersion"].ToString()).IsEqualTo("SUT Version");
         }
 
         [Test]
         public void ItShouldIndicateWasSuccessfulIsTrue()
         {
-            //string content = this.Setup();
+            string content = this.Setup();
 
-            //var jsonDoc = JsonDocument.Parse(content);
+            var jsonDoc = JObject.Parse(content);
 
-            //IEnumerable<JsonElement> featureJsonElement = from feat in jsonDoc["Features"]
-            //                                         where
-            //                                             feat["Feature"]["Name"].Value<string>().Equals(
-            //                                                 "Two more scenarios transfering funds between accounts")
-            //                                         select feat;
+            IEnumerable<JToken> featureJsonElement = from feat in jsonDoc["Features"]
+                                                          where
+                                                              feat["Feature"]["Name"].Value<string>().Equals(
+                                                                  "Two more scenarios transfering funds between accounts")
+                                                          select feat;
 
-            //Check.That(featureJsonElement.ElementAt(0)["Result"]["WasSuccessful"].Value<bool>()).IsTrue();
-            Assert.That(true);
+            Check.That(featureJsonElement.ElementAt(0)["Result"]["WasSuccessful"].Value<bool>()).IsTrue();
         }
 
         [Test]
         public void ItShouldIndicateWasSuccessfulIsTrueForTheOtherSuccessFeature()
         {
-            //string content = this.Setup();
+            string content = this.Setup();
 
-            //var jsonObj = JObject.Parse(content);
+            var jsonObj = JObject.Parse(content);
 
-            //IEnumerable<JToken> featureJsonElement = from feat in jsonObj["Features"]
-            //                                         where
-            //                                             feat["Feature"]["Name"].Value<string>().Equals(
-            //                                                 "Transfer funds between accounts")
-            //                                         select feat;
+            IEnumerable<JToken> featureJsonElement = from feat in jsonObj["Features"]
+                                                     where
+                                                         feat["Feature"]["Name"].Value<string>().Equals(
+                                                             "Transfer funds between accounts")
+                                                     select feat;
 
-            //Check.That(featureJsonElement.ElementAt(0)["Result"]["WasSuccessful"].Value<bool>()).IsTrue();
-            Assert.That(true);
+            Check.That(featureJsonElement.ElementAt(0)["Result"]["WasSuccessful"].Value<bool>()).IsTrue();
         }
 
         [Test]
         public void ItShouldIndicateWasSuccessfulIsFalseForFailingScenario()
         {
-            //string content = this.Setup();
+            string content = this.Setup();
 
-            //var jsonObj = JObject.Parse(content);
+            var jsonObj = JObject.Parse(content);
 
-            //IEnumerable<JToken> featureJsonElement = from feat in jsonObj["Features"]
-            //                                         where
-            //                                             feat["Feature"]["Name"].Value<string>().Equals(
-            //                                                 "Transfer funds between accounts onc scenario and FAILING")
-            //                                         select feat;
+            IEnumerable<JToken> featureJsonElement = from feat in jsonObj["Features"]
+                                                     where
+                                                         feat["Feature"]["Name"].Value<string>().Equals(
+                                                             "Transfer funds between accounts onc scenario and FAILING")
+                                                     select feat;
 
-            //Check.That(featureJsonElement.ElementAt(0)["Result"]["WasSuccessful"].Value<bool>()).IsFalse();
-            Assert.That(true);
+            Check.That(featureJsonElement.ElementAt(0)["Result"]["WasSuccessful"].Value<bool>()).IsFalse();
         }
 
         [Test]
         public void ItShouldIndicateWasSuccessfulIsFalseForAnotherFailingScenario()
         {
-            //string content = this.Setup();
+            string content = this.Setup();
 
-            //var jsonObj = JObject.Parse(content);
+            var jsonObj = JObject.Parse(content);
 
-            //IEnumerable<JToken> featureJsonElement = from feat in jsonObj["Features"]
-            //                                         where
-            //                                             feat["Feature"]["Name"].Value<string>().Equals(
-            //                                                 "Two more scenarios transfering funds between accounts - one failng and one succeding")
-            //                                         select feat;
+            IEnumerable<JToken> featureJsonElement = from feat in jsonObj["Features"]
+                                                     where
+                                                         feat["Feature"]["Name"].Value<string>().Equals(
+                                                             "Two more scenarios transfering funds between accounts - one failng and one succeding")
+                                                     select feat;
 
-            //Check.That(featureJsonElement.ElementAt(0)["Result"]["WasSuccessful"].Value<bool>()).IsFalse();
-            Assert.That(true);
+            Check.That(featureJsonElement.ElementAt(0)["Result"]["WasSuccessful"].Value<bool>()).IsFalse();
         }
 
         [Test]
         public void ItShouldContainWasSuccessfulKeyInJsonDocument()
         {
-            //string content = this.Setup();
+            string content = this.Setup();
 
-            //var jsonObj = JObject.Parse(content);
+            var jsonObj = JObject.Parse(content);
 
-            //Check.That(jsonObj["Features"][0]["Result"]["WasSuccessful"].ToString()).IsNotEmpty();
-            Assert.That(true);
+            Check.That(jsonObj["Features"][0]["Result"]["WasSuccessful"].ToString()).IsNotEmpty();
         }
 
         [Test]
         public void ItShouldWasSuccessfulFalseForFeatureXJsonDocument()
         {
-            //string content = this.Setup();
+            string content = this.Setup();
 
-            //var jsonObj = JObject.Parse(content);
+            var jsonObj = JObject.Parse(content);
 
-            //Check.That(jsonObj["Features"][0]["Result"]["WasSuccessful"].ToString()).IsNotEmpty();
-            Assert.That(true);
+            Check.That(jsonObj["Features"][0]["Result"]["WasSuccessful"].ToString()).IsNotEmpty();
         }
     }
 }

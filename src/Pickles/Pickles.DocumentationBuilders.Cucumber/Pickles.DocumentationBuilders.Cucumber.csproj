@@ -24,8 +24,8 @@
     <ProjectReference Include="..\Pickles.ObjectModel\Pickles.ObjectModel.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="NLog" Version="4.5.3" />
-    <PackageReference Include="System.Text.Json" Version="5.0.1" />
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
     <PackageReference Include="System.ServiceModel.Duplex" Version="4.8.1" />
     <PackageReference Include="System.ServiceModel.NetTcp" Version="4.8.1" />

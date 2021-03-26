@@ -22,8 +22,8 @@ using System;
 using System.Collections.Generic;
 using System.IO.Abstractions;
 using System.Reflection;
-using System.Text.Json;
-//using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using NLog;
 
 using PicklesDoc.Pickles.DataStructures;
@@ -111,27 +111,14 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Json
                 }
             };
 
-            //var settings = new JsonSerializerSettings
-            //{
-            //    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-            //    NullValueHandling = NullValueHandling.Ignore,
-            //    Converters = new List<JsonConverter> { new StringEnumConverter() }
-            //};
-
-            //return JsonConvert.SerializeObject(data, Formatting.Indented, settings);
-
-            var options = new JsonSerializerOptions
+            var settings = new JsonSerializerSettings
             {
-                WriteIndented = true,
-                IgnoreNullValues = true
-
-                //, Converters =
-                //{
-                //    new JsonStringEnumConverter()
-                //}
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                NullValueHandling = NullValueHandling.Ignore,
+                Converters = new List<JsonConverter> { new StringEnumConverter() }
             };
 
-            return JsonSerializer.Serialize(data, options);
+            return JsonConvert.SerializeObject(data, Formatting.Indented, settings);
         }
 
         private void CreateFile(string outputFolderName, string jsonToWrite)
