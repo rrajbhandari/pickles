@@ -2,8 +2,7 @@
   <PropertyGroup>
     <RootNamespace>PicklesDoc.Pickles.CommandLine.UnitTests</RootNamespace>
     <AssemblyName>PicklesDoc.Pickles.CommandLine.UnitTests</AssemblyName>
-    <TargetFramework>net48</TargetFramework>
-    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
@@ -15,7 +14,7 @@
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
-    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>    
+    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -30,9 +29,6 @@
     <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="..\VersionInfo.cs" Link="VersionInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -44,7 +40,6 @@
   <ItemGroup>
     <PackageReference Include="NFluent" Version="2.2.0" />
     <PackageReference Include="NUnit" Version="3.10.1" />
-    <PackageReference Include="System.IO.Abstractions" Version="2.1.0.178" />
     <PackageReference Include="System.IO.Abstractions.TestingHelpers" Version="2.1.0.178" />
   </ItemGroup>
 </Project>

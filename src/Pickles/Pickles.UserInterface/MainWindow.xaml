@@ -12,10 +12,10 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Green.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Green.xaml" />
                 <ResourceDictionary>
                     <Color x:Key="HighlightDarkColor">#CC2F8200</Color>
 
@@ -23,7 +23,6 @@
 
                 </ResourceDictionary>
 
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
                 <ResourceDictionary Source="CoolCheckBox.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -78,7 +77,7 @@
         <Label Content="Hide Tags" Grid.Column="0" Grid.Row="4" VerticalAlignment="Top" />
         <TextBox Text="{Binding HideTags}" Grid.Column="1" Grid.Row="4" mahapps:TextBoxHelper.Watermark="Don't show those tags in living documentation (separated by ';')" VerticalAlignment="Top" />
         
-        <mahapps:ToggleSwitch Header="Create Directory For Each Output Format" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" IsChecked="{Binding Path=CreateDirectoryForEachOutputFormat, Mode=TwoWay}" Margin="0,0,0,5" />
+        <mahapps:ToggleSwitch Header="Create Directory For Each Output Format" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" IsOn="{Binding Path=CreateDirectoryForEachOutputFormat, Mode=TwoWay}" Margin="0,0,0,5" />
 
 
         <ListBox ItemsSource="{Binding DocumentationFormatValues}" Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="12">
@@ -89,7 +88,7 @@
             </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <mahapps:ToggleSwitch Header="{Binding Path=Item}" IsChecked="{Binding Path=IsSelected, Mode=TwoWay}" Width="120" />
+                    <mahapps:ToggleSwitch Header="{Binding Path=Item}" IsOn="{Binding Path=IsSelected, Mode=TwoWay}" Width="120" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
@@ -103,7 +102,7 @@
         <CheckBox Template="{StaticResource ResourceKey=myCheckBox}" Grid.Column="3" Grid.Row="7" IsChecked="{Binding Path=IsProjectVersionValid}" IsEnabled="False" VerticalAlignment="Top"/>
 
         <Label Content="Include Test Results" Grid.Column="0" Grid.Row="9" Visibility="Hidden" />
-        <mahapps:ToggleSwitch Header="Include Test Results" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" IsChecked="{Binding Path=IncludeTests, Mode=TwoWay}" Margin="0,0,0,5" />
+        <mahapps:ToggleSwitch Header="Include Test Results" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" IsOn="{Binding Path=IncludeTests, Mode=TwoWay}" Margin="0,0,0,5" />
 
         <Label Content="Test Results File" Grid.Column="0" Grid.Row="9" VerticalAlignment="Top" />
         <TextBox Text="{Binding TestResultsFile}" Grid.Column="1" Grid.Row="9" IsEnabled="{Binding Path=IncludeTests}" mahapps:TextBoxHelper.Watermark="Browse To The Location Of Your Test Results File" VerticalAlignment="Top" />
@@ -118,8 +117,8 @@
         <ComboBox ItemsSource="{Binding LanguageValues}" Grid.Column="1" SelectedItem="{Binding SelectedLanguage}" Grid.Row="11"  Grid.ColumnSpan="2" DisplayMemberPath="NativeName" VerticalAlignment="Top"/>
         <CheckBox Template="{StaticResource ResourceKey=myCheckBox}" Grid.Column="3" Grid.Row="11" IsChecked="{Binding Path=IsLanguageValid}" IsEnabled="False" VerticalAlignment="Top"/>
 
-        <mahapps:ToggleSwitch Header="Enable Comments" Grid.Row="1" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="1" IsChecked="{Binding Path=EnableComments, Mode=TwoWay}" Margin="5,0,0,5" />
-        <mahapps:ToggleSwitch Header="Include Experimental Features" Grid.RowSpan="2" Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="1" IsChecked="{Binding Path=IncludeExperimentalFeatures, Mode=TwoWay}" Margin="5,0,0,5" />
+        <mahapps:ToggleSwitch Header="Enable Comments" Grid.Row="1" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="1" IsOn="{Binding Path=EnableComments, Mode=TwoWay}" Margin="5,0,0,5" />
+        <mahapps:ToggleSwitch Header="Include Experimental Features" Grid.RowSpan="2" Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="1" IsOn="{Binding Path=IncludeExperimentalFeatures, Mode=TwoWay}" Margin="5,0,0,5" />
 
         <Button Command="{Binding GeneratePickles}" Content="Generate" Grid.Row="11" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24" Padding="15" Grid.ColumnSpan="2" Margin="0,0,20,20" />
 

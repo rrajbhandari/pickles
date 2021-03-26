@@ -2,7 +2,7 @@
   <PropertyGroup>
     <RootNamespace>PicklesDoc.Pickles.TestFrameworks.UnitTests</RootNamespace>
     <AssemblyName>PicklesDoc.Pickles.TestFrameworks.UnitTests</AssemblyName>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyTitle>PicklesDoc.Pickles.TestFrameworks.UnitTests</AssemblyTitle>
     <Description>Unit tests for the supported test frameworks for inputting test results to Pickles</Description>
     <OutputPath>bin\$(Configuration)\</OutputPath>
@@ -13,10 +13,6 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System.Configuration" />
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CucumberJson\results-example-json.json" />
   </ItemGroup>
@@ -113,14 +109,5 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="NUnit\NUnit3\results-example-nunit2-with-nunit3-runner.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.8.0" />
-    <PackageReference Include="Castle.Core" Version="4.2.1" />
-    <PackageReference Include="NFluent" Version="2.2.0" />
-    <PackageReference Include="NSubstitute" Version="3.1.0" />
-    <PackageReference Include="NUnit" Version="3.10.1" />
-    <PackageReference Include="System.IO.Abstractions" Version="2.1.0.178" />
-    <PackageReference Include="System.IO.Abstractions.TestingHelpers" Version="2.1.0.178" />
   </ItemGroup>
 </Project>

@@ -4,7 +4,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>PicklesDoc.Pickles.UserInterface</RootNamespace>
     <AssemblyName>PicklesUI</AssemblyName>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <AssemblyTitle>PicklesUI</AssemblyTitle>
@@ -14,7 +14,7 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
-    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>    
+    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -25,18 +25,6 @@
   <PropertyGroup>
     <ApplicationIcon>Pickles.ico</ApplicationIcon>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.IO.Compression" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Transactions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-  </ItemGroup>
   <ItemGroup>
     <Compile Include="..\VersionInfo.cs" Link="VersionInfo.cs" />
     <Compile Update="Mvvm\SelectableItem.cs">
@@ -52,17 +40,12 @@
     <ProjectReference Include="..\Pickles\Pickles.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.8.0" />
     <PackageReference Include="CommonServiceLocator" Version="2.0.3" />
-    <PackageReference Include="ControlzEx" Version="3.0.2.4" />
-    <PackageReference Include="MahApps.Metro" Version="1.6.1" />
     <PackageReference Include="MvvmLightLibs" Version="5.4.1" />
-    <PackageReference Include="NLog" Version="4.5.3" />
     <PackageReference Include="NLog.Config" Version="4.5.3" />
-    <PackageReference Include="NLog.Schema" Version="4.5.3" />
     <PackageReference Include="NlogViewer" Version="0.6.0" />
-    <PackageReference Include="Ookii.Dialogs" Version="1.0.0" />
     <PackageReference Include="Ookii.Dialogs.Wpf" Version="3.1.0" />
-    <PackageReference Include="System.IO.Abstractions" Version="2.1.0.178" />
+    <PackageReference Include="MahApps.Metro" Version="2.4.4" />
+    <PackageReference Include="Microsoft.Windows.Compatibility" Version="5.0.2" />
   </ItemGroup>
 </Project>

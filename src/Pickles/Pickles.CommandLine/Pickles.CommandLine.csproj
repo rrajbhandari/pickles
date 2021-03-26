@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>PicklesDoc.Pickles.CommandLine</RootNamespace>
     <AssemblyName>Pickles</AssemblyName>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\Pickles\</SolutionDir>
     <AssemblyTitle>Pickles.CommandLine</AssemblyTitle>
     <Description>
@@ -55,14 +55,6 @@
     <StartupObject>PicklesDoc.Pickles.CommandLine.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.IO.Compression" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Transactions" />
-    <Reference Include="System.Data.DataSetExtensions" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="..\VersionInfo.cs" Link="VersionInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -76,11 +68,7 @@
     <None Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.8.0" />
-    <PackageReference Include="NDesk.Options" Version="0.2.1" />
-    <PackageReference Include="NLog" Version="4.5.3" />
+    <PackageReference Include="NDesk.Options.Core" Version="1.2.5" />
     <PackageReference Include="NLog.Config" Version="4.5.3" />
-    <PackageReference Include="NLog.Schema" Version="4.5.3" />
-    <PackageReference Include="System.IO.Abstractions" Version="2.1.0.178" />
   </ItemGroup>
 </Project>

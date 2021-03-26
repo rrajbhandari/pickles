@@ -2,7 +2,7 @@
   <PropertyGroup>
     <RootNamespace>PicklesDoc.Pickles.DocumentationBuilders.Dhtml.UnitTests</RootNamespace>
     <AssemblyName>PicklesDoc.Pickles.DocumentationBuilders.Dhtml.UnitTests</AssemblyName>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyTitle>Pickles.DocumentationBuilders.Dhtml.UnitTests</AssemblyTitle>
     <Description>Unit tests for the Pickles output formatter that outputs DHTML documents</Description>
     <OutputPath>bin\$(Configuration)\</OutputPath>
@@ -18,11 +18,6 @@
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Net.Http" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="..\VersionInfo.cs" Link="VersionInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -31,11 +26,5 @@
     <ProjectReference Include="..\Pickles.ObjectModel\Pickles.ObjectModel.csproj" />
     <ProjectReference Include="..\Pickles.Test\Pickles.Test.csproj" />
     <ProjectReference Include="..\Pickles\Pickles.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="NFluent" Version="2.2.0" />
-    <PackageReference Include="NUnit" Version="3.10.1" />
-    <PackageReference Include="System.IO.Abstractions" Version="2.1.0.178" />
-    <PackageReference Include="System.IO.Abstractions.TestingHelpers" Version="2.1.0.178" />
   </ItemGroup>
 </Project>

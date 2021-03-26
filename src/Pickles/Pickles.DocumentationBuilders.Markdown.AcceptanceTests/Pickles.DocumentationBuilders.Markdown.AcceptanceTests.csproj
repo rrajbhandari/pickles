@@ -2,7 +2,7 @@
   <PropertyGroup>
     <RootNamespace>PicklesDoc.Pickles.DocumentationBuilders.Markdown.AcceptanceTests</RootNamespace>
     <AssemblyName>PicklesDoc.Pickles.DocumentationBuilders.Markdown.AcceptanceTests</AssemblyName>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyTitle>Pickles.DocumentationBuilders.Markdown.AcceptanceTests</AssemblyTitle>
     <Description>Acceptance tests for the Pickles output formatter that outputs Markdown documents</Description>
     <OutputPath>bin\$(Configuration)\</OutputPath>
@@ -18,112 +18,41 @@
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Net.Http" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="..\VersionInfo.cs" Link="VersionInfo.cs" />
-    <Compile Update="Features\Feature Background.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Feature Background.feature</DependentUpon>
-    </Compile>
-    <Compile Update="Features\Feature Description.feature.cs">
-      <DependentUpon>Feature Description.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Update="Features\Feature Heading.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Feature Heading.feature</DependentUpon>
-    </Compile>
-    <Compile Update="Features\Scenario Outline.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Scenario Outline.feature</DependentUpon>
-    </Compile>
-    <Compile Update="Features\Scenario Status Icons.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Scenario Status Icons.feature</DependentUpon>
-    </Compile>
-    <Compile Update="Features\Scenario Steps.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Scenario Steps.feature</DependentUpon>
-    </Compile>
-    <Compile Update="Features\Scenario Tags.feature.cs">
-      <DependentUpon>Scenario Tags.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Update="Features\Feature Tags.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Feature Tags.feature</DependentUpon>
-    </Compile>
-    <Compile Update="Features\File Location.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>File Location.feature</DependentUpon>
-    </Compile>
-    <Compile Update="Features\Scenario Heading.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Scenario Heading.feature</DependentUpon>
-    </Compile>
-    <Compile Update="Features\Title.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Title.feature</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Features\Feature Background.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Feature Background.feature.cs</LastGenOutput>
+      <Generator></Generator>
     </None>
     <None Include="Features\Feature Description.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Feature Description.feature.cs</LastGenOutput>
+      <Generator></Generator>
     </None>
     <None Include="Features\Feature Heading.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Feature Heading.feature.cs</LastGenOutput>
+      <Generator></Generator>
     </None>
     <None Include="Features\Scenario Outline.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Scenario Outline.feature.cs</LastGenOutput>
+      <Generator></Generator>
     </None>
     <None Include="Features\Scenario Status Icons.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Scenario Status Icons.feature.cs</LastGenOutput>
+      <Generator></Generator>
     </None>
     <None Include="Features\Scenario Steps.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Scenario Steps.feature.cs</LastGenOutput>
+      <Generator></Generator>
     </None>
     <None Include="Features\Scenario Tags.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Scenario Tags.feature.cs</LastGenOutput>
+      <Generator></Generator>
     </None>
     <None Include="Features\Feature Tags.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Feature Tags.feature.cs</LastGenOutput>
+      <Generator></Generator>
     </None>
     <None Include="Features\File Location.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>File Location.feature.cs</LastGenOutput>
+      <Generator></Generator>
     </None>
     <None Include="Features\Scenario Heading.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Scenario Heading.feature.cs</LastGenOutput>
+      <Generator></Generator>
     </None>
     <None Include="Features\Title.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Title.feature.cs</LastGenOutput>
+      <Generator></Generator>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -132,12 +61,6 @@
     <ProjectReference Include="..\Pickles.Test\Pickles.Test.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.8.0" />
-    <PackageReference Include="NUnit" Version="3.10.1" />
-    <PackageReference Include="SpecFlow" Version="2.3.2" />
-    <PackageReference Include="SpecFlow.NUnit" Version="2.3.2" />
-    <PackageReference Include="System.IO.Abstractions" Version="2.1.0.178" />
-    <PackageReference Include="System.IO.Abstractions.TestingHelpers" Version="2.1.0.178" />
-    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+    <PackageReference Include="SpecFlow.NUnit" Version="3.7.38" />
   </ItemGroup>
 </Project>

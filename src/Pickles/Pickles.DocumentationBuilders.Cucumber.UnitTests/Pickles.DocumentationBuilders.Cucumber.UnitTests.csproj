@@ -2,7 +2,7 @@
   <PropertyGroup>
     <RootNamespace>PicklesDoc.Pickles.DocumentationBuilders.Cucumber.UnitTests</RootNamespace>
     <AssemblyName>PicklesDoc.Pickles.DocumentationBuilders.Cucumber.UnitTests</AssemblyName>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
@@ -22,18 +22,9 @@
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
-    <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
     <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="FormattingAFeature.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FormattingAFeature.feature</DependentUpon>
-    </Compile>
+    <PackageReference Include="MSTest.TestAdapter" Version="2.2.3" />
+    <PackageReference Include="SpecFlow" Version="3.7.38" />
   </ItemGroup>
   <ItemGroup>
     <None Include="FormattingAFeature.feature">
@@ -47,14 +38,5 @@
     <ProjectReference Include="..\Pickles.TestFrameworks\Pickles.TestFrameworks.csproj" />
     <ProjectReference Include="..\Pickles.Test\Pickles.Test.csproj" />
     <ProjectReference Include="..\Pickles\Pickles.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.8.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="NFluent" Version="2.2.0" />
-    <PackageReference Include="NUnit" Version="3.10.1" />
-    <PackageReference Include="SpecFlow" Version="2.3.2" />
-    <PackageReference Include="System.IO.Abstractions" Version="2.1.0.178" />
-    <PackageReference Include="System.IO.Abstractions.TestingHelpers" Version="2.1.0.178" />
   </ItemGroup>
 </Project>

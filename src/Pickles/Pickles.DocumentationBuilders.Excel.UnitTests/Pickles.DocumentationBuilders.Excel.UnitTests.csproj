@@ -2,7 +2,7 @@
   <PropertyGroup>
     <RootNamespace>PicklesDoc.Pickles.DocumentationBuilders.Excel.UnitTests</RootNamespace>
     <AssemblyName>PicklesDoc.Pickles.DocumentationBuilders.Excel.UnitTests</AssemblyName>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyTitle>Pickles.DocumentationBuilders.Excel.UnitTests</AssemblyTitle>
     <Description>Unit Tests for the Pickles output formatter that outputs MS Excel documents</Description>
     <OutputPath>bin\$(Configuration)\</OutputPath>
@@ -18,23 +18,11 @@
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Net.Http" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="..\VersionInfo.cs" Link="VersionInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Pickles.DocumentationBuilders.Excel\Pickles.DocumentationBuilders.Excel.csproj" />
     <ProjectReference Include="..\Pickles.ObjectModel\Pickles.ObjectModel.csproj" />
     <ProjectReference Include="..\Pickles.Test\Pickles.Test.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.8.0" />
-    <PackageReference Include="ClosedXML" Version="0.87.1" />
-    <PackageReference Include="DocumentFormat.OpenXml" Version="2.5.0" />
-    <PackageReference Include="NFluent" Version="2.2.0" />
-    <PackageReference Include="NUnit" Version="3.10.1" />
   </ItemGroup>
 </Project>

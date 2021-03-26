@@ -2,7 +2,7 @@
   <PropertyGroup>
     <RootNamespace>PicklesDoc.Pickles.DocumentationBuilders.Html.UnitTests</RootNamespace>
     <AssemblyName>PicklesDoc.Pickles.DocumentationBuilders.Html.UnitTests</AssemblyName>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyTitle>Pickles.DocumentationBuilders.Html</AssemblyTitle>
     <Description>A Pickles output formatter that outputs HTML documents</Description>
     <OutputPath>bin\$(Configuration)\</OutputPath>
@@ -18,31 +18,14 @@
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Net.Http" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="..\VersionInfo.cs" Link="VersionInfo.cs" />
-    <Compile Update="FormattingAFeature.feature.cs">
-      <DependentUpon>FormattingAFeature.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Update="FormattingAFeatureUsingStrike.feature.cs">
-      <DependentUpon>FormattingAFeatureUsingStrike.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="FormattingAFeature.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>FormattingAFeature.feature.cs</LastGenOutput>
+      <Generator></Generator>
     </None>
     <None Include="FormattingAFeatureUsingStrike.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>FormattingAFeatureUsingStrike.feature.cs</LastGenOutput>
+      <Generator></Generator>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -52,12 +35,9 @@
     <ProjectReference Include="..\Pickles\Pickles.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.8.0" />
-    <PackageReference Include="NFluent" Version="2.2.0" />
-    <PackageReference Include="NUnit" Version="3.10.1" />
-    <PackageReference Include="SpecFlow" Version="2.3.2" />
-    <PackageReference Include="System.IO.Abstractions" Version="2.1.0.178" />
-    <PackageReference Include="System.IO.Abstractions.TestingHelpers" Version="2.1.0.178" />
-    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.2.3" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
+    <PackageReference Include="SpecFlow.NUnit" Version="3.7.38" />
   </ItemGroup>
 </Project>

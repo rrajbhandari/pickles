@@ -2,7 +2,7 @@
   <PropertyGroup>
     <RootNamespace>PicklesDoc.Pickles</RootNamespace>
     <AssemblyName>PicklesDoc.Pickles.ObjectModel</AssemblyName>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyTitle>PicklesDoc.Pickles.ObjectModel</AssemblyTitle>
     <Description>The object model for Pickles</Description>
     <OutputPath>bin\$(Configuration)\</OutputPath>
@@ -13,11 +13,6 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Net.Http" />
-  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="System.IO.Abstractions" Version="2.1.0.178" />
   </ItemGroup>

@@ -3,7 +3,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <RootNamespace>PicklesDoc.Pickles.PowerShell</RootNamespace>
     <AssemblyName>PicklesDoc.Pickles.PowerShell</AssemblyName>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\Pickles\</SolutionDir>
     <AssemblyTitle>Pickles.PowerShell</AssemblyTitle>
     <Description>
@@ -51,11 +51,6 @@
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Management" />
-    <Reference Include="System.Data.DataSetExtensions" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="..\VersionInfo.cs" Link="VersionInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -66,8 +61,6 @@
     <None Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.8.0" />
-    <PackageReference Include="System.IO.Abstractions" Version="2.1.0.178" />
     <PackageReference Include="System.Management.Automation" Version="6.0.4" />
   </ItemGroup>
 </Project>
