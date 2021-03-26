@@ -40,7 +40,7 @@
     <None Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\markdowndeep\markdowndeep.csproj" />
+    <ProjectReference Include="..\markdowndeep\markdowndeep.csproj" />
     <ProjectReference Include="..\Pickles.DocumentationBuilders.Cucumber\Pickles.DocumentationBuilders.Cucumber.csproj" />
     <ProjectReference Include="..\Pickles.DocumentationBuilders.Dhtml\Pickles.DocumentationBuilders.Dhtml.csproj" />
     <ProjectReference Include="..\Pickles.DocumentationBuilders.Excel\Pickles.DocumentationBuilders.Excel.csproj" />
