@@ -2,7 +2,7 @@
   <PropertyGroup>
     <RootNamespace>PicklesDoc.Pickles.TestFrameworks.UnitTests</RootNamespace>
     <AssemblyName>PicklesDoc.Pickles.TestFrameworks.UnitTests</AssemblyName>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyTitle>PicklesDoc.Pickles.TestFrameworks.UnitTests</AssemblyTitle>
     <Description>Unit tests for the supported test frameworks for inputting test results to Pickles</Description>
     <OutputPath>bin\$(Configuration)\</OutputPath>
@@ -109,5 +109,10 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="NUnit\NUnit3\results-example-nunit2-with-nunit3-runner.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.1" />
+    <PackageReference Include="NUnit" Version="3.13.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
   </ItemGroup>
 </Project>
