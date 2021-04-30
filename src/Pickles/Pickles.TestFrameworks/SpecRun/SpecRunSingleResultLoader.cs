@@ -45,8 +45,10 @@ namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
         private XDocument ReadResultsFile(FileInfoBase testResultsFile)
         {
             XDocument document;
-            using (var stream = testResultsFile.OpenRead())
-            {
+            //using (var stream = testResultsFile.OpenRead())
+            //{
+            var stream = testResultsFile.OpenRead();
+
                 using (var streamReader = new System.IO.StreamReader(stream))
                 {
                     string content = streamReader.ReadToEnd();
@@ -66,7 +68,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
                     var xmlReader = XmlReader.Create(new System.IO.StringReader(content));
                     document = XDocument.Load(xmlReader);
                 }
-            }
+            //}
 
             return document;
         }

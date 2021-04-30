@@ -52,6 +52,7 @@ namespace PicklesDoc.Pickles.Extensions
         public static string ToSlug(this string text)
         {
             // remove any accent characters
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             var bytes = Encoding.GetEncoding("Cyrillic").GetBytes(text);
             var str = Encoding.ASCII.GetString(bytes);
 

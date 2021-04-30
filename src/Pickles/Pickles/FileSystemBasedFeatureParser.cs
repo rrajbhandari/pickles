@@ -47,8 +47,8 @@ namespace PicklesDoc.Pickles
             var encoding = this.encodingDetector.GetEncoding(filename);
             using (var fileStream = this.fileSystem.FileInfo.FromFileName(filename).OpenRead())
             {
-                using (var specificEncoderReader = new StreamReader(fileStream, encoding))
-                {
+                var specificEncoderReader = new StreamReader(fileStream, encoding);
+                
                     try
                     {
                         feature = this.parser.Parse(specificEncoderReader);
@@ -61,10 +61,11 @@ namespace PicklesDoc.Pickles
                             $"Errormessage was: '{e.Message}'";
                         throw new FeatureParseException(message, e);
                     }
-                    specificEncoderReader.Close();
+                    //specificEncoderReader.Close();
 
-                }
-                fileStream.Close();
+                
+
+                //fileStream.Close();
             }
 
             return feature;
