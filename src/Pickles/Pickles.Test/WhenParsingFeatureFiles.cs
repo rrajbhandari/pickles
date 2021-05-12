@@ -174,7 +174,7 @@ I want to run this scenario".ComparisonNormalize());
         }
 
         [Test]
-        public void ThenCanParseScenarioOutlinesSuccessfully()
+        public void ThenCanParseScenariosSuccessfully()
         {
             string featureText =
                 @"# ignore this comment
@@ -195,31 +195,31 @@ Feature: Test
             var parser = Container.Resolve<FeatureParser>();
             Feature feature = parser.Parse(new StringReader(featureText));
 
-            var scenarioOutline = feature.FeatureElements[0] as ScenarioOutline;
-            Check.That(scenarioOutline).IsNotNull();
-            Check.That(scenarioOutline.Name).IsEqualTo("A scenario outline");
-            Check.That(scenarioOutline.Description).IsEqualTo(string.Empty);
-            Check.That(scenarioOutline.Steps.Count).IsEqualTo(3);
+            var scenario = feature.FeatureElements[0] as Scenario;
+            Check.That(scenario).IsNotNull();
+            Check.That(scenario.Name).IsEqualTo("A scenario outline");
+            Check.That(scenario.Description).IsEqualTo(string.Empty);
+            Check.That(scenario.Steps.Count).IsEqualTo(3);
 
-            Step givenStep = scenarioOutline.Steps[0];
+            Step givenStep = scenario.Steps[0];
             Check.That(givenStep.Keyword).IsEqualTo(Keyword.Given);
             Check.That(givenStep.Name).IsEqualTo("some feature with <keyword1>");
             Check.That(givenStep.DocStringArgument).IsNull();
             Check.That(givenStep.TableArgument).IsNull();
 
-            Step whenStep = scenarioOutline.Steps[1];
+            Step whenStep = scenario.Steps[1];
             Check.That(whenStep.Keyword).IsEqualTo(Keyword.When);
             Check.That(whenStep.Name).IsEqualTo("it runs");
             Check.That(whenStep.DocStringArgument).IsNull();
             Check.That(whenStep.TableArgument).IsNull();
 
-            Step thenStep = scenarioOutline.Steps[2];
+            Step thenStep = scenario.Steps[2];
             Check.That(thenStep.Keyword).IsEqualTo(Keyword.Then);
             Check.That(thenStep.Name).IsEqualTo("I should see <keyword2>");
             Check.That(thenStep.DocStringArgument).IsNull();
             Check.That(thenStep.TableArgument).IsNull();
 
-            var examples = scenarioOutline.Examples;
+            var examples = scenario.Examples;
             Check.That(examples.First().Name).IsNullOrEmpty();
             Check.That(examples.First().Description).IsNullOrEmpty();
 

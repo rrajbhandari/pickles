@@ -43,7 +43,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
 
         private static ScenarioToJsonScenarioMapper CreateMapper()
         {
-            return new ScenarioToJsonScenarioMapper();
+            return new ScenarioToJsonScenarioMapper(new LanguageServicesRegistry());
         }
 
         [Test]
@@ -56,6 +56,18 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
             JsonScenario actual = mapper.Map(scenario);
 
             Check.That(actual).IsNotNull();
+        }
+
+        [Test]
+        public void Map_NoExamples_ReturnsEmptyListOfExamples()
+        {
+            var scenario = new Scenario { Examples = null };
+
+            var mapper = CreateMapper();
+
+            JsonScenario actual = mapper.Map(scenario);
+
+            Check.That(actual.Examples.Count).IsEqualTo(0);
         }
 
         [Test]
@@ -116,6 +128,18 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
             JsonScenario actual = mapper.Map(scenario);
 
             Check.That(actual.Description).IsEqualTo("Some description");
+        }
+
+        [Test]
+        public void Map_WithDescription_ReturnsSlug()
+        {
+            var scenario = new Scenario { Slug = "i-am-a-slug" };
+
+            var mapper = CreateMapper();
+
+            JsonScenario actual = mapper.Map(scenario);
+
+            Check.That(actual.Slug).IsEqualTo("i-am-a-slug");
         }
 
         [Test]
@@ -181,6 +205,24 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
             JsonScenario actual = mapper.Map(scenario);
 
             Check.That(actual.Tags).ContainsExactly("tag1", "tag2");
+        }
+
+        [Test]
+        public void Map_Example_ReturnsExample()
+        {
+            var scenario = new Scenario
+            {
+                Examples = new List<Example>
+                {
+                    new Example { Name = "Name of the example" }
+                }
+            };
+
+            var mapper = CreateMapper();
+
+            JsonScenario actual = mapper.Map(scenario);
+
+            Check.That(actual.Examples[0].Name).IsEqualTo("Name of the example");
         }
     }
 }

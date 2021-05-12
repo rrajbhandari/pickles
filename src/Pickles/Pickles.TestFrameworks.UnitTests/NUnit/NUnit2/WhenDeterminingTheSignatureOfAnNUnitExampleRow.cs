@@ -37,11 +37,11 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit.NUnit2
         [Test]
         public void ThenCanSuccessfullyMatch()
         {
-            var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers" };
+            var scenario = new Scenario { Name = "Adding several numbers" };
             var exampleRow = new[] { "40", "50", "90" };
 
             var signatureBuilder = new NUnit2ExampleSignatureBuilder();
-            Regex signature = signatureBuilder.Build(scenarioOutline, exampleRow);
+            Regex signature = signatureBuilder.Build(scenario, exampleRow);
 
             var isMatch = signature.IsMatch("Pickles.TestHarness.AdditionFeature.AddingSeveralNumbers(\"40\",\"50\",\"90\",System.String[])".ToLowerInvariant());
             Check.That(isMatch).IsTrue();
@@ -50,7 +50,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit.NUnit2
         [Test]
         public void ThenCanSuccessfullyMatchExamplesWithLongValues()
         {
-            var scenarioOutline = new ScenarioOutline { Name = "Deal correctly with overlong example values" };
+            var scenario = new Scenario { Name = "Deal correctly with overlong example values" };
             var exampleRow = new[]
             {
                 "Please enter a valid two letter country code (e.g. DE)!",
@@ -58,7 +58,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit.NUnit2
             };
 
             var signatureBuilder = new NUnit2ExampleSignatureBuilder();
-            var signature = signatureBuilder.Build(scenarioOutline, exampleRow);
+            var signature = signatureBuilder.Build(scenario, exampleRow);
 
             var isMatch = signature.IsMatch("Pickles.TestHarness.nunit.ScenarioOutlinesFeature.DealCorrectlyWithOverlongExampleValues(\"Please enter a valid two letter country code (e.g. DE)!\",\"This is just a very very very veery long error message!\",null)".ToLowerInvariant());
             Check.That(isMatch).IsTrue();
@@ -67,11 +67,11 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit.NUnit2
         [Test]
         public void ThenCanSuccessfullyMatchSpecialCharacters()
         {
-            var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers (foo-bar, foo bar)" };
+            var scenario = new Scenario { Name = "Adding several numbers (foo-bar, foo bar)" };
             var exampleRow = new[] { "40", "50", "90" };
 
             var signatureBuilder = new NUnit2ExampleSignatureBuilder();
-            Regex signature = signatureBuilder.Build(scenarioOutline, exampleRow);
+            Regex signature = signatureBuilder.Build(scenario, exampleRow);
 
             var isMatch = signature.IsMatch("Pickles.TestHarness.AdditionFeature.AddingSeveralNumbersFoo_BarFooBar(\"40\",\"50\",\"90\",System.String[])".ToLowerInvariant());
             Check.That(isMatch).IsTrue();

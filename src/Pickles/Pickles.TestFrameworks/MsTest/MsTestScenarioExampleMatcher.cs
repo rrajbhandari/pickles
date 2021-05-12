@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="ScenarioOutline.cs" company="PicklesDoc">
+//  <copyright file="MsTestScenarioOutlineExampleMatcher.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -18,9 +18,23 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
+using System.Linq;
+using System.Xml.Linq;
 
-namespace PicklesDoc.Pickles.ObjectModel
+using PicklesDoc.Pickles.ObjectModel;
+
+namespace PicklesDoc.Pickles.TestFrameworks.MsTest
 {
-    public class ScenarioOutline : ScenarioBase { }
+    public class MsTestScenarioExampleMatcher : IScenarioExampleMatcher
+    {
+        public bool IsMatch(Scenario scenario, string[] exampleValues, object scenarioElement)
+        {
+            var element = (XElement)scenarioElement;
+
+            var valuesInScenario = element.DetermineValuesInScenario();
+
+            var isMatch = exampleValues.OrderBy(e => e).SequenceEqual(valuesInScenario.OrderBy(v => v));
+            return isMatch;
+        }
+    }
 }

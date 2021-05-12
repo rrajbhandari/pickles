@@ -113,18 +113,18 @@ namespace PicklesDoc.Pickles
                     continue;
                 }
 
-                var scenarioOutline = featureElement as ScenarioOutline;
+                scenario = featureElement as Scenario;
 
-                if (scenarioOutline != null)
+                if (scenario != null)
                 {
-                    foreach (var example in scenarioOutline.Examples.SelectMany(e => e.TableArgument.DataRows).Cast<TableRowWithTestResult>())
+                    foreach (var example in scenario.Examples.SelectMany(e => e.TableArgument.DataRows).Cast<TableRowWithTestResult>())
                     {
                         if(example!=null)
-                            example.Result = testResults.GetExampleResult(scenarioOutline, example.Cells.ToArray());
+                            example.Result = testResults.GetExampleResult(scenario, example.Cells.ToArray());
                     }
 
-                    scenarioOutline.Result =
-                        scenarioOutline.Examples.SelectMany(e => e.TableArgument.DataRows)
+                    scenario.Result =
+                        scenario.Examples.SelectMany(e => e.TableArgument.DataRows)
                         .Cast<TableRowWithTestResult>()
                             .Select(row => row.Result)
                             .Merge();

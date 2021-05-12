@@ -36,27 +36,27 @@ namespace PicklesDoc.Pickles.TestFrameworks
             this.TestResults = testResults;
         }
 
-        protected MultipleTestRunsBase(IConfiguration configuration, ISingleResultLoader singleResultLoader, IScenarioOutlineExampleMatcher scenarioOutlineExampleMatcher = null)
+        protected MultipleTestRunsBase(IConfiguration configuration, ISingleResultLoader singleResultLoader, IScenarioExampleMatcher scenarioExampleMatcher = null)
         {
             this.singleResultLoader = singleResultLoader;
             this.TestResults = this.GetSingleTestResults(configuration);
 
-            this.SetExampleSignatureBuilder(scenarioOutlineExampleMatcher ?? new ScenarioOutlineExampleMatcher());
+            this.SetExampleSignatureBuilder(scenarioExampleMatcher ?? new ScenarioExampleMatcher());
         }
 
-        private void SetExampleSignatureBuilder(IScenarioOutlineExampleMatcher scenarioOutlineExampleMatcher)
+        private void SetExampleSignatureBuilder(IScenarioExampleMatcher scenarioExampleMatcher)
         {
             foreach (var testResult in this.TestResults)
             {
-                testResult.ScenarioOutlineExampleMatcher = scenarioOutlineExampleMatcher;
+                testResult.ScenarioExampleMatcher = scenarioExampleMatcher;
             }
         }
 
         protected IEnumerable<SingleTestRunBase> TestResults { get; }
 
-        public TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] arguments)
+        public TestResult GetExampleResult(Scenario scenario, string[] arguments)
         {
-            var results = TestResults.Select(tr => tr.GetExampleResult(scenarioOutline, arguments)).ToArray();
+            var results = TestResults.Select(tr => tr.GetExampleResult(scenario, arguments)).ToArray();
             return EvaluateTestResults(results);
         }
 
@@ -66,9 +66,9 @@ namespace PicklesDoc.Pickles.TestFrameworks
             return EvaluateTestResults(results);
         }
 
-        public TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
+        public TestResult GetScenarioOutlineResult(Scenario scenario)
         {
-            var results = this.TestResults.Select(tr => tr.GetScenarioOutlineResult(scenarioOutline)).ToArray();
+            var results = this.TestResults.Select(tr => tr.GetScenarioOutlineResult(scenario)).ToArray();
 
             return EvaluateTestResults(results);
         }

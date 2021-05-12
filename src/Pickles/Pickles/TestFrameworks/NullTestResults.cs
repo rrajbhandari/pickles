@@ -33,7 +33,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
             return new TestResult();
         }
 
-        public TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
+        public TestResult GetScenarioOutlineResult(Scenario scenarioOutline)
         {
             return new TestResult();
         }
@@ -45,7 +45,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
         #endregion
 
-        public TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] exampleValues)
+        public TestResult GetExampleResult(Scenario scenarioOutline, string[] exampleValues)
         {
             return new TestResult();
         }

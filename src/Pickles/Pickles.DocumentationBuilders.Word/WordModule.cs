@@ -28,7 +28,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
         {
             builder.RegisterType<WordDocumentationBuilder>().SingleInstance();
             builder.RegisterType<WordScenarioFormatter>().SingleInstance();
-            builder.RegisterType<WordScenarioOutlineFormatter>().SingleInstance();
+            builder.RegisterType<WordScenarioFormatter>().SingleInstance();
             builder.RegisterType<WordStyleApplicator>().SingleInstance();
             builder.RegisterType<WordDescriptionFormatter>().SingleInstance();
             builder.RegisterType<WordBackgroundFormatter>().SingleInstance();

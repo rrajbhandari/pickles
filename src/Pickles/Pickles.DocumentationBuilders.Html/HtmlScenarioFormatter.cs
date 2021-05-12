@@ -32,55 +32,75 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
         private readonly HtmlDescriptionFormatter htmlDescriptionFormatter;
         private readonly HtmlImageResultFormatter htmlImageResultFormatter;
         private readonly HtmlStepFormatter htmlStepFormatter;
+        private readonly HtmlTableFormatter htmlTableFormatter;
         private readonly XNamespace xmlns;
+        private readonly ITestResults testResults;
+        private readonly ILanguageServicesRegistry languageServicesRegistry;
 
         public HtmlScenarioFormatter(
             HtmlStepFormatter htmlStepFormatter,
             HtmlDescriptionFormatter htmlDescriptionFormatter,
-            HtmlImageResultFormatter htmlImageResultFormatter)
+            HtmlTableFormatter htmlTableFormatter,
+            HtmlImageResultFormatter htmlImageResultFormatter,
+            ITestResults testResults,
+            ILanguageServicesRegistry languageServicesRegistry)
         {
             this.htmlStepFormatter = htmlStepFormatter;
             this.htmlDescriptionFormatter = htmlDescriptionFormatter;
+            this.htmlTableFormatter = htmlTableFormatter;
             this.htmlImageResultFormatter = htmlImageResultFormatter;
+            this.testResults = testResults;
+            this.languageServicesRegistry = languageServicesRegistry;
             this.xmlns = HtmlNamespace.Xhtml;
         }
 
-        public XElement Format(Scenario scenario, int id)
+        private XElement FormatHeading(Scenario scenario)
         {
-            var header = new XElement(
+            if (string.IsNullOrEmpty(scenario.Name))
+            {
+                return null;
+            }
+
+            var result = new XElement(
                 this.xmlns + "div",
                 new XAttribute("class", "scenario-heading"),
-                string.IsNullOrEmpty(scenario.Slug) ? null : new XAttribute("id", scenario.Slug));
+                string.IsNullOrEmpty(scenario.Slug) ? null : new XAttribute("id", scenario.Slug)
+                );
 
             var tags = RetrieveTags(scenario);
             if (tags.Length > 0)
             {
-                var paragraph = new XElement(this.xmlns + "p", CreateTagElements(tags.OrderBy(t => t).ToArray(), this.xmlns));
+                var paragraph = new XElement(this.xmlns + "p", HtmlScenarioFormatter.CreateTagElements(tags.OrderBy(t => t).ToArray(), this.xmlns));
                 paragraph.Add(new XAttribute("class", "tags"));
-                header.Add(paragraph);
+                result.Add(paragraph);
             }
 
-            header.Add(new XElement(this.xmlns + "h2", scenario.Name));
+            result.Add(new XElement(this.xmlns + "h2", scenario.Name));
 
-            header.Add(this.htmlDescriptionFormatter.Format(scenario.Description));
+            result.Add(this.htmlDescriptionFormatter.Format(scenario.Description));
 
-            return new XElement(
-                this.xmlns + "li",
-                new XAttribute("class", "scenario"),
-                this.htmlImageResultFormatter.Format(scenario),
-                header,
-                new XElement(
-                    this.xmlns + "div",
-                    new XAttribute("class", "steps"),
-                    new XElement(
-                        this.xmlns + "ul",
-                        scenario.Steps.Select(step => this.htmlStepFormatter.Format(step)))),
-                this.FormatLinkButton(scenario));
+            return result;
         }
 
-        private XElement FormatLinkButton(Scenario scenarioOutline)
+        private XElement FormatSteps(Scenario scenario)
         {
-            if (string.IsNullOrEmpty(scenarioOutline.Slug))
+            if (scenario.Steps == null)
+            {
+                return null;
+            }
+
+            return new XElement(
+                this.xmlns + "div",
+                new XAttribute("class", "steps"),
+                new XElement(
+                    this.xmlns + "ul",
+                    scenario.Steps.Select(
+                        step => this.htmlStepFormatter.Format(step))));
+        }
+
+        private XElement FormatLinkButton(Scenario scenario)
+        {
+            if (string.IsNullOrEmpty(scenario.Slug))
             {
                 return null;
             }
@@ -88,12 +108,47 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
             return new XElement(
                 this.xmlns + "a",
                 new XAttribute("class", "scenario-link"),
-                new XAttribute("href", $"javascript:showImageLink('{scenarioOutline.Slug}')"),
+                new XAttribute("href", $"javascript:showImageLink('{scenario.Slug}')"),
                 new XAttribute("title", "Copy scenario link to clipboard."),
                 new XElement(
                     this.xmlns + "i",
                     new XAttribute("class", "icon-link"),
                     " "));
+        }
+
+        private XElement FormatExamples(Scenario scenario)
+        {
+            var exampleDiv = new XElement(this.xmlns + "div");
+
+            var languageServices = this.languageServicesRegistry.GetLanguageServicesForLanguage(scenario.Feature?.Language);
+
+            foreach (var example in scenario.Examples)
+            {
+                exampleDiv.Add(
+                    new XElement(
+                        this.xmlns + "div",
+                        new XAttribute("class", "examples"),
+                        (example.Tags == null || example.Tags.Count == 0) ? null : new XElement(this.xmlns + "p", new XAttribute("class", "tags"), HtmlScenarioFormatter.CreateTagElements(example.Tags.OrderBy(t => t).ToArray(), this.xmlns)),
+                        new XElement(this.xmlns + "h3", languageServices.ExamplesKeywords[0] + ": " + example.Name),
+                        this.htmlDescriptionFormatter.Format(example.Description),
+                        (example.TableArgument == null) ? null : this.htmlTableFormatter.Format(example.TableArgument, scenario)));
+            }
+
+            return exampleDiv;
+        }
+
+        public XElement Format(Scenario scenario, int id)
+        {
+            return new XElement(
+                this.xmlns + "li",
+                new XAttribute("class", "scenario"),
+                this.htmlImageResultFormatter.Format(scenario),
+                this.FormatHeading(scenario),
+                this.FormatSteps(scenario),
+                this.FormatLinkButton(scenario),
+                (scenario.Examples == null || !scenario.Examples.Any())
+                    ? null
+                    : this.FormatExamples(scenario));
         }
 
         internal static XNode[] CreateTagElements(string[] tags, XNamespace xNamespace)

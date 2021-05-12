@@ -28,10 +28,10 @@ namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
 {
     public class SpecRunExampleSignatureBuilder
     {
-        public Regex Build(ScenarioOutline scenarioOutline, string[] row)
+        public Regex Build(Scenario scenario, string[] row)
         {
             var stringBuilder = new StringBuilder();
-            stringBuilder.Append(Regex.Escape(scenarioOutline.Name));
+            stringBuilder.Append(Regex.Escape(scenario.Name));
             stringBuilder.Append("(, Examples (\\d*))?");
             stringBuilder.Append(", " + Regex.Escape(row[0]));
 

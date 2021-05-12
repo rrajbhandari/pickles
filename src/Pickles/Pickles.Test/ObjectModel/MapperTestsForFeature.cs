@@ -61,7 +61,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
             var gherkinDocument = this.factory.CreateGherkinDocument(
                 "My Feature",
                 string.Empty,
-                scenarioDefinitions: new G.ScenarioDefinition[]
+                scenarioDefinitions: new G.Scenario[]
                 {
                     this.factory.CreateScenario(new string[0], "My scenario", string.Empty, new G.Step[0]),
                     this.factory.CreateScenarioOutline(new string[0], "My scenario outline", string.Empty, new G.Step[0], new G.Examples[0])
@@ -131,7 +131,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
                     this.factory.CreateComment("# line comment before the last step", 10, 4),
                     this.factory.CreateComment("# line comment after the last step", 12, 4),
                 },
-                scenarioDefinitions: new G.ScenarioDefinition[]
+                scenarioDefinitions: new G.Scenario[]
                 {
                     this.factory.CreateScenario(
                         new string[0], "My scenario", string.Empty,
@@ -188,7 +188,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
                     this.factory.CreateComment("# line comment before the last step", 10, 4),
                     this.factory.CreateComment("# line comment after the last step", 12, 4),
                 },
-                scenarioDefinitions: new G.ScenarioDefinition[]
+                scenarioDefinitions: new G.Scenario[]
                 {
                     this.factory.CreateScenario(
                         new string[0], "My scenario", string.Empty,

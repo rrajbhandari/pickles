@@ -32,14 +32,14 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
         private readonly IConfiguration configuration;
         private readonly ITestResults testResults;
         private readonly WordScenarioFormatter wordScenarioFormatter;
-        private readonly WordScenarioOutlineFormatter wordScenarioOutlineFormatter;
+        private readonly WordScenarioFormatter wordScenarioOutlineFormatter;
         private readonly WordStyleApplicator wordStyleApplicator;
         private readonly WordDescriptionFormatter wordDescriptionFormatter;
         private readonly WordBackgroundFormatter wordBackgroundFormatter;
 
         public WordFeatureFormatter(
             WordScenarioFormatter wordScenarioFormatter,
-            WordScenarioOutlineFormatter wordScenarioOutlineFormatter,
+            WordScenarioFormatter wordScenarioOutlineFormatter,
             WordStyleApplicator wordStyleApplicator,
             WordDescriptionFormatter wordDescriptionFormatter,
             WordBackgroundFormatter wordBackgroundFormatter,
@@ -97,12 +97,6 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
                 if (scenario != null)
                 {
                     this.wordScenarioFormatter.Format(body, scenario);
-                }
-
-                var scenarioOutline = featureElement as ScenarioOutline;
-                if (scenarioOutline != null)
-                {
-                    this.wordScenarioOutlineFormatter.Format(body, scenarioOutline);
                 }
             }
         }

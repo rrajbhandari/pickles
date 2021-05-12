@@ -24,10 +24,10 @@ namespace PicklesDoc.Pickles.ObjectModel
     {
         TestResult GetFeatureResult(Feature feature);
 
-        TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline);
-
         TestResult GetScenarioResult(Scenario scenario);
 
-        TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues);
+        TestResult GetScenarioOutlineResult(Scenario scenarioOutline);
+
+        TestResult GetExampleResult(Scenario scenario, string[] exampleValues);
     }
 }

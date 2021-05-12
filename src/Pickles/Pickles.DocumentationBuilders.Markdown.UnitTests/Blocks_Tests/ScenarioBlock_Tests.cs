@@ -113,5 +113,74 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
             Assert.AreEqual("ScenarioHeading: result Scenario with Step", actualString[0]);
             Assert.AreEqual(2, actualString.Length);
         }
+		
+        [Test]
+        public void When_A_Scenario_Step_Is_Available_It_Has_Escape_Characters_For_Placeholder_Brackets()
+        {
+            var mockStyle = new MockStylist
+            {
+                ScenarioHeadingFormat = "ScenarioHeading: {0}",
+                StepFormat = "Keyword: {0} Step: {1}"
+            };
+            var scenario = new Scenario
+            {
+                Name = "Scenario with placeholder Step"
+            };
+            scenario.Steps.Add(new Step() { NativeKeyword = "Natkey ", Name = "I am a <placeholder> step" });
+
+            var scenarioBlock = new ScenarioBlock(scenario, mockStyle);
+            var actualString = scenarioBlock.ToString().Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+
+            Assert.AreEqual("ScenarioHeading: Scenario with placeholder Step", actualString[0]);
+            Assert.AreEqual(@"Keyword: Natkey Step: I am a \<placeholder\> step", actualString[2]);
+            Assert.AreEqual(4, actualString.Length);
+        }
+
+        [Test]
+        public void Examples_Are_Included_As_Table()
+        {
+            var mockStyle = new MockStylist
+            {
+                ScenarioHeadingFormat = "ScenarioHeading: {0}",
+                ExampleHeadingFormat = "ExampleHeading: {0}",
+                StepFormat = "Keyword: {0} Step: {1}"
+            };
+            var scenario = new Scenario
+            {
+                Name = "Scenario with Examples"
+            };
+
+            var examplesTable = new ObjectModel.ExampleTable
+            {
+                HeaderRow = new ObjectModel.TableRow(new string[] { "example","val_one", "val_two"}),
+
+                DataRows = new System.Collections.Generic.List<ObjectModel.TableRow>()
+            };
+
+            examplesTable.DataRows.Add(new ObjectModel.TableRow(new string[] { "ex.one", "one.one", "one.two" }));
+            examplesTable.DataRows.Add(new ObjectModel.TableRow(new string[] { "ex.two", "two.one", "two.two" }));
+
+
+            var example = new Example()
+            {
+                Name = "My Examples",
+                TableArgument = examplesTable
+            };
+
+            var examples = new System.Collections.Generic.List<Example>() { example };
+
+            scenario.Examples = examples;
+
+            var scenarioBlock = new ScenarioBlock(scenario, mockStyle);
+            var actualString = scenarioBlock.ToString().Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+
+            Assert.AreEqual("ScenarioHeading: Scenario with Examples", actualString[0]);
+            Assert.AreEqual("ExampleHeading: My Examples", actualString[2]);
+            Assert.AreEqual("> | example | val_one | val_two |", actualString[4]);
+            Assert.AreEqual("> | --- | --- | --- |", actualString[5]);
+            Assert.AreEqual("> | ex.one | one.one | one.two |", actualString[6]);
+            Assert.AreEqual("> | ex.two | two.one | two.two |", actualString[7]);
+            Assert.AreEqual(9, actualString.Length);
+        }
     }
 }

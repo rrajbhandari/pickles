@@ -28,13 +28,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Json.Mapper
     public class FeatureToJsonFeatureMapper
     {
         private readonly ScenarioToJsonScenarioMapper scenarioMapper;
-        private readonly ScenarioOutlineToJsonScenarioOutlineMapper scenarioOutlineMapper;
         private readonly TestResultToJsonTestResultMapper resultMapper;
 
         public FeatureToJsonFeatureMapper(ILanguageServicesRegistry languageServicesRegistry)
         {
-            this.scenarioMapper = new ScenarioToJsonScenarioMapper();
-            this.scenarioOutlineMapper = new ScenarioOutlineToJsonScenarioOutlineMapper(languageServicesRegistry);
+            this.scenarioMapper = new ScenarioToJsonScenarioMapper(languageServicesRegistry);
             this.resultMapper = new TestResultToJsonTestResultMapper();
         }
 
@@ -78,14 +76,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Json.Mapper
                 return this.scenarioMapper.Map(scenario);
             }
 
-            var scenarioOutline = arg as ScenarioOutline;
-
-            if (scenarioOutline != null)
-            {
-                return this.scenarioOutlineMapper.Map(scenarioOutline);
-            }
-
-            throw new ArgumentException("Only arguments of type Scenario and ScenarioOutline are supported.");
+            throw new ArgumentException("Only arguments of type Scenario are supported.");
         }
     }
 }

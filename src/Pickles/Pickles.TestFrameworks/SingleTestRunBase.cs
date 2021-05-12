@@ -27,15 +27,15 @@ namespace PicklesDoc.Pickles.TestFrameworks
 {
     public abstract class SingleTestRunBase : ITestResults
     {
-        internal IScenarioOutlineExampleMatcher ScenarioOutlineExampleMatcher { get; set; }
+        internal IScenarioExampleMatcher ScenarioExampleMatcher { get; set; }
 
         public abstract TestResult GetFeatureResult(Feature feature);
 
-        public abstract TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline);
-
         public abstract TestResult GetScenarioResult(Scenario scenario);
 
-        public abstract TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues);
+        public abstract TestResult GetScenarioOutlineResult(Scenario scenario);
+
+        public abstract TestResult GetExampleResult(Scenario scenario, string[] exampleValues);
 
         protected TestResult GetAggregateResult(int passedCount, int failedCount, int skippedCount)
         {

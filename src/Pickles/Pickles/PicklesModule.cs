@@ -86,8 +86,8 @@ namespace PicklesDoc.Pickles
 
             builder.RegisterType<NUnit2Results>();
             builder.RegisterType<NUnit2SingleResultLoader>();
-            builder.RegisterType<NUnit2ScenarioOutlineExampleMatcher>();
-            builder.RegisterType<NUnit3ScenarioOutlineExampleMatcher>();
+            builder.RegisterType<NUnit2ScenarioExampleMatcher>();
+            builder.RegisterType<NUnit3ScenarioExampleMatcher>();
             builder.RegisterType<NUnit3Results>();
             builder.RegisterType<NUnit3SingleResultLoader>();
             builder.RegisterType<XUnit1Results>();
@@ -98,7 +98,7 @@ namespace PicklesDoc.Pickles
             builder.RegisterType<XUnit2ScenarioOutlineExampleMatcher>();
             builder.RegisterType<MsTestResults>();
             builder.RegisterType<MsTestSingleResultLoader>();
-            builder.RegisterType<MsTestScenarioOutlineExampleMatcher>();
+            builder.RegisterType<MsTestScenarioExampleMatcher>();
             builder.RegisterType<CucumberJsonResults>();
             builder.RegisterType<CucumberJsonSingleResultLoader>();
             builder.RegisterType<SpecRunResults>();
@@ -106,7 +106,7 @@ namespace PicklesDoc.Pickles
             builder.RegisterType<SpecRunScenarioOutlineExampleMatcher>();
             builder.RegisterType<VsTestResults>();
             builder.RegisterType<VsTestSingleResultLoader>();
-            builder.RegisterType<VsTestScenarioOutlineExampleMatcher>();
+            builder.RegisterType<VsTestScenarioExampleMatcher>();
 
             builder.Register<ITestResults>(c =>
             {

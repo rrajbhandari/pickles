@@ -25,13 +25,13 @@ using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit3
 {
-    public class NUnit3ScenarioOutlineExampleMatcher : IScenarioOutlineExampleMatcher
+    public class NUnit3ScenarioExampleMatcher : IScenarioExampleMatcher
     {
         private readonly NUnit3ExampleSignatureBuilder signatureBuilder = new NUnit3ExampleSignatureBuilder();
 
-        public bool IsMatch(ScenarioOutline scenarioOutline, string[] exampleValues, object scenarioElement)
+        public bool IsMatch(Scenario scenario, string[] exampleValues, object scenarioElement)
         {
-            var build = this.signatureBuilder.Build(scenarioOutline, exampleValues);
+            var build = this.signatureBuilder.Build(scenario, exampleValues);
 
             return IsMatchingTestCase((XElement)scenarioElement, build);
         }

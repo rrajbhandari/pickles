@@ -32,13 +32,13 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
         private static readonly Logger Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
 
         private readonly ExcelScenarioFormatter excelScenarioFormatter;
-        private readonly ExcelScenarioOutlineFormatter excelScenarioOutlineFormatter;
+        private readonly ExcelScenarioFormatter excelScenarioOutlineFormatter;
         private readonly IConfiguration configuration;
         private readonly ITestResults testResults;
 
         public ExcelFeatureFormatter(
             ExcelScenarioFormatter excelScenarioFormatter,
-            ExcelScenarioOutlineFormatter excelScenarioOutlineFormatter,
+            ExcelScenarioFormatter excelScenarioOutlineFormatter,
             IConfiguration configuration,
             ITestResults testResults)
         {
@@ -100,7 +100,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
                     this.excelScenarioFormatter.Format(worksheet, scenario, ref row);
                 }
 
-                var scenarioOutline = featureElement as ScenarioOutline;
+                var scenarioOutline = featureElement as Scenario;
                 if (scenarioOutline != null)
                 {
                     this.excelScenarioOutlineFormatter.Format(worksheet, scenarioOutline, ref row);

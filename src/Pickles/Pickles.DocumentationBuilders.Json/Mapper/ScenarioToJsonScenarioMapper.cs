@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="ScenarioOutlineToJsonScenarioOutlineMapper.cs" company="PicklesDoc">
+//  <copyright file="ScenarioToJsonScenarioMapper.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -30,11 +30,13 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Json.Mapper
     {
         private readonly TestResultToJsonTestResultMapper resultMapper;
         private readonly StepToJsonStepMapper stepMapper;
+        private readonly ExampleToJsonExampleMapper exampleMapper;
 
-        public ScenarioToJsonScenarioMapper()
+        public ScenarioToJsonScenarioMapper(ILanguageServicesRegistry languageServicesRegistry)
         {
             this.resultMapper = new TestResultToJsonTestResultMapper();
             this.stepMapper = new StepToJsonStepMapper();
+            this.exampleMapper = new ExampleToJsonExampleMapper(languageServicesRegistry);
         }
 
         public JsonScenario Map(Scenario scenario)
@@ -46,6 +48,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Json.Mapper
 
             return new JsonScenario
             {
+                Examples = (scenario.Examples ?? new List<Example>()).Select(example => this.exampleMapper.Map(example, scenario.Feature?.Language)).ToList(),
                 Steps = (scenario.Steps ?? new List<Step>()).Select(this.stepMapper.Map).ToList(),
                 Tags = (scenario.Tags ?? new List<string>()).ToList(),
                 Name = scenario.Name,

@@ -74,14 +74,14 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit3
             return scenarioElement;
         }
 
-        protected override XElement GetScenarioOutlineElement(ScenarioOutline scenarioOutline)
+        protected override XElement GetScenarioOutlineElement(Scenario scenario)
         {
-            XElement featureElement = this.GetFeatureElement(scenarioOutline.Feature);
+            XElement featureElement = this.GetFeatureElement(scenario.Feature);
             XElement scenarioOutlineElement = null;
             if (featureElement != null)
             {
                 scenarioOutlineElement =
-                    this.GetFeatureElement(scenarioOutline.Feature)
+                    this.GetFeatureElement(scenario.Feature)
                         .Descendants("test-suite")
                         .FirstOrDefault(
                             ts =>
@@ -90,7 +90,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit3
                                 .Any(
                                     p =>
                                     IsDescriptionAttribute(p)
-                                    && p.Attribute("value").Value == scenarioOutline.Name));
+                                    && p.Attribute("value").Value == scenario.Name));
             }
 
             return scenarioOutlineElement;
@@ -101,9 +101,9 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit3
             return this.featureElements[feature.Name].FirstOrDefault();
         }
 
-        protected override XElement GetExamplesElement(ScenarioOutline scenarioOutline, string[] values)
+        protected override XElement GetExamplesElement(Scenario scenario, string[] values)
         {
-            XElement featureElement = this.GetFeatureElement(scenarioOutline.Feature);
+            XElement featureElement = this.GetFeatureElement(scenario.Feature);
             XElement examplesElement = null;
             if (featureElement != null)
             {
@@ -116,13 +116,13 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit3
                                 .Any(
                                     p =>
                                     IsDescriptionAttribute(p)
-                                    && p.Attribute("value").Value == scenarioOutline.Name));
+                                    && p.Attribute("value").Value == scenario.Name));
 
                 if (parameterizedTestElement != null)
                 {
                     examplesElement =
                         parameterizedTestElement.Descendants("test-case")
-                            .FirstOrDefault(x => this.ScenarioOutlineExampleMatcher.IsMatch(scenarioOutline, values, x));
+                            .FirstOrDefault(x => this.ScenarioExampleMatcher.IsMatch(scenario, values, x));
                 }
             }
 

@@ -26,30 +26,30 @@ using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks.VsTest
 {
-    public class VsTestScenarioOutlineExampleMatcher : IScenarioOutlineExampleMatcher
+    public class VsTestScenarioExampleMatcher : IScenarioExampleMatcher
     {
         private static readonly Regex VariantWithExampleGroupRegex = new Regex(@"(?:[\S]+)_ExampleSet([\d]+)_Variant([\d]+)$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
         private static readonly Regex VariantRegex = new Regex(@"(?:[\S]+)_Variant([\d]+)$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
         private static readonly Regex ExampleGroupRegex = new Regex(@"(?:[^_\s]+)_([^_\s]+)_([\S]*)$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
-        public bool IsMatch(ScenarioOutline scenarioOutline, string[] exampleValues, object scenarioElement)
+        public bool IsMatch(Scenario scenario, string[] exampleValues, object scenarioElement)
         {
             var element = (XElement)scenarioElement;
             var elementName = element.Name().ToUpperInvariant();
 
             bool isMatch;
 
-            if (IsVariantWithExampleGroupMatch(scenarioOutline, exampleValues, elementName, out isMatch))
+            if (IsVariantWithExampleGroupMatch(scenario, exampleValues, elementName, out isMatch))
             {
                 return isMatch;
             }
 
-            if (IsVariantWithoutExampleGroupMatch(scenarioOutline, exampleValues, elementName, out isMatch))
+            if (IsVariantWithoutExampleGroupMatch(scenario, exampleValues, elementName, out isMatch))
             {
                 return isMatch;
             }
 
-            if (IsExampleGroupMatch(scenarioOutline, exampleValues, elementName, out isMatch))
+            if (IsExampleGroupMatch(scenario, exampleValues, elementName, out isMatch))
             {
                 return isMatch;
             }
@@ -62,7 +62,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.VsTest
             return isMatch;
         }
 
-        private bool IsVariantWithExampleGroupMatch(ScenarioOutline scenarioOutline, string[] exampleValues, string elementName, out bool isMatch)
+        private bool IsVariantWithExampleGroupMatch(Scenario scenario, string[] exampleValues, string elementName, out bool isMatch)
         {
             const int ExampleGroup = 1;
             const int VariantNumberGroup = 2;
@@ -73,7 +73,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.VsTest
             {
                 int exampleGroupNumber = int.Parse(match.Groups[ExampleGroup].Value);
 
-                var exampleSet = scenarioOutline.Examples?[exampleGroupNumber];
+                var exampleSet = scenario.Examples?[exampleGroupNumber];
                 if (exampleSet != null)
                 {
                     int variantNumber;
@@ -94,7 +94,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.VsTest
             return false;
         }
 
-        private bool IsVariantWithoutExampleGroupMatch(ScenarioOutline scenarioOutline, string[] exampleValues, string elementName, out bool isMatch)
+        private bool IsVariantWithoutExampleGroupMatch(Scenario scenario, string[] exampleValues, string elementName, out bool isMatch)
         {
             const int VariantNumberGroup = 1;
 
@@ -105,13 +105,13 @@ namespace PicklesDoc.Pickles.TestFrameworks.VsTest
                 if (int.TryParse(match.Groups[VariantNumberGroup].Value, out variantNumber))
                 {
                     List<TableRow> examples = null;
-                    if (scenarioOutline.Examples?.Count == 1)
+                    if (scenario.Examples?.Count == 1)
                     {
-                        examples = scenarioOutline.Examples[0].TableArgument.DataRows;
+                        examples = scenario.Examples[0].TableArgument.DataRows;
                     }
-                    else if (scenarioOutline.Examples?.Any(x => x.Name == string.Empty) == true)
+                    else if (scenario.Examples?.Any(x => x.Name == string.Empty) == true)
                     {
-                        examples = scenarioOutline.Examples?.First(x => x.Name == string.Empty).TableArgument.DataRows;
+                        examples = scenario.Examples?.First(x => x.Name == string.Empty).TableArgument.DataRows;
                     }
                     else
                     {
@@ -131,7 +131,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.VsTest
             return false;
         }
 
-        private bool IsExampleGroupMatch(ScenarioOutline scenarioOutline, string[] exampleValues, string elementName, out bool isMatch)
+        private bool IsExampleGroupMatch(Scenario scenario, string[] exampleValues, string elementName, out bool isMatch)
         {
             const int ExampleGroupNameGroup = 1;
             const int MatchValueGroup = 2;
@@ -142,7 +142,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.VsTest
             {
                 string exampleGroupName = match.Groups[ExampleGroupNameGroup].Value;
 
-                var exampleSet = scenarioOutline.Examples?.FirstOrDefault(x => Normalize(x.Name) == exampleGroupName);
+                var exampleSet = scenario.Examples?.FirstOrDefault(x => Normalize(x.Name) == exampleGroupName);
 
                 var variantMatch = VariantRegex.Match(elementName);
                 if (variantMatch.Success)

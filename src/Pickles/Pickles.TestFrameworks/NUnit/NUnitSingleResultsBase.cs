@@ -57,16 +57,16 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit
             return this.GetResultFromElement(scenarioElement);
         }
 
-        public override TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
+        public override TestResult GetScenarioOutlineResult(Scenario scenario)
         {
-            var scenarioOutlineElement = this.GetScenarioOutlineElement(scenarioOutline);
+            var scenarioElement = this.GetScenarioElement(scenario);
 
-            return this.DetermineScenarioOutlineResult(scenarioOutlineElement);
+            return this.DetermineScenarioResult(scenarioElement);
         }
 
-        public override TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] exampleValues)
+        public override TestResult GetExampleResult(Scenario scenario, string[] exampleValues)
         {
-            var examplesElement = this.GetExamplesElement(scenarioOutline, exampleValues);
+            var examplesElement = this.GetExamplesElement(scenario, exampleValues);
 
             return this.GetResultFromElement(examplesElement);
         }
@@ -77,11 +77,11 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit
             return name != null && exampleSignature.IsMatch(name.Value.ToLowerInvariant().Replace(@"\", string.Empty));
         }
 
-        private TestResult DetermineScenarioOutlineResult(XElement scenarioOutlineElement)
+        private TestResult DetermineScenarioResult(XElement scenarioElement)
         {
-            if (scenarioOutlineElement != null)
+            if (scenarioElement != null)
             {
-                return TestResultExtensions.Merge(scenarioOutlineElement.Descendants("test-case").Select(this.GetResultFromElement));
+                return TestResultExtensions.Merge(scenarioElement.Descendants("test-case").Select(this.GetResultFromElement));
             }
 
             return TestResult.Inconclusive;
@@ -116,10 +116,10 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit
 
         protected abstract XElement GetScenarioElement(Scenario scenario);
 
-        protected abstract XElement GetScenarioOutlineElement(ScenarioOutline scenarioOutline);
+        protected abstract XElement GetScenarioOutlineElement(Scenario scenario);
 
         protected abstract XElement GetFeatureElement(Feature feature);
 
-        protected abstract XElement GetExamplesElement(ScenarioOutline scenarioOutline, string[] values);
+        protected abstract XElement GetExamplesElement(Scenario scenario, string[] values);
     }
 }
