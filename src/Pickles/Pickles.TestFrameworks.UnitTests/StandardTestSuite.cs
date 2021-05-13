@@ -88,7 +88,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
             var results = ParseResultsFile();
             var scenarioOutline = new Scenario { Name = "Adding several numbers", Feature = this.AdditionFeature() };
 
-            TestResult result = results.GetScenarioResult(scenarioOutline);
+            TestResult result = results.GetScenarioOutlineResult(scenarioOutline);
 
             Check.That(result).IsEqualTo(TestResult.Passed);
 
@@ -173,7 +173,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
             var scenarioOutline = new Scenario { Name = "Deal correctly with backslashes in the examples", Feature = feature };
 
-            TestResult exampleResultOutline = results.GetScenarioResult(scenarioOutline);
+            TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
             Check.That(exampleResultOutline).IsEqualTo(TestResult.Passed);
 
             TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { @"c:\Temp\" });
@@ -188,7 +188,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
             var scenarioOutline = new Scenario { Name = "Deal correctly with parenthesis in the examples", Feature = feature };
 
-            TestResult exampleResultOutline = results.GetScenarioResult(scenarioOutline);
+            TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
             Check.That(exampleResultOutline).IsEqualTo(TestResult.Passed);
 
             TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { @"This is a description (and more)" });
@@ -216,7 +216,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
             var scenarioOutline = new Scenario { Name = "Adding several numbers", Feature = feature };
 
-            var actualResult = results.GetScenarioResult(scenarioOutline);
+            var actualResult = results.GetScenarioOutlineResult(scenarioOutline);
 
             Check.That(actualResult).IsEqualTo(TestResult.Failed);
         }

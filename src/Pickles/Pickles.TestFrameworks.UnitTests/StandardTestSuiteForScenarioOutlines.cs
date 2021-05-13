@@ -44,7 +44,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
             var scenarioOutline = new Scenario { Name = "This is a scenario outline where all scenarios pass", Feature = feature };
 
-            TestResult exampleResultOutline = results.GetScenarioResult(scenarioOutline);
+            TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
             Check.That(exampleResultOutline).IsEqualTo(TestResult.Passed);
 
             TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "pass_1" });
@@ -160,7 +160,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
                 }
             };
 
-            TestResult exampleResultOutline = results.GetScenarioResult(scenarioOutline);
+            TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
             Check.That(exampleResultOutline).IsEqualTo(TestResult.Passed);
 
             TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "**" });

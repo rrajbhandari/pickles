@@ -55,16 +55,16 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit.NUnit2
             var results = ParseResultsFile();
 
             var feature = new Feature { Name = "FeatureWithMultipleResultsFiles" };
-            var scenario = new Scenario { Name = "Some scenario", Feature = feature };
+            var scenarioOutline = new Scenario { Name = "Some scenario outline", Feature = feature };
 
-            TestResult result = results.GetScenarioResult(scenario);
+            TestResult result = results.GetScenarioOutlineResult(scenarioOutline);
 
             Check.That(result).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult1 = results.GetExampleResult(scenario, new[] { "false" });
+            TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "false" });
             Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult2 = results.GetExampleResult(scenario, new[] { "true" });
+            TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "true" });
             Check.That(exampleResult2).IsEqualTo(TestResult.Passed);
         }
     }

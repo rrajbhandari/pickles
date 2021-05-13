@@ -40,7 +40,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.MsTest
         {
             var results = ParseResultsFile();
 
-            var feature = new Feature { Name = "Example With Ignored Scenario" };
+            var feature = new Feature { Name = "Example With Ignored Scenario Outline" };
             var scenario = new Scenario { Name = "Add two numbers", Feature = feature };
             scenario.Steps = new List<Step>();
 

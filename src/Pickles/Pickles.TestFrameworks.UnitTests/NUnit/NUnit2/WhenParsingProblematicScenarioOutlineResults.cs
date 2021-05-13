@@ -33,23 +33,23 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit.NUnit2
     public class WhenParsingProblematicScenarioOutlineResults : WhenParsingTestResultFiles<NUnit2Results>
     {
         public WhenParsingProblematicScenarioOutlineResults()
-            : base("NUnit.NUnit2." + "results-problem-with-results-nunit.xml")
+            : base("NUnit.NUnit2." + "results-problem-with-outline-results-nunit.xml")
         {
         }
 
         [Test]
-        public void ThenCanReadIndividualResultsFromScenario_ContainingDollarSigns_ShouldBeTestResultSuccess()
+        public void ThenCanReadIndividualResultsFromScenarioOutline_ContainingDollarSigns_ShouldBeTestResultSuccess()
         {
             var results = ParseResultsFile();
 
             var feature = new Feature { Name = "ExampleWebFeature" };
 
-            var scenario = new Scenario { Name = "Login", Feature = feature };
+            var scenarioOutline = new Scenario { Name = "Login", Feature = feature };
 
-            TestResult exampleResultOutline = results.GetScenarioResult(scenario);
+            TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
             Check.That(exampleResultOutline).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult = results.GetExampleResult(scenario, new[] { "special characters", "$$$" });
+            TestResult exampleResult = results.GetExampleResult(scenarioOutline, new[] { "special characters", "$$$" });
             Check.That(exampleResult).IsEqualTo(TestResult.Passed);
         }
     }
