@@ -33,24 +33,23 @@ namespace PicklesDoc.Pickles
 
         /// <remarks>We need to override only this method. The overload without
         /// Dictionary internally calls this method.</remarks>
-        //protected override GherkinDialect GetDialect(string language,
-        //    Dictionary<string, GherkinLanguageSetting> gherkinLanguageSettings, Location location)
-        //{
-        //    GherkinDialect result;
+        public override GherkinDialect GetDialect(string language, Location location)
+        {
+            GherkinDialect result;
 
-        //    try
-        //    {
-        //        result = base.GetDialect(language, gherkinLanguageSettings, location);
-        //    }
-        //    catch (NoSuchLanguageException)
-        //    {
-        //        string languageOnly = StripCulture(language);
+            try
+            {
+                result = base.GetDialect(language, location);
+            }
+            catch (NoSuchLanguageException)
+            {
+                string languageOnly = StripCulture(language);
 
-        //        result = base.GetDialect(languageOnly, gherkinLanguageSettings, location);
-        //    }
+                result = base.GetDialect(languageOnly, location);
+            }
 
-        //    return result;
-        //}
+            return result;
+        }
 
         private string StripCulture(string language)
         {
