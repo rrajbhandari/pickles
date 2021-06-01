@@ -22,7 +22,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Autofac;
-using Newtonsoft.Json.Linq;
 using NFluent;
 using NUnit.Framework;
 using PicklesDoc.Pickles.DataStructures;
@@ -32,6 +31,7 @@ using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Test.Helpers;
 using PicklesDoc.Pickles.TestFrameworks;
 using PicklesDoc.Pickles.TestFrameworks.MsTest;
+using Newtonsoft.Json.Linq;
 
 namespace PicklesDoc.Pickles.Test.Formatters.JSON
 {
@@ -78,7 +78,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
             };
             configuration.AddTestResultFile(FileSystem.FileInfo.FromFileName(TestResultFilePath));
 
-            ITestResults testResults = new MsTestResults(configuration, new MsTestSingleResultLoader(), new MsTestScenarioOutlineExampleMatcher());
+            ITestResults testResults = new MsTestResults(configuration, new MsTestSingleResultLoader(), new MsTestScenarioExampleMatcher());
             var jsonDocumentationBuilder = new JsonDocumentationBuilder(configuration, testResults, FileSystem, new LanguageServicesRegistry());
             jsonDocumentationBuilder.Build(features);
             string content = FileSystem.File.ReadAllText(filePath);
@@ -99,9 +99,9 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
         {
             string content = this.Setup();
 
-            var jsonObj = JObject.Parse(content);
+            var jsonDoc = JObject.Parse(content);
 
-            var configuration = jsonObj["Configuration"];
+            var configuration = jsonDoc["Configuration"];
 
             Check.That(configuration["SutName"].ToString()).IsEqualTo("SUT Name");
             Check.That(configuration["SutVersion"].ToString()).IsEqualTo("SUT Version");
@@ -112,13 +112,13 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
         {
             string content = this.Setup();
 
-            var jsonObj = JObject.Parse(content);
+            var jsonDoc = JObject.Parse(content);
 
-            IEnumerable<JToken> featureJsonElement = from feat in jsonObj["Features"]
-                                                     where
-                                                         feat["Feature"]["Name"].Value<string>().Equals(
-                                                             "Two more scenarios transfering funds between accounts")
-                                                     select feat;
+            IEnumerable<JToken> featureJsonElement = from feat in jsonDoc["Features"]
+                                                          where
+                                                              feat["Feature"]["Name"].Value<string>().Equals(
+                                                                  "Two more scenarios transfering funds between accounts")
+                                                          select feat;
 
             Check.That(featureJsonElement.ElementAt(0)["Result"]["WasSuccessful"].Value<bool>()).IsTrue();
         }

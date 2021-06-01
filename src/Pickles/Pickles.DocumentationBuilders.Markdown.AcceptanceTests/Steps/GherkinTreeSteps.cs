@@ -177,23 +177,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.AcceptanceTests.Step
             lastScenario.Steps.Add(step);
         }
 
-        [Given(@"I have a scenario outline called '(.*)'")]
-        public void GivenIHaveAScenarioOutlineCalled(string outlineName)
-        {
-            var lastFeature = TryToGetLastFeature();
-
-            var scenarioOutline = new ScenarioOutline
-            {
-                Name = outlineName
-            };
-
-            lastFeature.AddFeatureElement(scenarioOutline);
-        }
-
         [Given(@"I have an examples table")]
         public void GivenIHaveAnExamplesTable(TechTalk.SpecFlow.Table table)
         {
-            ScenarioOutline lastScenario = TryToGetLastScenario() as ScenarioOutline;
+            var lastScenario = TryToGetLastScenario() as Scenario;
 
             var examplesTable = ConvertSpecflowTableToExamplesTable(table);
 
@@ -211,7 +198,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.AcceptanceTests.Step
         [Given(@"I have an examples table with results")]
         public void Given_I_Have_An_Examples_Table_With_Results(TechTalk.SpecFlow.Table table)
         {
-            ScenarioOutline lastScenario = TryToGetLastScenario() as ScenarioOutline;
+            var lastScenario = TryToGetLastScenario() as Scenario;
 
             lastScenario.Result = TestResult.Inconclusive;
 

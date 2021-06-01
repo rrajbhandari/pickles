@@ -37,11 +37,11 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit.XUnit1
         [Test]
         public void ThenCanSuccessfullyMatch()
         {
-            var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers" };
+            var scenario = new Scenario { Name = "Adding several numbers" };
             var exampleRow = new[] { "40", "50", "90" };
 
             var signatureBuilder = new XUnitExampleSignatureBuilder();
-            Regex signature = signatureBuilder.Build(scenarioOutline, exampleRow);
+            Regex signature = signatureBuilder.Build(scenario, exampleRow);
 
             var isMatch = signature.IsMatch("Pickles.TestHarness.xUnit.AdditionFeature.AddingSeveralNumbers(firstNumber: \"40\", secondNumber: \"50\", result: \"90\", exampleTags: System.String[])".ToLowerInvariant());
             Check.That(isMatch).IsTrue();

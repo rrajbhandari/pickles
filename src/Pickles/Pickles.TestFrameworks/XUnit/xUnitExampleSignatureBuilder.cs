@@ -30,11 +30,11 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit
     {
         private const int MaxExampleValueLength = 50;
 
-        public Regex Build(ScenarioOutline scenarioOutline, string[] row)
+        public Regex Build(Scenario scenario, string[] row)
         {
             var stringBuilder = new StringBuilder();
 
-            var name = SpecFlowNameMapping.Build(scenarioOutline.Name);
+            var name = SpecFlowNameMapping.Build(scenario.Name);
             stringBuilder.Append(name).Append("\\(");
 
             foreach (var value in row.Select(v => v.Length > MaxExampleValueLength ? new { Value = v.Substring(0, MaxExampleValueLength), Ellipsis = "..." } : new { Value = v, Ellipsis = "" }))

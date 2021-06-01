@@ -135,14 +135,9 @@ namespace PicklesDoc.Pickles.TestFrameworks.VsTest
             return executionIdAttribute != null ? new Guid(executionIdAttribute.Value) : Guid.Empty;
         }
 
-        internal static bool BelongsToScenarioOutline(this XElement xmlScenario, ScenarioOutline scenarioOutline)
-        {
-            return xmlScenario.Name().ToUpperInvariant().StartsWith(TransformName(scenarioOutline.Name));
-        }
-
         internal static bool BelongsToScenario(this XElement xmlScenario, Scenario scenario)
         {
-            return xmlScenario.Name().ToUpperInvariant() == TransformName(scenario.Name);
+            return xmlScenario.Name().ToUpperInvariant().StartsWith(TransformName(scenario.Name));
         }
 
         private static string TransformName(string name)

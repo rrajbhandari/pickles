@@ -62,7 +62,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit2
             return scenarioElement;
         }
 
-        protected override XElement GetScenarioOutlineElement(ScenarioOutline scenarioOutline)
+        protected override XElement GetScenarioOutlineElement(Scenario scenarioOutline)
         {
             XElement featureElement = this.GetFeatureElement(scenarioOutline.Feature);
             XElement scenarioOutlineElement = null;
@@ -83,7 +83,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit2
             return this.featureElements[feature.Name].FirstOrDefault();
         }
 
-        protected override XElement GetExamplesElement(ScenarioOutline scenarioOutline, string[] values)
+        protected override XElement GetExamplesElement(Scenario scenarioOutline, string[] values)
         {
             XElement featureElement = this.GetFeatureElement(scenarioOutline.Feature);
             XElement examplesElement = null;
@@ -97,13 +97,13 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit2
                 {
                     examplesElement =
                         parameterizedTestElement.Descendants("test-case")
-                            .FirstOrDefault(x => this.ScenarioOutlineExampleMatcher.IsMatch(scenarioOutline, values, x));
+                            .FirstOrDefault(x => this.ScenarioExampleMatcher.IsMatch(scenarioOutline, values, x));
                 }
             }
             return examplesElement;
         }
 
-        private static bool IsMatchingParameterizedTestElement(XElement element, ScenarioOutline scenarioOutline)
+        private static bool IsMatchingParameterizedTestElement(XElement element, Scenario scenarioOutline)
         {
             var description = element.Attribute("description");
 

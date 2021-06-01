@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="WhenFormattingScenario.cs" company="PicklesDoc">
+//  <copyright file="WhenFormattingScenarioOutlines.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -21,6 +21,7 @@
 using System;
 using System.Linq;
 using System.Xml.Linq;
+using System.Collections.Generic;
 
 using Autofac;
 
@@ -30,6 +31,7 @@ using NUnit.Framework;
 
 using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Test;
+using PicklesDoc.Pickles.Test.Extensions;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Html.UnitTests
 {
@@ -164,6 +166,137 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html.UnitTests
             var tagsParagraph = header.Elements().ElementAt(0);
 
             Check.That(tagsParagraph.ToString()).IsEqualTo(@"<p class=""tags"" xmlns=""http://www.w3.org/1999/xhtml"">Tags: <span>a</span>, <span>b</span>, <span>c</span>, <span>d</span></p>");
+        }
+        [Test]
+        public void ThenCanFormatCompleteScenarioCorrectly()
+        {
+            var table = new ExampleTable
+            {
+                HeaderRow = new TableRow("Var1", "Var2", "Var3", "Var4"),
+                DataRows =
+                    new List<TableRow>(new[]
+                    {
+                        new TableRow("1", "2", "3", "4"),
+                        new TableRow("5", "6", "7", "8")
+                    })
+            };
+
+            var example = new Example { Name = "Some examples", Description = "An example", TableArgument = table };
+            var examples = new List<Example>();
+            examples.Add(example);
+
+            var scenario = new Scenario
+            {
+                Name = "Testing a scenario",
+                Description = "We need to make sure that scenarios work properly",
+                Examples = examples
+            };
+
+            var htmlScenarioFormatter = Container.Resolve<HtmlScenarioFormatter>();
+            var output = htmlScenarioFormatter.Format(scenario, 0);
+
+            Check.That(output).ContainsGherkinScenario();
+            Check.That(output).ContainsGherkinTable();
+        }
+
+        [Test]
+        public void ThenCanFormatScenarioWithMissingNameCorrectly()
+        {
+            var table = new ExampleTable
+            {
+                HeaderRow = new TableRow("Var1", "Var2", "Var3", "Var4"),
+                DataRows =
+                    new List<TableRow>(new[]
+                    {
+                        new TableRow("1", "2", "3", "4"),
+                        new TableRow("5", "6", "7", "8")
+                    })
+            };
+
+            var example = new Example { Name = "Some examples", Description = "An example", TableArgument = table };
+            var examples = new List<Example>();
+            examples.Add(example);
+
+            var scenario = new Scenario
+            {
+                Description = "We need to make sure that scenarios work properly",
+                Examples = examples
+            };
+
+            var htmlScenarioFormatter = Container.Resolve<HtmlScenarioFormatter>();
+            var output = htmlScenarioFormatter.Format(scenario, 0);
+
+            Check.That(output).ContainsGherkinScenario();
+            Check.That(output).ContainsGherkinTable();
+        }
+
+        [Test]
+        public void ThenCanFormatScenarioWithMissingDescriptionCorrectly()
+        {
+            var table = new ExampleTable
+            {
+                HeaderRow = new TableRow("Var1", "Var2", "Var3", "Var4"),
+                DataRows =
+                    new List<TableRow>(new[]
+                    {
+                        new TableRow("1", "2", "3", "4"),
+                        new TableRow("5", "6", "7", "8")
+                    })
+            };
+
+            var example = new Example { Name = "Some examples", Description = "An example", TableArgument = table };
+            var examples = new List<Example>();
+            examples.Add(example);
+
+            var scenario = new Scenario
+            {
+                Name = "Testing a scenario",
+                Examples = examples
+            };
+
+            var htmlScenarioFormatter = Container.Resolve<HtmlScenarioFormatter>();
+            var output = htmlScenarioFormatter.Format(scenario, 0);
+
+            Check.That(output).ContainsGherkinScenario();
+            Check.That(output).ContainsGherkinTable();
+        }
+
+        [Test]
+        public void ThenCanFormatScenarioWithMissingExampleCorrectly()
+        {
+            var scenario = new Scenario
+            {
+                Name = "Testing a scenario",
+                Description = "We need to make sure that scenarios work properly",
+                Examples = new List<Example>()
+            };
+
+            var htmlScenarioFormatter = Container.Resolve<HtmlScenarioFormatter>();
+            var output = htmlScenarioFormatter.Format(scenario, 0);
+
+            Check.That(output).ContainsGherkinScenario();
+            Check.That(output).Not.ContainsGherkinTable();
+        }
+
+        [Test]
+        public void ThenCanFormatScenarioWithMissingTableFromExampleCorrectly()
+        {
+            var example = new Example { Name = "Some examples", Description = "An example" };
+            var examples = new List<Example>();
+            examples.Add(example);
+
+            var scenario = new Scenario
+            {
+                Name = "Testing a scenario",
+                Description = "We need to make sure that scenarios work properly",
+                Examples = examples
+            };
+
+            var htmlScenarioFormatter = Container.Resolve<HtmlScenarioFormatter>();
+            var output = htmlScenarioFormatter.Format(scenario, 0);
+
+            Check.That(output).ContainsGherkinScenario();
+            Check.That(output).Not.ContainsGherkinTable();
         }
     }
 }

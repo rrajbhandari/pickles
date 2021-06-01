@@ -123,12 +123,6 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.Blocks
 
                         lines.Add(style.AsStepLine(string.Empty));
                     }
-                    else if (element.GetType() == typeof(ScenarioOutline))
-                    {
-                        lines.Add(ScenarioOutline(element as ScenarioOutline));
-
-                        lines.Add(style.AsStepLine(string.Empty));
-                    }
                 }
             }
 
@@ -142,9 +136,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.Blocks
             return scenarioBlock.Lines;
         }
 
-        private Lines ScenarioOutline(ScenarioOutline scenarioOutline)
+        private Lines ScenarioOutline(Scenario scenarioOutline)
         {
-            var scenarioOutlineBlock = new ScenarioOutlineBlock(scenarioOutline, style);
+            var scenarioOutlineBlock = new ScenarioBlock(scenarioOutline, style);
 
             return scenarioOutlineBlock.Lines;       
         }

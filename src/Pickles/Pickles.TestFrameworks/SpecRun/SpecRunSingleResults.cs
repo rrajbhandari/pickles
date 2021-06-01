@@ -50,7 +50,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
             return result;
         }
 
-        public override TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
+        public override TestResult GetScenarioOutlineResult(Scenario scenarioOutline)
         {
             var specRunFeature = this.FindSpecRunFeature(scenarioOutline.Feature);
 
@@ -90,7 +90,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
             return StringToTestResult(specRunScenario.Result);
         }
 
-        public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
+        public override TestResult GetExampleResult(Scenario scenario, string[] exampleValues)
         {
             var specRunFeature = this.FindSpecRunFeature(scenario.Feature);
 
@@ -103,7 +103,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
 
             foreach (var specRunScenario in specRunScenarios)
             {
-                if (this.ScenarioOutlineExampleMatcher.IsMatch(scenario, exampleValues, specRunScenario))
+                if (this.ScenarioExampleMatcher.IsMatch(scenario, exampleValues, specRunScenario))
                 {
                     return StringToTestResult(specRunScenario.Result);
                 }
@@ -148,7 +148,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
             }
         }
 
-        private static SpecRunScenario[] FindSpecRunScenarios(ScenarioOutline scenarioOutline, SpecRunFeature specRunFeature)
+        private static SpecRunScenario[] FindSpecRunScenarios(Scenario scenarioOutline, SpecRunFeature specRunFeature)
         {
             return specRunFeature.Scenarios.Where(d => d.Title.StartsWith(scenarioOutline.Name + ", ")).ToArray();
         }

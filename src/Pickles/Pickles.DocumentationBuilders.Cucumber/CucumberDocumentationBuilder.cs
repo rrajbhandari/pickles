@@ -22,8 +22,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Abstractions;
 using System.Reflection;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using NLog;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.ObjectModel;
@@ -34,6 +32,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Cucumber
     using DocumentationBuilders;
     using System.Linq;
     using DataStructures;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
 
     public class CucumberDocumentationBuilder : IDocumentationBuilder
     {
@@ -104,7 +104,6 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Cucumber
                       ),
 
             });
-
 
             JsonSerializerSettings settings = new JsonSerializerSettings
             {

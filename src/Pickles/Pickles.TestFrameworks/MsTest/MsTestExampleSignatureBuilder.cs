@@ -27,7 +27,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
 {
     public class MsTestExampleSignatureBuilder
     {
-        public Regex Build(ScenarioOutline scenarioOutline, string[] row)
+        public Regex Build(Scenario scenario, string[] row)
         {
             // We don't actually need this regex-based thing for MsTest results.
             // It sucks that we have to provide one.

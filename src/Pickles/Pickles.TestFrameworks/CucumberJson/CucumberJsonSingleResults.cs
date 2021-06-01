@@ -35,7 +35,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
             this.resultsDocument = cucumberFeatures.ToList();
         }
 
-        public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
+        public override TestResult GetExampleResult(Scenario scenario, string[] exampleValues)
         {
             var cucumberScenarios = this.GetCucumberScenarios(scenario);
 
@@ -121,19 +121,18 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
             }
         }
 
-        public override TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
-        {
-            var cucumberScenarios = this.GetCucumberScenarios(scenarioOutline);
-
-            return cucumberScenarios.Select(cs => ToTestResult(cs.ScenarioBase, cs.Background)).Merge();
-        }
-
-
         public override TestResult GetScenarioResult(Scenario scenario)
         {
             var cucumberScenario = this.GetCucumberScenario(scenario);
 
             return this.GetResultFromScenario(cucumberScenario.ScenarioBase, cucumberScenario.Background);
+        }
+
+        public override TestResult GetScenarioOutlineResult(Scenario scenario)
+        {
+            var cucumberScenarios = this.GetCucumberScenarios(scenario);
+
+            return cucumberScenarios.Select(cs => ToTestResult(cs.ScenarioBase, cs.Background)).Merge();
         }
 
         private ScenarioBaseAndBackground GetCucumberScenario(Scenario scenario)
@@ -148,13 +147,13 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
             return new ScenarioBaseAndBackground(cucumberScenario, cucumberFeature?.Background);
         }
 
-        private IEnumerable<ScenarioBaseAndBackground> GetCucumberScenarios(ScenarioOutline scenarioOutline)
+        private IEnumerable<ScenarioBaseAndBackground> GetCucumberScenarios(Scenario scenario)
         {
             IEnumerable<Element> cucumberScenarios = null;
-            var cucumberFeature = this.GetCucumberFeature(scenarioOutline.Feature);
+            var cucumberFeature = this.GetCucumberFeature(scenario.Feature);
             if (cucumberFeature?.Feature != null)
             {
-                cucumberScenarios = cucumberFeature.Feature.elements.Where(x => x.name == scenarioOutline.Name);
+                cucumberScenarios = cucumberFeature.Feature.elements.Where(x => x.name == scenario.Name);
             }
 
             return (cucumberScenarios ?? new Element[0]).Select(cs => new ScenarioBaseAndBackground(cs, cucumberFeature?.Background));

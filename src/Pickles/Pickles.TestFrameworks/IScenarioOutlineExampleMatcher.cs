@@ -22,14 +22,14 @@ using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks
 {
-    public interface IScenarioOutlineExampleMatcher
+    public interface IScenarioExampleMatcher
     {
-        bool IsMatch(ScenarioOutline scenarioOutline, string[] exampleValues, object scenarioElement);
+        bool IsMatch(Scenario scenario, string[] exampleValues, object scenarioElement);
     }
 
-    class ScenarioOutlineExampleMatcher : IScenarioOutlineExampleMatcher
+    class ScenarioExampleMatcher : IScenarioExampleMatcher
     {
-        public bool IsMatch(ScenarioOutline scenarioOutline, string[] exampleValues, object scenarioElement)
+        public bool IsMatch(Scenario scenario, string[] exampleValues, object scenarioElement)
         {
             return false;
         }

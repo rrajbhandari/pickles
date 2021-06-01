@@ -140,9 +140,7 @@ namespace PicklesDoc.Pickles.PowerShell
                 configuration.HideTags = this.HideTags;
             }
 
-            bool shouldEnableComments;
-
-            if (bool.TryParse(this.EnableComments, out shouldEnableComments))
+            if (bool.TryParse(this.EnableComments, out bool shouldEnableComments))
             {
                 if (!shouldEnableComments)
                 {

@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="JsonScenario.cs" company="PicklesDoc">
+//  <copyright file="JsonScenarioOutline.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -30,6 +30,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Json
             this.Steps = new List<JsonStep>();
             this.Tags = new List<string>();
         }
+
+        public List<JsonExample> Examples { get; set; }
 
         #region IFeatureElement Members
 

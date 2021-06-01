@@ -42,7 +42,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
             return this.Format(table, null);
         }
 
-        public XElement Format(Table table, ScenarioOutline scenarioOutline)
+        public XElement Format(Table table, Scenario scenarioOutline)
         {
             if (table == null)
             {
@@ -73,7 +73,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
                         table.DataRows.Select(row => this.FormatRow(row, scenarioOutline)))));
         }
 
-        private XElement FormatRow(TableRow row, ScenarioOutline scenarioOutline)
+        private XElement FormatRow(TableRow row, Scenario scenarioOutline)
         {
             var formattedCells = row.Cells.Select(
                 cell =>

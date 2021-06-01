@@ -1,122 +1,18 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\NUnit.3.10.1\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.10.1\build\NUnit.props')" />
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C8BB0382-612C-4ECD-9388-CB996E3493A6}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PicklesDoc.Pickles.TestFrameworks.UnitTests</RootNamespace>
     <AssemblyName>PicklesDoc.Pickles.TestFrameworks.UnitTests</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-    <TargetFrameworkProfile />
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyTitle>PicklesDoc.Pickles.TestFrameworks.UnitTests</AssemblyTitle>
+    <Description>Unit tests for the supported test frameworks for inputting test results to Pickles</Description>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Autofac, Version=4.8.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.4.8.0\lib\net45\Autofac.dll</HintPath>
-    </Reference>
-    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <HintPath>..\packages\Castle.Core.4.2.1\lib\net45\Castle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="NFluent, Version=2.2.0.125, Culture=neutral, PublicKeyToken=18828b37b84b1437, processorArchitecture=MSIL">
-      <HintPath>..\packages\NFluent.2.2.0\lib\net45\NFluent.dll</HintPath>
-    </Reference>
-    <Reference Include="NSubstitute, Version=3.1.0.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
-      <HintPath>..\packages\NSubstitute.3.1.0\lib\net46\NSubstitute.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework, Version=3.10.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.10.1\lib\net45\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.IO.Abstractions, Version=2.1.0.178, Culture=neutral, PublicKeyToken=96bf224d23c43e59, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.IO.Abstractions.2.1.0.178\lib\net40\System.IO.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.IO.Compression.FileSystem" />
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Threading.Tasks.Extensions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.4.0\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="TestingHelpers, Version=2.1.0.178, Culture=neutral, PublicKeyToken=96bf224d23c43e59, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.IO.Abstractions.TestingHelpers.2.1.0.178\lib\net40\TestingHelpers.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="CucumberJson\WhenParsingCucumberJsonFromJSResultsFileWithMissingElements.cs" />
-    <Compile Include="CucumberJson\WhenParsingCucumberJsonFromJSResultsFile.cs" />
-    <Compile Include="CucumberJson\WhenParsingCucumberJsonFromJSResultsFileWithIndividualResults.cs" />
-    <Compile Include="CucumberJson\WhenParsingCucumberJsonFromRubyResultsFileWithIndividualResults.cs" />
-    <Compile Include="MsTest\MsTestElementExtensionsTests.cs" />
-    <Compile Include="MsTest\WhenParsingMsTestResultsFileWithIgnoredExample.cs" />
-    <Compile Include="MsTest\WhenParsingMsTestResultsFileWithEmptyExampleValues.cs" />
-    <Compile Include="NUnit\NUnit3\WhenParsingNunit3ResultsFileForNunit2Tests.cs" />
-    <Compile Include="VsTest\WhenParsingMsTestResultsFileWithIgnoredExample.cs" />
-    <Compile Include="VsTest\WhenParsingVsTestResultsFile.cs" />
-    <Compile Include="VsTest\WhenParsingVsTestResultsFileWithIndividualResults.cs" />
-    <Compile Include="VsTest\WhenParsingVsTestResultsFileWithMissingTraits.cs" />
-    <Compile Include="VsTest\WhenParsingMultipleVsTestTestResultsFiles.cs" />
-    <Compile Include="MsTest\WhenParsingMsTestResultsFileWithMissingTraits.cs" />
-    <Compile Include="MsTest\WhenParsingMsTestResultsFileWithIndividualResults.cs" />
-    <Compile Include="NUnit\NUnit2\WhenParsingnUnit2ResultsFileWithMissingTraits.cs" />
-    <Compile Include="NUnit\NUnit2\WhenParsingNUnitResultsFileWithIndividualResults.cs" />
-    <Compile Include="NUnit\NUnit3\WhenDeterminingTheSignatureOfAnNunit3ExampleRow.cs" />
-    <Compile Include="NUnit\NUnit3\WhenParsingnUnit3ResultsFileWithMissingTraits.cs" />
-    <Compile Include="NUnit\NUnit3\WhenParsingNunit3ResultsFile.cs" />
-    <Compile Include="NUnit\NUnit3\WhenParsingNUnitResultsFileWithIndividualResults.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="NUnit\NUnit2\WhenDeterminingTheSignatureOfAnNUnitExampleRow.cs" />
-    <Compile Include="SpecRun\WhenParsingSpecRunTestResultsFileWithIndividualResults.cs" />
-    <Compile Include="StandardTestSuite.cs" />
-    <Compile Include="StandardTestSuiteForScenarioOutlines.cs" />
-    <Compile Include="XUnit\XUnit1\WhenDeterminingTheSignatureOfAnXUnitExampleRow.cs" />
-    <Compile Include="CucumberJson\WhenParsingCucumberJsonFromRubyResultsFile.cs" />
-    <Compile Include="MsTest\WhenParsingMsTestResultsFile.cs" />
-    <Compile Include="MsTest\WhenParsingMultipleMsTestTestResultsFiles.cs" />
-    <Compile Include="NUnit\NUnit2\WhenParsingMultipleNUnitResultsFilesForASingleFeature.cs" />
-    <Compile Include="SpecRun\WhenParsingMultipleTestResultsTests.cs" />
-    <Compile Include="NUnit\NUnit2\WhenParsingNUnitResultsFile.cs" />
-    <Compile Include="NUnit\NUnit2\WhenParsingProblematicScenarioOutlineResults.cs" />
-    <Compile Include="SpecRun\WhenParsingSpecRunTestResultsFile.cs" />
-    <Compile Include="WhenParsingTestResultFiles.cs" />
-    <Compile Include="XUnit\XUnit1\WhenParsingXUnitResultsFileWithIndividualResults.cs" />
-    <Compile Include="XUnit\XUnit1\WhenParsingxUnitResultsFileWithMissingTraits.cs" />
-    <Compile Include="XUnit\XUnit2\WhenDeterminingTheSignatureOfAnXUnit2ExampleRow.cs" />
-    <Compile Include="XUnit\XUnit2\WhenMatchingAnXunit2ScenarioOutlineExample.cs" />
-    <Compile Include="XUnit\XUnit2\WhenParsingxUnit2ResultsFileWithMissingTraits.cs" />
-    <Compile Include="XUnit\XUnit2\WhenParsingxUnit2ResultsFile.cs" />
-    <Compile Include="XUnit\XUnit1\WhenParsingxUnitResultsFile.cs" />
-    <Compile Include="WhenResolvingTestResults.cs" />
-    <Compile Include="XUnit\XUnit2\WhenParsingXUnitResultsFileWithIndividualResults.cs" />
-  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CucumberJson\results-example-json.json" />
   </ItemGroup>
@@ -161,7 +57,6 @@
     <EmbeddedResource Include="NUnit\NUnit2\results-problem-with-outline-results-nunit.xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <EmbeddedResource Include="MsTest\results-example-mstest-missingTraits.trx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -181,31 +76,15 @@
     <EmbeddedResource Include="MsTest\resuls-example-mstest-emptyexamplevalues.trx" />
     <EmbeddedResource Include="MsTest\results-example-mstest-ignoredexample.trx" />
     <EmbeddedResource Include="CucumberJson\results-example-cucumberjs-missing-elements-array.json" />
-    <None Include="packages.config" />
     <EmbeddedResource Include="VsTest\results-example-vstest-ignoredexample.trx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Pickles.ObjectModel\Pickles.ObjectModel.csproj">
-      <Project>{55382AFC-E050-4DF7-AA4F-0ABA71E2E169}</Project>
-      <Name>Pickles.ObjectModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Pickles.TestFrameworks\Pickles.TestFrameworks.csproj">
-      <Project>{599BCF0C-8FB4-4727-A902-160C4E7D8FB0}</Project>
-      <Name>Pickles.TestFrameworks</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Pickles.Test\Pickles.Test.csproj">
-      <Project>{8bd9fcd2-7ed5-46b5-b6a4-7fa3775e159f}</Project>
-      <Name>Pickles.Test</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Pickles\Pickles.csproj">
-      <Project>{38bad6e0-78ab-4ac3-91a8-bf72af5ee394}</Project>
-      <Name>Pickles</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+    <ProjectReference Include="..\Pickles.ObjectModel\Pickles.ObjectModel.csproj" />
+    <ProjectReference Include="..\Pickles.TestFrameworks\Pickles.TestFrameworks.csproj" />
+    <ProjectReference Include="..\Pickles.Test\Pickles.Test.csproj" />
+    <ProjectReference Include="..\Pickles\Pickles.csproj" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="NUnit\NUnit3\results-example-nunit3.xml" />
@@ -231,18 +110,9 @@
   <ItemGroup>
     <EmbeddedResource Include="NUnit\NUnit3\results-example-nunit2-with-nunit3-runner.xml" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\NUnit.3.10.1\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.10.1\build\NUnit.props'))" />
-  </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.1" />
+    <PackageReference Include="NUnit" Version="3.13.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
+  </ItemGroup>
 </Project>

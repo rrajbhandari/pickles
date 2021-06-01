@@ -36,7 +36,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit.XUnit2
         [Test]
         public void ThenCanSuccessfullyMatch()
         {
-            var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers" };
+            var scenarioOutline = new Scenario { Name = "Adding several numbers" };
             var exampleRow = new[] { "40", "50", "90" };
 
             var signatureBuilder = new XUnitExampleSignatureBuilder();
@@ -49,7 +49,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit.XUnit2
         [Test]
         public void ThenCanSuccessfullyMatchExamplesWithLongValues()
         {
-            var scenarioOutline = new ScenarioOutline { Name = "Deal correctly with overlong example values" };
+            var scenarioOutline = new Scenario { Name = "Deal correctly with overlong example values" };
             var exampleRow = new[]
             {
                 "Please enter a valid two letter country code (e.g. DE)!",
@@ -65,7 +65,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit.XUnit2
 
         private static bool MatchRegexSpecialChars(string expectedParameter)
         {
-            var scenarioOutline = new ScenarioOutline { Name = "This scenario contains examples with Regex-special characters" };
+            var scenarioOutline = new Scenario { Name = "This scenario contains examples with Regex-special characters" };
             var exampleRow = new[] { expectedParameter };
 
             var signatureBuilder = new XUnitExampleSignatureBuilder();

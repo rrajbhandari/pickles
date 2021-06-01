@@ -18,7 +18,9 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
+using System.Globalization;
 using System.IO;
+using System.Threading;
 using Autofac;
 using NFluent;
 using NUnit.Framework;
@@ -33,8 +35,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html.UnitTests
         [Test]
         public void ThenShouldLocalizeExamplesKeyword()
         {
+
+
             string featureText =
-@"# language: nl-NL
+@"# language: nl
 Functionaliteit: Test het abstract scenario
 
 Abstract Scenario: Het Scenario
@@ -57,7 +61,6 @@ Voorbeelden:
 
             var value = output.ToString();
             Check.That(value).Contains("Voorbeelden");
-
         }
     }
 }

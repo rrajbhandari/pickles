@@ -36,7 +36,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         {
             var mapper = this.factory.CreateMapper();
 
-            ScenarioOutline result = mapper.MapToScenarioOutline(null);
+            Scenario result = mapper.MapToScenario(null, null);
 
             Check.That(result).IsNull();
         }
@@ -69,7 +69,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
 
             var mapper = this.factory.CreateMapper();
 
-            ScenarioOutline result = mapper.MapToScenarioOutline(scenarioOutline);
+            Scenario result = mapper.MapToScenarioOutline(scenarioOutline);
 
             Check.That(result.Name).IsEqualTo("My scenario title");
 
@@ -108,7 +108,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
 
             var mapper = this.factory.CreateMapper();
 
-            ScenarioOutline result = mapper.MapToScenarioOutline(scenarioOutline);
+            Scenario result = mapper.MapToScenario(scenarioOutline);
 
             Check.That(result.Slug).IsEqualTo("my-super-cryptic-scenario-title-its-got-some-w1ld-characters-cyrilic");
         }
@@ -116,7 +116,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         [Test]
         public void MapToScenarioOutline_ScenarioOutlineWithNullDescription_ReturnsScenarioOutlineWithEmptyDescription()
         {
-            var scenarioOutline = this.factory.CreateScenarioOutline(
+            var scenario = this.factory.CreateScenarioOutline(
                 new[] { "unimportant tag" },
                 "My scenario outline title",
                 null,
@@ -125,7 +125,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
 
             var mapper = this.factory.CreateMapper();
 
-            ScenarioOutline result = mapper.MapToScenarioOutline(scenarioOutline);
+            Scenario result = mapper.MapToScenario(scenario);
 
             Check.That(result.Description).IsEqualTo(string.Empty);
         }
@@ -142,7 +142,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
             var gherkinDocument = this.factory.CreateGherkinDocument(
                 "My Feature",
                 "My Description",
-                scenarioDefinitions: new G.ScenarioDefinition[] { scenarioOutline });
+                scenarioDefinitions: new G.Scenario[] { scenarioOutline });
 
 
             var mapper = this.factory.CreateMapper();
@@ -151,9 +151,9 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
 
             Check.That(mappedFeature.FeatureElements.Count).IsEqualTo(1);
 
-            var mappedScenarioOutline = mappedFeature.FeatureElements[0] as ScenarioOutline;
+            var mappedScenario = mappedFeature.FeatureElements[0] as Scenario;
 
-            Check.That(mappedScenarioOutline.Feature).IsSameReferenceAs(mappedFeature);
+            Check.That(mappedScenario.Feature).IsSameReferenceAs(mappedFeature);
         }
     }
 }

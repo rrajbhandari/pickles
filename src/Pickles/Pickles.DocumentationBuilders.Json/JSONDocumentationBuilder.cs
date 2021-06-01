@@ -22,10 +22,8 @@ using System;
 using System.Collections.Generic;
 using System.IO.Abstractions;
 using System.Reflection;
-
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-
 using NLog;
 
 using PicklesDoc.Pickles.DataStructures;

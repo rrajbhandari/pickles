@@ -1,112 +1,75 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{A4EBBB5F-A18D-46D2-9ADE-2B90BD48CEC8}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PicklesDoc.Pickles.CommandLine</RootNamespace>
     <AssemblyName>Pickles</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RuntimeIdentifiers>win10-x64;osx.10.11-x64;linux-x64</RuntimeIdentifiers>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\Pickles\</SolutionDir>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-    <TargetFrameworkProfile />
+    <AssemblyTitle>Pickles.CommandLine</AssemblyTitle>
+    <Description>
+        **Pickles** is an open source **living documentation** generator that works on feature files written in the *Gherkin* language, popularized in tools like *Cucumber* and *SpecFlow*.
+
+        *Pickles* can be incorporated into your build process to produce living documentation in a format that is more accessible to your clients. *Gherkin* language files are written in plain text and stored in your source folder. This can make them inaccessible to clients who may not know how to work with source control or who are not interested in seeing all of the source code, just the features.
+
+        *Pickles* can produce output in different formats:
+
+        - Static HTML: a set of HTML files with minimal JavaScript
+        - Dynamic HTML: a JavaScript-rich single page app with integrated search
+        - Word: Microsoft Word
+        - Excel: Microsoft Excel
+        - JSON: a custom JSON format
+        - Markdown: a simple output format
+
+        Optionally, *Pickles* can **integrate test results**, so that your stakeholders know which scenarios pass validation. *Pickles* supports these test formats:
+
+        - NUnit
+        - MSTest
+        - XUnit
+        - SpecRun
+        - Cucumber JSON
+    </Description>
+    <Copyright>Copyright © 2010-2012 Jeffrey Cameron, Copyright © 2013-present PicklesDoc and contributors</Copyright>
+    <Version>0.1.0.0</Version>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <Authors>PicklesDoc and contributors</Authors>
+    <PackageIconUrl>https://cdn.rawgit.com/picklesdoc/pickles/master/pickles.png</PackageIconUrl>
+    <PackageId>Pickles.CommandLine</PackageId>
+    <PackageLicenseUrl>http://apache.org/licenses/LICENSE-2.0.html</PackageLicenseUrl>
+    <PackageProjectUrl>http://www.picklesdoc.com/</PackageProjectUrl>
+    <PackageReleaseNotes>https://github.com/picklesdoc/pickles/blob/master/CHANGELOG.md</PackageReleaseNotes>
+    <PackageTags>SpecificationByExample BDD SpecFlow Gherkin Cucumber SpecByEx LivingDocumentation Documentation</PackageTags>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>PicklesDoc.Pickles.CommandLine.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=4.8.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.4.8.0\lib\net45\Autofac.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="NDesk.Options">
-      <HintPath>..\packages\NDesk.Options.0.2.1\lib\NDesk.Options.dll</HintPath>
-    </Reference>
-    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.5.3\lib\net45\NLog.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.IO.Abstractions, Version=2.1.0.178, Culture=neutral, PublicKeyToken=96bf224d23c43e59, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.IO.Abstractions.2.1.0.178\lib\net40\System.IO.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.IO.Compression" />
-    <Reference Include="System.IO.Compression.FileSystem" />
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Transactions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <Compile Include="..\VersionInfo.cs" Link="VersionInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\VersionInfo.cs">
-      <Link>VersionInfo.cs</Link>
-    </Compile>
-    <Compile Include="CommandLineArgumentParser.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Pickles.ObjectModel\Pickles.ObjectModel.csproj">
-      <Project>{55382AFC-E050-4DF7-AA4F-0ABA71E2E169}</Project>
-      <Name>Pickles.ObjectModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Pickles\Pickles.csproj">
-      <Project>{38BAD6E0-78AB-4AC3-91A8-BF72AF5EE394}</Project>
-      <Name>Pickles</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\Pickles.ObjectModel\Pickles.ObjectModel.csproj" />
+    <ProjectReference Include="..\Pickles\Pickles.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="app.config" />
-    <None Include="NLog.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Settings.StyleCop" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <ItemGroup>
+    <PackageReference Include="NDesk.Options.Core" Version="1.2.5" />
+    <PackageReference Include="NLog.Config" Version="4.5.3" />
+  </ItemGroup>
 </Project>

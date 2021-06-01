@@ -57,14 +57,14 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit
             return this.GetResultFromElement(scenarioElement);
         }
 
-        public override TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
+        public override TestResult GetScenarioOutlineResult(Scenario scenarioOutline)
         {
             var scenarioOutlineElement = this.GetScenarioOutlineElement(scenarioOutline);
 
             return this.DetermineScenarioOutlineResult(scenarioOutlineElement);
         }
 
-        public override TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] exampleValues)
+        public override TestResult GetExampleResult(Scenario scenarioOutline, string[] exampleValues)
         {
             var examplesElement = this.GetExamplesElement(scenarioOutline, exampleValues);
 
@@ -116,10 +116,10 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit
 
         protected abstract XElement GetScenarioElement(Scenario scenario);
 
-        protected abstract XElement GetScenarioOutlineElement(ScenarioOutline scenarioOutline);
+        protected abstract XElement GetScenarioOutlineElement(Scenario scenarioOutline);
 
         protected abstract XElement GetFeatureElement(Feature feature);
 
-        protected abstract XElement GetExamplesElement(ScenarioOutline scenarioOutline, string[] values);
+        protected abstract XElement GetExamplesElement(Scenario scenarioOutline, string[] values);
     }
 }

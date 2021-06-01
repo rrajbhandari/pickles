@@ -86,7 +86,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
         public void ThenCanReadScenarioOutlineResultSuccessfully()
         {
             var results = ParseResultsFile();
-            var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers", Feature = this.AdditionFeature() };
+            var scenarioOutline = new Scenario { Name = "Adding several numbers", Feature = this.AdditionFeature() };
 
             TestResult result = results.GetScenarioOutlineResult(scenarioOutline);
 
@@ -171,7 +171,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
             var feature = new Feature { Name = "Scenario Outlines" };
 
-            var scenarioOutline = new ScenarioOutline { Name = "Deal correctly with backslashes in the examples", Feature = feature };
+            var scenarioOutline = new Scenario { Name = "Deal correctly with backslashes in the examples", Feature = feature };
 
             TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
             Check.That(exampleResultOutline).IsEqualTo(TestResult.Passed);
@@ -186,7 +186,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
             var feature = new Feature { Name = "Scenario Outlines" };
 
-            var scenarioOutline = new ScenarioOutline { Name = "Deal correctly with parenthesis in the examples", Feature = feature };
+            var scenarioOutline = new Scenario { Name = "Deal correctly with parenthesis in the examples", Feature = feature };
 
             TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
             Check.That(exampleResultOutline).IsEqualTo(TestResult.Passed);
@@ -214,7 +214,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
             var feature = new Feature { Name = "Failing Background" };
 
-            var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers", Feature = feature };
+            var scenarioOutline = new Scenario { Name = "Adding several numbers", Feature = feature };
 
             var actualResult = results.GetScenarioOutlineResult(scenarioOutline);
 
@@ -227,7 +227,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
             var feature = new Feature { Name = "Failing Background" };
 
-            var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers", Feature = feature };
+            var scenarioOutline = new Scenario { Name = "Adding several numbers", Feature = feature };
 
             var actualResult = results.GetExampleResult(scenarioOutline, new string[] { "60", "70", "130", "260" });
 
@@ -263,7 +263,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
             var feature = new Feature { Name = "Scenarios With Special Characters" };
 
-            var scenarioOutline = new ScenarioOutline { Name = "This is a scenario outline with parentheses, hyphen and comma (10-20, 30-40)", Feature = feature };
+            var scenarioOutline = new Scenario { Name = "This is a scenario outline with parentheses, hyphen and comma (10-20, 30-40)", Feature = feature };
 
             var actualResult = results.GetExampleResult(scenarioOutline, new string[] { "pass_1" });
 
@@ -276,7 +276,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
           var feature = new Feature { Name = "Scenarios With Special Characters" };
 
-          var scenarioOutline = new ScenarioOutline { Name = "This is a scenario outline with german umlauts äöüß ÄÖÜ", Feature = feature };
+          var scenarioOutline = new Scenario { Name = "This is a scenario outline with german umlauts äöüß ÄÖÜ", Feature = feature };
 
           var actualResult = results.GetExampleResult(scenarioOutline, new string[] { "pass_1" });
 
@@ -315,10 +315,10 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
           var feature = new Feature { Name = "Scenarios With Special Characters" };
 
-          var scenarioOutline = new ScenarioOutline { Name = "This is a scenario outline with ampersand &", Feature = feature };
+          var scenarioOutline = new Scenario { Name = "This is a scenario outline with ampersand &", Feature = feature };
 
           var actualResult = results.GetExampleResult(scenarioOutline, new string[] { "pass_1" });
-
+          
           Check.That(actualResult).IsEqualTo(TestResult.Passed);
         }
 

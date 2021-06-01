@@ -18,12 +18,11 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Abstractions;
-
-using Newtonsoft.Json;
 
 namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
 {
@@ -37,13 +36,14 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
         private List<Feature> ReadResultsFile(FileInfoBase testResultsFile)
         {
             List<Feature> result;
-            using (var stream = testResultsFile.OpenRead())
-            {
+            //using (var stream = testResultsFile.OpenRead())
+            //{
+            var stream = testResultsFile.OpenRead();
                 using (var reader = new StreamReader(stream))
                 {
                     result = JsonConvert.DeserializeObject<List<Feature>>(reader.ReadToEnd());
                 }
-            }
+            //}
 
             return result;
         }

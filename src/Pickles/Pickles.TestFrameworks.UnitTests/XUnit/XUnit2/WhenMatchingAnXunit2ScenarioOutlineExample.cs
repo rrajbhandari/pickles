@@ -37,7 +37,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit.XUnit2
         {
             var matcher = new XUnit2ScenarioOutlineExampleMatcher();
 
-            var outline = new ScenarioOutline { Name = "Test outline", };
+            var outline = new Scenario { Name = "Test outline", };
 
             // this happens, if a Scenario outline was not run because it was skipped
             var element = new assembliesAssemblyCollectionTest { name = "Test outline" };

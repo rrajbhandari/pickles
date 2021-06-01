@@ -137,19 +137,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
             return null;
         }
 
-        public XElement Format(ScenarioOutline scenarioOutline)
-        {
-            if (this.configuration.HasTestResults)
-            {
-                TestResult scenarioResult = this.results.GetScenarioOutlineResult(scenarioOutline);
-
-                return this.BuildImageElement(scenarioResult);
-            }
-
-            return null;
-        }
-
-        public XElement Format(ScenarioOutline scenarioOutline, params string[] exampleValues)
+        public XElement Format(Scenario scenarioOutline, params string[] exampleValues)
         {
             if (this.configuration.HasTestResults)
             {

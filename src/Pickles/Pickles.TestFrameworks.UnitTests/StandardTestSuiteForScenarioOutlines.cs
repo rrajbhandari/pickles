@@ -42,7 +42,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
             var feature = new Feature { Name = "Scenario Outlines" };
 
-            var scenarioOutline = new ScenarioOutline { Name = "This is a scenario outline where all scenarios pass", Feature = feature };
+            var scenarioOutline = new Scenario { Name = "This is a scenario outline where all scenarios pass", Feature = feature };
 
             TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
             Check.That(exampleResultOutline).IsEqualTo(TestResult.Passed);
@@ -63,7 +63,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
             var feature = new Feature { Name = "Scenario Outlines" };
 
-            var scenarioOutline = new ScenarioOutline { Name = "This is a scenario outline where one scenario is inconclusive", Feature = feature };
+            var scenarioOutline = new Scenario { Name = "This is a scenario outline where one scenario is inconclusive", Feature = feature };
 
             TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
             Check.That(exampleResultOutline).IsEqualTo(this.valueForInconclusive);
@@ -84,7 +84,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
             var feature = new Feature { Name = "Scenario Outlines" };
 
-            var scenarioOutline = new ScenarioOutline { Name = "This is a scenario outline where one scenario fails", Feature = feature };
+            var scenarioOutline = new Scenario { Name = "This is a scenario outline where one scenario fails", Feature = feature };
 
             TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
             Check.That(exampleResultOutline).IsEqualTo(TestResult.Failed);
@@ -105,7 +105,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
             var feature = new Feature { Name = "Scenario Outlines" };
 
-            var scenarioOutline = new ScenarioOutline { Name = "And we can go totally bonkers with multiple example sections.", Feature = feature };
+            var scenarioOutline = new Scenario { Name = "And we can go totally bonkers with multiple example sections.", Feature = feature };
 
             TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
             Check.That(exampleResultOutline).IsEqualTo(TestResult.Failed);
@@ -135,7 +135,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
             var feature = new Feature { Name = "Scenarios With Special Characters" };
 
-            var scenarioOutline = new ScenarioOutline
+            var scenarioOutline = new Scenario
             {
                 Name = "This scenario contains examples with Regex-special characters",
                 Feature = feature,
@@ -191,7 +191,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
             var feature = new Feature { Name = "Scenario Outlines" };
 
-            var scenarioOutline = new ScenarioOutline { Name = "Deal correctly with overlong example values", Feature = feature };
+            var scenarioOutline = new Scenario { Name = "Deal correctly with overlong example values", Feature = feature };
 
             TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
             Check.That(exampleResultOutline).IsEqualTo(TestResult.Passed);
@@ -206,7 +206,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
             var feature = new Feature { Name = "Scenario Outlines" };
 
-            var scenarioOutline = new ScenarioOutline
+            var scenarioOutline = new Scenario
             {
                 Name = "Deal with duplicate values",
                 Feature = feature,
@@ -254,7 +254,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
             var feature = new Feature { Name = "Scenario Outlines" };
 
-            var scenarioOutline = new ScenarioOutline
+            var scenarioOutline = new Scenario
             {
                 Name = "Deal with multiple example sections with duplicate values",
                 Feature = feature,
@@ -319,7 +319,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
             var feature = new Feature { Name = "Scenario Outlines" };
 
-            var scenarioOutline = new ScenarioOutline
+            var scenarioOutline = new Scenario
             {
                 Name = "Deal with multiple named example sections without duplicate values",
                 Feature = feature,
@@ -370,7 +370,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
             var feature = new Feature { Name = "Scenario Outlines" };
 
-            var scenarioOutline = new ScenarioOutline
+            var scenarioOutline = new Scenario
             {
                 Name = "Deal with multiple named example sections with duplicate values",
                 Feature = feature,

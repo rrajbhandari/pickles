@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="ScenarioBlock.cs" company="PicklesDoc">
+//  <copyright file="ScenarioOutlineBlock.cs" company="PicklesDoc">
 //  Copyright 2018 Darren Comeau
 //  Copyright 2018-present PicklesDoc team and community contributors
 //
@@ -41,7 +41,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.Blocks
 
                 Heading(),
 
-                AvailableSteps()
+                AvailableSteps(),
+
+                Examples()
             };
 
             return lines;
@@ -67,11 +69,21 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.Blocks
             return lines;
         }
 
+        //protected virtual Lines Heading()
+        //{
+        //    var lines = new Lines
+        //    {
+        //        style.AsScenarioOutlineHeading(scenarioOutline.Name)
+        //    };
+
+        //    return lines;
+        //}
+
         protected virtual Lines Heading()
         {
             var lines = new Lines();
 
-            if(scenario.Result != TestResult.NotProvided)
+            if (scenario.Result != TestResult.NotProvided)
             {
                 lines.Add(style.AsScenarioHeading(scenario.Name, scenario.Result));
             }
@@ -93,6 +105,36 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.Blocks
                 {
                     lines.Add(style.AsStepLine(string.Empty));
                     lines.Add(Step(step));
+                }
+            }
+
+            return lines;
+        }
+
+        private Lines Examples()
+        {
+            var lines = new Lines();
+
+            if (scenario.Examples != null)
+            {
+                foreach (var example in scenario.Examples)
+                {
+                    lines.Add(style.AsStepLine(string.Empty));
+
+                    lines.Add(style.AsExampleHeading(example.Name));
+
+                    lines.Add(style.AsStepLine(string.Empty));
+
+                    var withResults = true;
+
+                    if (scenario.Result == TestResult.NotProvided)
+                    {
+                        withResults = false;
+                    }
+
+                    var tableBlock = new TableBlock(example.TableArgument, style, withResults);
+
+                    lines.Add(tableBlock.Lines);
                 }
             }
 

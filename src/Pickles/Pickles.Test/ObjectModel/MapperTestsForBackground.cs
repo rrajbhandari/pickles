@@ -100,7 +100,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
             var gherkinDocument = this.factory.CreateGherkinDocument(
                 "My Feature",
                 "My Description",
-                scenarioDefinitions: new G.ScenarioDefinition[] { scenario },
+                scenarioDefinitions: new G.Scenario[] { scenario },
                 background: background);
 
 

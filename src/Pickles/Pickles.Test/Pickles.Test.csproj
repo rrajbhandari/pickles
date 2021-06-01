@@ -1,214 +1,44 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\NUnit.3.10.1\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.10.1\build\NUnit.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{8BD9FCD2-7ED5-46B5-B6A4-7FA3775E159F}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PicklesDoc.Pickles.Test</RootNamespace>
     <AssemblyName>PicklesDoc.Pickles.Test</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <TargetFrameworkProfile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <AssemblyTitle>Pickles.Test</AssemblyTitle>
+    <Description>Unit and integration tests for Pickles</Description>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=4.8.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.4.8.0\lib\net45\Autofac.dll</HintPath>
-    </Reference>
-    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <HintPath>..\packages\Castle.Core.4.2.1\lib\net45\Castle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="ClosedXML, Version=0.87.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
-      <HintPath>..\packages\ClosedXML.0.87.1\lib\net40\ClosedXML.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Gherkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=86496cfa5b4a5851, processorArchitecture=MSIL">
-      <HintPath>..\packages\Gherkin.4.0.0\lib\net45\Gherkin.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="NFluent, Version=2.2.0.125, Culture=neutral, PublicKeyToken=18828b37b84b1437, processorArchitecture=MSIL">
-      <HintPath>..\packages\NFluent.2.2.0\lib\net45\NFluent.dll</HintPath>
-    </Reference>
-    <Reference Include="NSubstitute, Version=3.1.0.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
-      <HintPath>..\packages\NSubstitute.3.1.0\lib\net46\NSubstitute.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework, Version=3.10.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.10.1\lib\net45\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.IO.Abstractions, Version=2.1.0.178, Culture=neutral, PublicKeyToken=96bf224d23c43e59, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.IO.Abstractions.2.1.0.178\lib\net40\System.IO.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.IO.Compression.FileSystem" />
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Threading.Tasks.Extensions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.4.0\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\net47\System.ValueTuple.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="TestingHelpers, Version=2.1.0.178, Culture=neutral, PublicKeyToken=96bf224d23c43e59, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.IO.Abstractions.TestingHelpers.2.1.0.178\lib\net40\TestingHelpers.dll</HintPath>
-    </Reference>
-    <Reference Include="WindowsBase" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\VersionInfo.cs">
-      <Link>VersionInfo.cs</Link>
-    </Compile>
-    <Compile Include="AssertExtensions.cs" />
-    <Compile Include="BaseFixture.cs" />
-    <Compile Include="ConfigurationTests.cs" />
-    <Compile Include="CultureAwareDialectProviderTests.cs" />
-    <Compile Include="DataStructures\TreeTests.cs" />
-    <Compile Include="DescriptionProcessorTests.cs" />
-    <Compile Include="DirectoryCrawlers\ImageFileDetectorTests.cs" />
-    <Compile Include="DirectoryCrawlers\RelevantFileDetectorTests.cs" />
-    <Compile Include="EncodingDetectorTests.cs" />
-    <Compile Include="FeatureNodeFactoryTests.cs" />
-    <Compile Include="FeatureParserTests.cs" />
-    <Compile Include="FileSystemBasedFeatureParserTests.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="LanguageServicesRegistryTests.cs" />
-    <Compile Include="ObjectModel\Factory.cs" />
-    <Compile Include="ObjectModel\Json\CommentToJsonCommentMapperTests.cs" />
-    <Compile Include="ObjectModel\Json\ExampleToJsonExampleMapperTests.cs" />
-    <Compile Include="ObjectModel\Json\FeatureToJsonFeatureMapperTests.cs" />
-    <Compile Include="ObjectModel\Json\JsonScenarioTests.cs" />
-    <Compile Include="ObjectModel\Json\KeywordToJsonKeywordMapperTests.cs" />
-    <Compile Include="ObjectModel\Json\ScenarioToJsonScenarioMapperTests.cs" />
-    <Compile Include="ObjectModel\Json\ScenarioOutlineToJsonScenarioOutlineMapperTests.cs" />
-    <Compile Include="ObjectModel\Json\StepToJsonStepMapperTests.cs" />
-    <Compile Include="ObjectModel\Json\TableRowToJsonTableRowMapperTests.cs" />
-    <Compile Include="ObjectModel\Json\TableToJsonTableMapperTests.cs" />
-    <Compile Include="ObjectModel\Json\TestResultToJsonTestResultMapperTests.cs" />
-    <Compile Include="ObjectModel\MapperTestsForComment.cs" />
-    <Compile Include="ObjectModel\MapperTestsForDataTable.cs" />
-    <Compile Include="ObjectModel\MapperTestsForDocString.cs" />
-    <Compile Include="ObjectModel\MapperTestsForExample.cs" />
-    <Compile Include="ObjectModel\MapperTestsForBackground.cs" />
-    <Compile Include="ObjectModel\MapperTestsForFeature.cs" />
-    <Compile Include="ObjectModel\MapperTestsForLocation.cs" />
-    <Compile Include="ObjectModel\MapperTestsForScenarioOutline.cs" />
-    <Compile Include="ObjectModel\MapperTestsForScenario.cs" />
-    <Compile Include="ObjectModel\MapperTestsForStep.cs" />
-    <Compile Include="ObjectModel\MapperTestsForTag.cs" />
-    <Compile Include="ObjectModel\MappingTestsForKeyword.cs" />
-    <Compile Include="DirectoryCrawlers\FolderDirectoryTreeNodeTests.cs" />
-    <Compile Include="Extensions\StringExtensionsTests.cs" />
-    <Compile Include="Extensions\PathExtensionsTests.cs" />
-    <Compile Include="Extensions\UriExtensionsTests.cs" />
-    <Compile Include="Extensions\XElementExtensions.cs" />
-    <Compile Include="Formatters\HtmlContentFormatterTests.cs" />
-    <Compile Include="Formatters\HtmlDocumentationBuilderTests.cs" />
-    <Compile Include="Formatters\HtmlScenarioFormatterTests.cs" />
-    <Compile Include="Formatters\HtmlScenarioOutlineFormatterTests.cs" />
-    <Compile Include="Formatters\JSON\WhenCreatingAFeatureWithMetaInfoAndTestResultInMstestFormat.cs" />
-    <Compile Include="NamespaceExtensionsTests.cs" />
-    <Compile Include="Resources.Designer.cs">
+    <Compile Include="..\VersionInfo.cs" Link="VersionInfo.cs" />
+    <Compile Update="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="TestResultExtensionsTests.cs" />
-    <Compile Include="Formatters\JSON\WhenCreatingAFeatureWithMetaInfo.cs" />
-    <Compile Include="Formatters\JSON\WhenFormattingAFolderStructureWithFeatures.cs" />
-    <Compile Include="Helpers\XElementExentions.cs" />
-    <Compile Include="Helpers\JSONStringAssertHelpers.cs" />
-    <Compile Include="WhenCrawlingFoldersForFeatures.cs" />
-    <Compile Include="Formatters\TableOfContentsShouldBeCreatedFromAFolderStructure.cs" />
-    <Compile Include="ParserFileFactory.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WhenDeterminingRelevantFilesToConsider.cs" />
-    <Compile Include="WhenParsingFeatureFiles.cs" />
-    <Compile Include="WhenParsingLocalizedFeatureFiles.cs" />
-    <Compile Include="WhenResolvingADocumentationBuilder.cs" />
-    <Compile Include="WhenResolvingAMarkdownProvider.cs" />
-    <Compile Include="WhenWorkingWithHtmlResources.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Pickles.DocumentationBuilders.Cucumber\Pickles.DocumentationBuilders.Cucumber.csproj">
-      <Project>{F69AAC03-A2A6-4B3F-A4EF-ACCB145C64AD}</Project>
-      <Name>Pickles.DocumentationBuilders.Cucumber</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Pickles.DocumentationBuilders.Dhtml\Pickles.DocumentationBuilders.Dhtml.csproj">
-      <Project>{8AC3AAFA-84DD-4437-962B-E6C5D6078E09}</Project>
-      <Name>Pickles.DocumentationBuilders.Dhtml</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Pickles.DocumentationBuilders.Excel\Pickles.DocumentationBuilders.Excel.csproj">
-      <Project>{A875B066-443A-420E-A1F5-7870CFF0A50C}</Project>
-      <Name>Pickles.DocumentationBuilders.Excel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Pickles.DocumentationBuilders.Html\Pickles.DocumentationBuilders.Html.csproj">
-      <Project>{2C849AD2-D125-4754-8BBA-7C61FA6251E4}</Project>
-      <Name>Pickles.DocumentationBuilders.Html</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Pickles.DocumentationBuilders.Json\Pickles.DocumentationBuilders.Json.csproj">
-      <Project>{836020D1-A309-4367-9654-EBB7C3F60D97}</Project>
-      <Name>Pickles.DocumentationBuilders.Json</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Pickles.DocumentationBuilders.Markdown\Pickles.DocumentationBuilders.Markdown.csproj">
-      <Project>{732039F2-CAD8-44BC-9647-EC0ACAF59632}</Project>
-      <Name>Pickles.DocumentationBuilders.Markdown</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Pickles.DocumentationBuilders.Word\Pickles.DocumentationBuilders.Word.csproj">
-      <Project>{BDD5290E-BF98-436B-ADEE-A7479E22A875}</Project>
-      <Name>Pickles.DocumentationBuilders.Word</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Pickles.ObjectModel\Pickles.ObjectModel.csproj">
-      <Project>{55382AFC-E050-4DF7-AA4F-0ABA71E2E169}</Project>
-      <Name>Pickles.ObjectModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Pickles.TestFrameworks\Pickles.TestFrameworks.csproj">
-      <Project>{599BCF0C-8FB4-4727-A902-160C4E7D8FB0}</Project>
-      <Name>Pickles.TestFrameworks</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Pickles\Pickles.csproj">
-      <Project>{38BAD6E0-78AB-4AC3-91A8-BF72AF5EE394}</Project>
-      <Name>Pickles</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\Pickles.DocumentationBuilders.Cucumber\Pickles.DocumentationBuilders.Cucumber.csproj" />
+    <ProjectReference Include="..\Pickles.DocumentationBuilders.Dhtml\Pickles.DocumentationBuilders.Dhtml.csproj" />
+    <ProjectReference Include="..\Pickles.DocumentationBuilders.Excel\Pickles.DocumentationBuilders.Excel.csproj" />
+    <ProjectReference Include="..\Pickles.DocumentationBuilders.Html\Pickles.DocumentationBuilders.Html.csproj" />
+    <ProjectReference Include="..\Pickles.DocumentationBuilders.Json\Pickles.DocumentationBuilders.Json.csproj" />
+    <ProjectReference Include="..\Pickles.DocumentationBuilders.Markdown\Pickles.DocumentationBuilders.Markdown.csproj" />
+    <ProjectReference Include="..\Pickles.DocumentationBuilders.Word\Pickles.DocumentationBuilders.Word.csproj" />
+    <ProjectReference Include="..\Pickles.ObjectModel\Pickles.ObjectModel.csproj" />
+    <ProjectReference Include="..\Pickles.TestFrameworks\Pickles.TestFrameworks.csproj" />
+    <ProjectReference Include="..\Pickles\Pickles.csproj" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FakeFolderStructures\AcceptanceTest\AdvancedFeature.feature" />
@@ -235,12 +65,7 @@
     <EmbeddedResource Include="FakeFolderStructures\FeatureCrawlerTests\LevelOneIgnoredFeature.feature" />
     <EmbeddedResource Include="FakeFolderStructures\FeatureCrawlerTests\LevelOneRemoveTagsToHide.feature" />
     <None Include="Resources\test.jpg" />
-    <EmbeddedResource Include="Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="FakeFolderStructures\FeatureCrawlerTests\image.png" />
-    <None Include="App.config" />
     <EmbeddedResource Include="FakeFolderStructures\JSON\Features\OneScenarioTransferingMoneyBetweenAccountsFailing.feature">
       <LastGenOutput>OneScenarioTransferingMoneyBetweenAccountsFailing.feature.cs</LastGenOutput>
     </EmbeddedResource>
@@ -253,26 +78,21 @@
     <EmbeddedResource Include="FakeFolderStructures\JSON\Features\TwoScenariosTransferingMoneyBetweenAccoutsWithSuccess.feature">
       <LastGenOutput>TwoScenariosTransferingMoneyBetweenAccoutsWithSuccess.feature.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="packages.config" />
     <EmbeddedResource Include="FakeFolderStructures\JSON\results-example-failing-and-pasing-mstest.trx" />
     <None Include="Settings.StyleCop" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+    <PackageReference Include="Castle.Core" Version="4.2.1" />
+    <PackageReference Include="DocumentFormat.OpenXml" Version="2.10.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.1" />
+    <PackageReference Include="NFluent" Version="2.2.0" />
+    <PackageReference Include="NSubstitute" Version="3.1.0" />
+    <PackageReference Include="NUnit" Version="3.13.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
+    <PackageReference Include="System.IO.Abstractions.TestingHelpers" Version="2.1.0.178" />
+    <PackageReference Include="System.Resources.Extensions" Version="5.0.0" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\NUnit.3.10.1\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.10.1\build\NUnit.props'))" />
-  </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <ItemGroup>
+    <Compile Remove="Helpers\XElementExtensions.cs" />
+  </ItemGroup>
 </Project>

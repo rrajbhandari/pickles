@@ -50,12 +50,12 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit.NUnit2
         }
 
         [Test]
-        public void ThenCanReadScenarioOutlineResultSuccessfully()
+        public void ThenCanReadScenarioResultSuccessfully()
         {
             var results = ParseResultsFile();
 
             var feature = new Feature { Name = "FeatureWithMultipleResultsFiles" };
-            var scenarioOutline = new ScenarioOutline { Name = "Some scenario outline", Feature = feature };
+            var scenarioOutline = new Scenario { Name = "Some scenario outline", Feature = feature };
 
             TestResult result = results.GetScenarioOutlineResult(scenarioOutline);
 

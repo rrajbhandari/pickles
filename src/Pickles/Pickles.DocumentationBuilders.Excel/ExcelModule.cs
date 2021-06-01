@@ -31,7 +31,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
             builder.RegisterType<ExcelSheetNameGenerator>().SingleInstance();
             builder.RegisterType<ExcelTableOfContentsFormatter>().SingleInstance();
             builder.RegisterType<ExcelScenarioFormatter>().SingleInstance();
-            builder.RegisterType<ExcelScenarioOutlineFormatter>().SingleInstance();
+            builder.RegisterType<ExcelScenarioFormatter>().SingleInstance();
             builder.RegisterType<ExcelStepFormatter>().SingleInstance();
             builder.RegisterType<ExcelTableFormatter>().SingleInstance();
             builder.RegisterType<ExcelDocumentStringFormatter>().SingleInstance();

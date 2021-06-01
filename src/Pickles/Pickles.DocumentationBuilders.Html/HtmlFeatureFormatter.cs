@@ -31,13 +31,13 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
         private readonly HtmlDescriptionFormatter htmlDescriptionFormatter;
         private readonly HtmlImageResultFormatter htmlImageResultFormatter;
         private readonly HtmlScenarioFormatter htmlScenarioFormatter;
-        private readonly HtmlScenarioOutlineFormatter htmlScenarioOutlineFormatter;
+        private readonly HtmlScenarioFormatter htmlScenarioOutlineFormatter;
         private readonly XNamespace xmlns;
 
         public HtmlFeatureFormatter(
             HtmlScenarioFormatter htmlScenarioFormatter,
             HtmlDescriptionFormatter htmlDescriptionFormatter,
-            HtmlScenarioOutlineFormatter htmlScenarioOutlineFormatter,
+            HtmlScenarioFormatter htmlScenarioOutlineFormatter,
             HtmlImageResultFormatter htmlImageResultFormatter)
         {
             this.htmlScenarioFormatter = htmlScenarioFormatter;
@@ -82,12 +82,6 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
                 if (scenario != null)
                 {
                     scenarios.Add(this.htmlScenarioFormatter.Format(scenario, id++));
-                }
-
-                var scenarioOutline = featureElement as ScenarioOutline;
-                if (scenarioOutline != null)
-                {
-                    scenarios.Add(this.htmlScenarioOutlineFormatter.Format(scenarioOutline, id++));
                 }
             }
 

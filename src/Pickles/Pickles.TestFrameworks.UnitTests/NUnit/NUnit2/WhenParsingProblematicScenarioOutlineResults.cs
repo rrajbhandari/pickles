@@ -44,7 +44,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit.NUnit2
 
             var feature = new Feature { Name = "ExampleWebFeature" };
 
-            var scenarioOutline = new ScenarioOutline { Name = "Login", Feature = feature };
+            var scenarioOutline = new Scenario { Name = "Login", Feature = feature };
 
             TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
             Check.That(exampleResultOutline).IsEqualTo(TestResult.Passed);

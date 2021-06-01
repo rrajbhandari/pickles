@@ -35,7 +35,6 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
             builder.RegisterType<HtmlIndexFormatter>().SingleInstance();
             builder.RegisterType<HtmlFeatureFormatter>().SingleInstance();
             builder.RegisterType<HtmlScenarioFormatter>().SingleInstance();
-            builder.RegisterType<HtmlScenarioOutlineFormatter>().SingleInstance();
             builder.RegisterType<HtmlDescriptionFormatter>().SingleInstance();
             builder.RegisterType<HtmlStepFormatter>().SingleInstance();
             builder.RegisterType<HtmlTableFormatter>().SingleInstance();

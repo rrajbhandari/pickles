@@ -53,7 +53,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1
             return this.GetAggregateResult(passedCount, failedCount, skippedCount);
         }
 
-        public override TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
+        public override TestResult GetScenarioOutlineResult(Scenario scenarioOutline)
         {
             IEnumerable<TestResult> exampleResults = this.GetScenarioOutlineElements(scenarioOutline).Select(this.GetResultFromElement);
             return this.DetermineAggregateResult(exampleResults);
@@ -67,13 +67,13 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1
                 : TestResult.Inconclusive;
         }
 
-        public override TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] exampleValues)
+        public override TestResult GetExampleResult(Scenario scenarioOutline, string[] exampleValues)
         {
             IEnumerable<XElement> exampleElements = this.GetScenarioOutlineElements(scenarioOutline);
 
             foreach (XElement exampleElement in exampleElements)
             {
-                if (this.ScenarioOutlineExampleMatcher.IsMatch(scenarioOutline, exampleValues, exampleElement))
+                if (this.ScenarioExampleMatcher.IsMatch(scenarioOutline, exampleValues, exampleElement))
                 {
                     return this.GetResultFromElement(exampleElement);
                 }
@@ -112,7 +112,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1
             return scenarioQuery.FirstOrDefault();
         }
 
-        private IEnumerable<XElement> GetScenarioOutlineElements(ScenarioOutline scenario)
+        private IEnumerable<XElement> GetScenarioOutlineElements(Scenario scenario)
         {
             XElement featureElement = this.GetFeatureElement(scenario.Feature);
 

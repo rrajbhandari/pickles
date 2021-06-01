@@ -101,58 +101,6 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.SpecRun
         }
 
         [Test]
-        public void GetScenarioOutlineResult_OnePassingOneInconclusive_ReturnsPassed()
-        {
-            var scenarioOutline = new ScenarioOutline();
-
-            var testResults1 = SetupStubForGetScenarioOutlineResult(TestResult.Passed);
-            var testResults2 = SetupStubForGetScenarioOutlineResult(TestResult.Inconclusive);
-
-            ITestResults multipleTestResults = CreateMultipleTestResults(testResults1, testResults2);
-
-            var result = multipleTestResults.GetScenarioOutlineResult(scenarioOutline);
-
-            Check.That(result).IsEqualTo(TestResult.Passed);
-        }
-
-        private static SingleTestRunBase SetupStubForGetScenarioOutlineResult(TestResult resultOfGetFeatureResult)
-        {
-            var testResults1 = Substitute.For<SingleTestRunBase>();
-            testResults1.GetScenarioOutlineResult(Arg.Any<ScenarioOutline>()).Returns(resultOfGetFeatureResult);
-            return testResults1;
-        }
-
-        [Test]
-        public void GetScenarioOutlineResult_OnePassingOneFailing_ReturnsFailed()
-        {
-            var scenarioOutline = new ScenarioOutline();
-
-            var testResults1 = SetupStubForGetScenarioOutlineResult(TestResult.Passed);
-            var testResults2 = SetupStubForGetScenarioOutlineResult(TestResult.Failed);
-
-            ITestResults multipleTestResults = CreateMultipleTestResults(testResults1, testResults2);
-
-            var result = multipleTestResults.GetScenarioOutlineResult(scenarioOutline);
-
-            Check.That(result).IsEqualTo(TestResult.Failed);
-        }
-
-        [Test]
-        public void GetScenarioOutlineResult_TwoInconclusive_ReturnsInconclusive()
-        {
-            var scenarioOutline = new ScenarioOutline();
-
-            var testResults1 = SetupStubForGetScenarioOutlineResult(TestResult.Inconclusive);
-            var testResults2 = SetupStubForGetScenarioOutlineResult(TestResult.Inconclusive);
-
-            ITestResults multipleTestResults = CreateMultipleTestResults(testResults1, testResults2);
-
-            var result = multipleTestResults.GetScenarioOutlineResult(scenarioOutline);
-
-            Check.That(result).IsEqualTo(TestResult.Inconclusive);
-        }
-
-        [Test]
         public void GetScenarioResult_OnePassingOneInconclusive_ReturnsPassed()
         {
             var scenario = new Scenario();
@@ -165,6 +113,36 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.SpecRun
             var result = multipleTestResults.GetScenarioResult(scenario);
 
             Check.That(result).IsEqualTo(TestResult.Passed);
+        }
+
+        [Test]
+        public void GetScenarioOutlineResult_OnePassingOneFailing_ReturnsFailed()
+        {
+            var scenario = new Scenario();
+
+            var testResults1 = SetupStubForGetScenarioResult(TestResult.Passed);
+            var testResults2 = SetupStubForGetScenarioResult(TestResult.Failed);
+
+            ITestResults multipleTestResults = CreateMultipleTestResults(testResults1, testResults2);
+
+            var result = multipleTestResults.GetScenarioResult(scenario);
+
+            Check.That(result).IsEqualTo(TestResult.Failed);
+        }
+
+        [Test]
+        public void GetScenarioOutlineResult_TwoInconclusive_ReturnsInconclusive()
+        {
+            var scenario = new Scenario();
+
+            var testResults1 = SetupStubForGetScenarioResult(TestResult.Inconclusive);
+            var testResults2 = SetupStubForGetScenarioResult(TestResult.Inconclusive);
+
+            ITestResults multipleTestResults = CreateMultipleTestResults(testResults1, testResults2);
+
+            var result = multipleTestResults.GetScenarioResult(scenario);
+
+            Check.That(result).IsEqualTo(TestResult.Inconclusive);
         }
 
         private static SingleTestRunBase SetupStubForGetScenarioResult(TestResult resultOfGetFeatureResult)

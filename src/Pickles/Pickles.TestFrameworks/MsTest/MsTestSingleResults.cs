@@ -92,7 +92,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
             return result;
         }
 
-        public override TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
+        public override TestResult GetScenarioOutlineResult(Scenario scenarioOutline)
         {
             var scenarios = this.GetScenariosForScenarioOutline(scenarioOutline);
 
@@ -103,7 +103,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
             return result;
         }
 
-        private IEnumerable<XElement> GetScenariosForScenarioOutline(ScenarioOutline scenarioOutline)
+        private IEnumerable<XElement> GetScenariosForScenarioOutline(Scenario scenarioOutline)
         {
             var scenarios =
                 this.GetScenariosForFeature(scenarioOutline.Feature)
@@ -132,7 +132,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
             return scenarios;
         }
 
-        public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
+        public override TestResult GetExampleResult(Scenario scenario, string[] exampleValues)
         {
             var scenarioElements = this.GetScenariosForScenarioOutline(scenario);
 
@@ -149,14 +149,14 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
             return testResult;
         }
 
-        private XElement GetScenarioThatMatchesTheExampleValues(ScenarioOutline scenarioOutline, string[] exampleValues, IEnumerable<XElement> scenarioElements)
+        private XElement GetScenarioThatMatchesTheExampleValues(Scenario scenarioOutline, string[] exampleValues, IEnumerable<XElement> scenarioElements)
         {
             // filter for example values
             XElement theScenario = null;
 
             foreach (var element in scenarioElements)
             {
-                var isMatch = this.ScenarioOutlineExampleMatcher.IsMatch(scenarioOutline, exampleValues, element);
+                var isMatch = this.ScenarioExampleMatcher.IsMatch(scenarioOutline, exampleValues, element);
 
                 if (isMatch)
                 {

@@ -27,11 +27,11 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit2
 {
     public class NUnit2ExampleSignatureBuilder
     {
-        public Regex Build(ScenarioOutline scenarioOutline, string[] row)
+        public Regex Build(Scenario scenario, string[] row)
         {
             var stringBuilder = new StringBuilder();
 
-            var name = SpecFlowNameMapping.Build(scenarioOutline.Name);
+            var name = SpecFlowNameMapping.Build(scenario.Name);
             stringBuilder.Append(name).Append("\\(");
 
             foreach (var value in row)

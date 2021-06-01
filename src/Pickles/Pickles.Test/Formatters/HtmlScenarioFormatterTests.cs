@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="HtmlScenarioFormatterTests.cs" company="PicklesDoc">
+//  <copyright file="HtmlScenarioOutlineFormatterTests.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -21,8 +21,10 @@
 using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
+
 using Autofac;
 using NFluent;
+using NSubstitute;
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.DocumentationBuilders.Html;
@@ -38,36 +40,69 @@ namespace PicklesDoc.Pickles.Test.Formatters
         [SetUp]
         public void Setup()
         {
+            var fakeTestResults = Substitute.For<ITestResults>();
+
             this.formatter = new HtmlScenarioFormatter(
                 Container.Resolve<HtmlStepFormatter>(),
                 Container.Resolve<HtmlDescriptionFormatter>(),
-                Container.Resolve<HtmlImageResultFormatter>());
+                Container.Resolve<HtmlTableFormatter>(),
+                Container.Resolve<HtmlImageResultFormatter>(),
+                fakeTestResults,
+                Container.Resolve<ILanguageServicesRegistry>());
         }
 
         #endregion
 
         private HtmlScenarioFormatter formatter;
 
-        private Scenario BuildMinimalScenario()
+        private static Scenario BuildMinimalScenario()
         {
-            return new Scenario
+            var examples = new List<Example>();
+            examples.Add(new Example
             {
-                Description = "My Scenario Description",
+                Description = "My Example Description",
+                TableArgument = new ExampleTable
+                {
+                    HeaderRow = new TableRow("Cell1"),
+                    DataRows =
+                        new List<TableRow>(
+                            new[]
+                            {
+                                new TableRowWithTestResult("Value1")
+                            })
+                },
+            });
+            var scenario = new Scenario
+            {
+                Description = "My Outline Description",
+                Examples = examples,
                 Steps = new List<Step>
                 {
                     new Step
                     {
                         NativeKeyword = "Given",
                         Name = "My Step Name",
+                        TableArgument = new Table
+                        {
+                            HeaderRow =
+                                new TableRow("Cell1"),
+                            DataRows =
+                                new List<TableRow>(
+                                    new[]
+                                    {
+                                        new TableRow("Value1")
+                                    })
+                        },
                     }
                 }
             };
+            return scenario;
         }
 
         [Test]
         public void Li_Element_Must_Not_Have_Id_Attribute()
         {
-            Scenario scenario = this.BuildMinimalScenario();
+            Scenario scenario = BuildMinimalScenario();
 
             XElement li = this.formatter.Format(scenario, 1);
 

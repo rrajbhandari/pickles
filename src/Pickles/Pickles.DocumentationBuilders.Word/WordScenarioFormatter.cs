@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="WordScenarioFormatter.cs" company="PicklesDoc">
+//  <copyright file="WordScenarioOutlineFormatter.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -19,6 +19,8 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Linq;
+using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Wordprocessing;
 
 using PicklesDoc.Pickles.DocumentationBuilders.Word.Extensions;
@@ -31,12 +33,16 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
         private readonly IConfiguration configuration;
         private readonly ITestResults testResults;
         private readonly WordStepFormatter wordStepFormatter;
+        private readonly WordTableFormatter wordTableFormatter;
+        private readonly ILanguageServicesRegistry languageServicesRegistry;
 
-        public WordScenarioFormatter(WordStepFormatter wordStepFormatter, IConfiguration configuration, ITestResults testResults)
+        public WordScenarioFormatter(WordStepFormatter wordStepFormatter, WordTableFormatter wordTableFormatter, IConfiguration configuration, ITestResults testResults, ILanguageServicesRegistry languageServicesRegistry)
         {
             this.wordStepFormatter = wordStepFormatter;
+            this.wordTableFormatter = wordTableFormatter;
             this.configuration = configuration;
             this.testResults = testResults;
+            this.languageServicesRegistry = languageServicesRegistry;
         }
 
         public void Format(Body body, Scenario scenario)
@@ -70,6 +76,29 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             foreach (Step step in scenario.Steps)
             {
                 this.wordStepFormatter.Format(body, step);
+            }
+
+            var languageServices = this.languageServicesRegistry.GetLanguageServicesForLanguage(scenario.Feature?.Language);
+            var examplesKeyword = languageServices.ExamplesKeywords[0];
+
+            foreach (var example in scenario.Examples)
+            {
+                body.Append(new Paragraph(new ParagraphProperties(new ParagraphStyleId { Val = "Heading3" }), new Run(new RunProperties(), new Text(examplesKeyword + ":"))));
+
+                if (example.Tags.Count != 0)
+                {
+                    var tagrunProp = new RunProperties(new Italic(), new Color { ThemeColor = ThemeColorValues.Text2 }) { Bold = new Bold() { Val = false } };
+                    body.Append(new Paragraph(new ParagraphProperties(new ParagraphStyleId { Val = "Normal" }),
+                                              new Run(tagrunProp, new Text("(Tags: " + string.Join(", ", example.Tags) + ")"))));
+                }
+
+                if (!string.IsNullOrWhiteSpace(example.Description))
+                {
+                    body.Append(new Paragraph(new ParagraphProperties(new ParagraphStyleId { Val = "Normal" }),
+                                              new Run(new Text(example.Description))));
+                }
+
+                this.wordTableFormatter.Format( body, example.TableArgument );
             }
         }
     }

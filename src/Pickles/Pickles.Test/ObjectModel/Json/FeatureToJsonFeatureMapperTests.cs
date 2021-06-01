@@ -103,13 +103,13 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
         }
 
         [Test]
-        public void Map_FeatureWithScenarioOutline_ReturnsScenarioOutline()
+        public void Map_FeatureWithScenario_ReturnsScenario()
         {
             var feature = new Feature
             {
                 FeatureElements =
                 {
-                    new ScenarioOutline {Name = "Name of the Scenario Outline"},
+                    new Scenario {Name = "Name of the Scenario"},
                 }
             };
 
@@ -117,8 +117,8 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
 
             var actual = mapper.Map(feature);
 
-            Check.That(actual.FeatureElements[0]).IsInstanceOf<JsonScenarioOutline>();
-            Check.That(actual.FeatureElements[0].Name).IsEqualTo("Name of the Scenario Outline");
+            Check.That(actual.FeatureElements[0]).IsInstanceOf<JsonScenario>();
+            Check.That(actual.FeatureElements[0].Name).IsEqualTo("Name of the Scenario");
             Check.That(actual.FeatureElements[0].Feature).IsSameReferenceAs(actual);
         }
 

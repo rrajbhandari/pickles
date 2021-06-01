@@ -226,7 +226,7 @@ namespace PicklesDoc.Pickles.ObjectModel
             };
         }
 
-        public ScenarioOutline MapToScenarioOutline(G.ScenarioOutline scenarioOutline, params string[] tagsToHide)
+        public Scenario MapToScenarioOutline(G.Scenario scenarioOutline, params string[] tagsToHide)
         {
             if (scenarioOutline == null)
             {
@@ -235,7 +235,7 @@ namespace PicklesDoc.Pickles.ObjectModel
 
             var visibleTags = RetrieveOnlyVisibleTags(scenarioOutline.Tags, tagsToHide);
 
-            return new ScenarioOutline
+            return new Scenario
             {
                 Description = scenarioOutline.Description ?? string.Empty,
                 Examples = (scenarioOutline.Examples ?? new G.Examples[0]).Select(this.MapToExample).ToList(),
@@ -341,23 +341,29 @@ namespace PicklesDoc.Pickles.ObjectModel
             return feature;
         }
 
-        private IFeatureElement MapToFeatureElement(G.ScenarioDefinition sd,params string[] tagsToHide)
+        private IFeatureElement MapToFeatureElement(G.IHasLocation sd,params string[] tagsToHide)
         {
             if (sd == null)
             {
                 return null;
             }
 
+            //var scenario = sd as G.Scenario;
+            //if (scenario != null)
+            //{
+            //    return this.MapToScenario(scenario, tagsToHide);
+            //}
+
+            //var scenarioOutline = sd as G.Scenario;
+            //if (scenarioOutline != null)
+            //{
+            //    return this.MapToScenarioOutline(scenarioOutline, tagsToHide);
+            //}
+
             var scenario = sd as G.Scenario;
             if (scenario != null)
             {
-                return this.MapToScenario(scenario, tagsToHide);
-            }
-
-            var scenarioOutline = sd as G.ScenarioOutline;
-            if (scenarioOutline != null)
-            {
-                return this.MapToScenarioOutline(scenarioOutline, tagsToHide);
+                return this.MapToScenarioOutline(scenario, tagsToHide);
             }
 
             var background = sd as G.Background;

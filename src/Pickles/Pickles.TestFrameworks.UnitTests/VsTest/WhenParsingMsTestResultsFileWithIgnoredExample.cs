@@ -37,13 +37,13 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.VsTest
         }
 
         [Test]
-        public void ThenIgnoredScenarioOutlineIsSetToInconclusive()
+        public void ThenIgnoredScenarioIsSetToInconclusive()
         {
             var results = ParseResultsFile();
 
             var feature = new Feature { Name = "Example With Ignored Scenario Outline" };
-            var scenarioOutline = new ScenarioOutline { Name = "Add two numbers", Feature = feature };
-            scenarioOutline.Steps = new List<Step>();
+            var scenario = new Scenario { Name = "Add two numbers", Feature = feature };
+            scenario.Steps = new List<Step>();
 
             var examples = new ExampleTable();
             examples.HeaderRow = new TableRow();
@@ -53,10 +53,10 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.VsTest
             examples.DataRows = new List<TableRow>();
             examples.DataRows.Add(row);
 
-            scenarioOutline.Examples = new List<Example>();
-            scenarioOutline.Examples.Add(new Example() { TableArgument = examples });
+            scenario.Examples = new List<Example>();
+            scenario.Examples.Add(new Example() { TableArgument = examples });
 
-            var matchedExampleResult = results.GetExampleResult(scenarioOutline, new string[] { "1" });
+            var matchedExampleResult = results.GetExampleResult(scenario, new string[] { "1" });
             Check.That(matchedExampleResult).IsEqualTo(TestResult.Inconclusive);
         }
     }

@@ -50,7 +50,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2
             return this.GetAggregateResult(passedCount, failedCount, skippedCount);
         }
 
-        public override TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
+        public override TestResult GetScenarioOutlineResult(Scenario scenarioOutline)
         {
             IEnumerable<TestResult> exampleElements = this.GetScenarioOutlineElements(scenarioOutline).Select(this.GetResultFromElement);
 
@@ -65,13 +65,13 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2
                 : TestResult.Inconclusive;
         }
 
-        public override TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] exampleValues)
+        public override TestResult GetExampleResult(Scenario scenarioOutline, string[] exampleValues)
         {
             IEnumerable<assembliesAssemblyCollectionTest> exampleElements = this.GetScenarioOutlineElements(scenarioOutline);
 
             foreach (var exampleElement in exampleElements)
             {
-                if (this.ScenarioOutlineExampleMatcher.IsMatch(scenarioOutline, exampleValues, exampleElement))
+                if (this.ScenarioExampleMatcher.IsMatch(scenarioOutline, exampleValues, exampleElement))
                 {
                     return this.GetResultFromElement(exampleElement);
                 }
@@ -118,7 +118,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2
             return query.FirstOrDefault();
         }
 
-        private IEnumerable<assembliesAssemblyCollectionTest> GetScenarioOutlineElements(ScenarioOutline scenario)
+        private IEnumerable<assembliesAssemblyCollectionTest> GetScenarioOutlineElements(Scenario scenario)
         {
             var featureElement = this.GetFeatureElement(scenario.Feature);
             if (featureElement == null)

@@ -40,8 +40,8 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.MsTest
             var results = ParseResultsFile();
 
             var feature = new Feature { Name = "Example With Empty Value" };
-            var scenarioOutline = new ScenarioOutline { Name = "Testing test", Feature = feature };
-            scenarioOutline.Steps = new List<Step>();
+            var scenario = new Scenario { Name = "Testing test", Feature = feature };
+            scenario.Steps = new List<Step>();
 
             var examples = new ExampleTable();
             examples.HeaderRow = new TableRow();
@@ -60,10 +60,10 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.MsTest
             row.Cells.Add("4");
             examples.DataRows.Add(row);
 
-            scenarioOutline.Examples = new List<Example>();
-            scenarioOutline.Examples.Add(new Example() { TableArgument = examples });
+            scenario.Examples = new List<Example>();
+            scenario.Examples.Add(new Example() { TableArgument = examples });
 
-            var actualResult = results.GetExampleResult(scenarioOutline, new string[] { "1", "", "4" });
+            var actualResult = results.GetExampleResult(scenario, new string[] { "1", "", "4" });
         }
     }
 }
