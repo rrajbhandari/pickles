@@ -1,15 +1,15 @@
-﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="XUnit1SingleResultLoader.cs" company="PicklesDoc">
+//  --------------------------------------------------------------------------------------------------------------------
+//  <copyright file="CucumberTestResults.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
-//
-//
+// 
+// 
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
 //  You may obtain a copy of the License at
-//
+// 
 //      http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS,
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,18 +18,15 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using System.IO.Abstractions;
-
-namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1
+namespace PicklesDoc.Pickles.DocumentationBuilders.Cucumber
 {
-    public class XUnit1SingleResultLoader : ISingleResultLoader
+    public enum CucumberTestResults
     {
-        private readonly XDocumentLoader documentLoader = new XDocumentLoader();
-
-        public SingleTestRunBase Load(IFileInfo fileInfo)
-        {
-            return new XUnit1SingleResult(this.documentLoader.Load(fileInfo));
-        }
+        Passed,
+        Failed,
+        Undefined,
+        Skipped,
+        Pending,
+        Ambiguous
     }
 }

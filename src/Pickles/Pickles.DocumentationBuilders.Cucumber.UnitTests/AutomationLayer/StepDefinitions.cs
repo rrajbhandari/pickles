@@ -1,4 +1,4 @@
-﻿//  --------------------------------------------------------------------------------------------------------------------
+//  --------------------------------------------------------------------------------------------------------------------
 //  <copyright file="StepDefinitions.cs" company="PicklesDoc">
 //  Copyright 2017 Dmitry Grekov
 //  Copyright 2012-present PicklesDoc team and community contributors
@@ -29,9 +29,12 @@ using PicklesDoc.Pickles.Test;
 using PicklesDoc.Pickles.DataStructures;
 using PicklesDoc.Pickles;
 using System.IO;
+using System.IO.Abstractions;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using Autofac;
 using NFluent;
+using PicklesDoc.Pickles.DocumentationBuilders.Html;
+using PicklesDoc.Pickles.Extensions;
 
 namespace Pickles.DocumentationBuilders.Cucumber.UnitTests.AutomationLayer
 {
@@ -41,22 +44,47 @@ namespace Pickles.DocumentationBuilders.Cucumber.UnitTests.AutomationLayer
     {
         private Tree nodes;
 
+        [Given(@"I have this feature description placed in a folder '(.*)' in a file '(.*)'")]
+        public void GivenIHaveThisFeatureDescriptionPlacedInAFolder(string featureFolder, string featureFile, string multilineText)
+        {
+            var directoryInfo = FileSystem.DirectoryInfo.FromDirectoryName(featureFolder);
+            directoryInfo.Create();
+            var fileName = FileSystem.Path.Combine(featureFolder,featureFile);
+            var fileInfo = FileSystem.FileInfo.FromFileName(fileName);
+            using var writer = fileInfo.CreateText();
+            {
+                writer.Write(multilineText);
+                writer.Close();
+            }
+
+            var relevantFileDetector = new RelevantFileDetector();
+            var featureNodeFactory = new FeatureNodeFactory(relevantFileDetector,
+                new FileSystemBasedFeatureParser(new FeatureParser(Configuration), FileSystem),
+                new HtmlMarkdownFormatter(new MarkdownProvider()),
+                FileSystem);
+
+            var crawler = new DirectoryTreeCrawler(relevantFileDetector,
+                                                   featureNodeFactory,
+                                                   FileSystem);
+            this.nodes =
+                crawler.Crawl(FileSystem.DirectoryInfo.FromDirectoryName(FileSystem.Directory.GetCurrentDirectory()),
+                    new ParsingReport());
+        }
         [Given("I have this feature description")]
         public void IHaveThisFeatureDescription(string featureDescription)
         {
-            var configuration = this.Configuration;
-            FeatureParser parser = new FeatureParser(configuration);
+            FeatureParser parser = new FeatureParser(Configuration);
 
             var feature = parser.Parse(new StringReader(featureDescription));
 
-            this.nodes = new Tree(new FeatureNode(this.FileSystem.DirectoryInfo.FromDirectoryName(@"c:\output\"), string.Empty, feature));
+            this.nodes = new Tree(new FeatureNode(this.FileSystem.DirectoryInfo.FromDirectoryName(@"output"), string.Empty, feature));
         }
 
         [When(@"I generate the documentation")]
         public void WhenIGenerateTheJsonDocumentation()
         {
             var configuration = this.Configuration;
-            configuration.OutputFolder = this.FileSystem.DirectoryInfo.FromDirectoryName(@"c:\output\");
+            configuration.OutputFolder = this.FileSystem.GetOrCreateDirectory("output");
             var jsonDocumentationBuilder = this.Container.Resolve<CucumberDocumentationBuilder>();
 
             jsonDocumentationBuilder.Build(this.nodes);
@@ -65,12 +93,15 @@ namespace Pickles.DocumentationBuilders.Cucumber.UnitTests.AutomationLayer
         [Then("the JSON file should contain")]
         public void ThenTheResultShouldBe(string expectedResult)
         {
-            var actualResult = this.FileSystem.File.ReadAllText(@"c:\output\cucumberResult.json");
+            var actualResult = this.FileSystem.File.ReadAllText(FileSystem.Path.Combine("output","cucumberResult.json"));
 
-            //standardize newlines across various environments
-            actualResult = actualResult.Replace("\r\n", "\n");
-            expectedResult = expectedResult.Replace("\r\n", "\n");
             Check.That(actualResult).Contains(expectedResult);
+        }
+
+        [Given(@"feature base uri is provided from configuration as '(.*)'")]
+        public void GivenFeatureBaseUriIsProvidedFromConfigurationAs(string uriString)
+        {
+            Configuration.FeatureBaseUri = new Uri(uriString, UriKind.RelativeOrAbsolute);
         }
     }
 }
