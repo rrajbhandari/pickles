@@ -87,6 +87,7 @@ class Build : NukeBuild
             DotNetTest(s => s
                 .SetProjectFile(RootDirectory / "src/Pickles/Pickles.sln")
                 .EnableNoRestore()
+                .SetLoggers("trx;LogFileName=TestResults.xml")
             );
         });
 
