@@ -111,12 +111,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pickles.DocumentationBuilde
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "markdowndeep", "markdowndeep\markdowndeep.csproj", "{35E2BB6F-AE9A-4706-B17C-1FB965AD1DBB}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "..\..\build\_build.csproj", "{47B28E7B-86C9-46DC-AAF1-D4C2218DAF70}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47B28E7B-86C9-46DC-AAF1-D4C2218DAF70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47B28E7B-86C9-46DC-AAF1-D4C2218DAF70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47B28E7B-86C9-46DC-AAF1-D4C2218DAF70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38BAD6E0-78AB-4AC3-91A8-BF72AF5EE394}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{38BAD6E0-78AB-4AC3-91A8-BF72AF5EE394}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38BAD6E0-78AB-4AC3-91A8-BF72AF5EE394}.Release|Any CPU.ActiveCfg = Release|Any CPU
