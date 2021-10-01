@@ -46,8 +46,6 @@ _ReSharper*/
 *.resharper
 .fake/
 
-#Project files
-[Bb]uild/*
 
 #Subversion files
 .svn
@@ -63,6 +61,7 @@ reports/
 merged/
 test/
 Documentation-*/
+artifacts/
 #Output/
 
 #nCrunch files
