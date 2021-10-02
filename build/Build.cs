@@ -1,4 +1,5 @@
 using System;
+using System.IO.Compression;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
 using Nuke.Common;
@@ -34,7 +35,7 @@ class Build : NukeBuild
                 .Build();
         }
 
-        return Execute<Build>(x => x.Compile);
+        return Execute<Build>(x => x.Publish);
     }
 
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
@@ -82,20 +83,49 @@ class Build : NukeBuild
              );
          });
 
-    Target Restore => _ => _
-        .Executes(() =>
-        {
-            DotNetRestore(s => s
-                .SetProjectFile(Solution));
-        });
+     Target Publish => _ => _
+         .DependsOn(Test)
+         .Executes(() =>
+         {
+             var publishCombinations =
+                 from runtime in new[] { "win10-x86", "osx-x64", "linux-x64" }
+                 select new { runtime };
 
-    Target Compile => _ => _
-        .DependsOn(Restore)
-        .Executes(() =>
-        {
-            DotNetBuild(s => s
-                .SetProjectFile(Solution)
-                .SetConfiguration(Configuration)
-                .EnableNoRestore());
-        });
+             DotNetPublish(p => p
+                 .SetProject(RootDirectory / "src" / "Pickles" / "Pickles.CommandLine")
+                 .SetConfiguration(Configuration)
+                 .SetVersion(Version)
+                 .CombineWith(publishCombinations, (s, v) => s
+                     .SetRuntime(v.runtime)
+                     .SetOutput(CommandLineDirectory / v.runtime)
+                 )
+             );
+
+             DotNetPublish(p => p
+                 .SetProject(RootDirectory / "src" / "Pickles" / "Pickles.MsBuild")
+                 .SetConfiguration(Configuration)
+                 .SetVersion(Version)
+                 .CombineWith(publishCombinations, (s, v) => s
+                     .SetRuntime(v.runtime)
+                     .SetOutput(MsBuildDirectory / v.runtime)
+                 )
+             );
+
+             DotNetPublish(p => p
+                 .SetProject(RootDirectory / "src" / "Pickles" / "Pickles.PowerShell")
+                 .SetConfiguration(Configuration)
+                 .SetVersion(Version)
+                 .CombineWith(publishCombinations, (s, v) => s
+                     .SetRuntime(v.runtime)
+                     .SetOutput(PowerShellDirectory / v.runtime)
+                 )
+             );
+
+             foreach (var p in publishCombinations)
+             {
+                 ZipFile.CreateFromDirectory(CommandLineDirectory / p.runtime, DeployDirectory / "zip" / "Pickles-exe-" + p.runtime + "-" + Version + ".zip");
+                 ZipFile.CreateFromDirectory(MsBuildDirectory / p.runtime, DeployDirectory / "zip" / "Pickles-msbuild-" + p.runtime + "-" + Version + ".zip");
+                 ZipFile.CreateFromDirectory(PowerShellDirectory / p.runtime, DeployDirectory / "zip" / "Pickles-powershell-" + p.runtime + "-" + Version + ".zip");
+             }
+         });
 }
