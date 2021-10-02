@@ -60,13 +60,27 @@ class Build : NukeBuild
     String Copyright = "Copyright (c) Jeffrey Cameron 2010-2012, PicklesDoc 2012-present";
     String NuGetApiKey = "";
 
-    Target Clean => _ => _
-        .Before(Restore)
-        .Executes(() =>
-        {
-            SourceDirectory.GlobDirectories("**/bin", "**/obj").ForEach(DeleteDirectory);
-            EnsureCleanDirectory(ArtifactsDirectory);
-        });
+     Target Clean => _ => _
+         .Before(Test)
+         .Executes(() =>
+         {
+             SourceDirectory.GlobDirectories("**/bin", "**/obj").ForEach(DeleteDirectory);
+             EnsureCleanDirectory(ArtifactsDirectory);
+             EnsureCleanDirectory(DeployDirectory);
+             EnsureCleanDirectory(DeployDirectory / "zip");
+             EnsureCleanDirectory(DeployDirectory / "nuget");
+             EnsureCleanDirectory(OutputDirectory);
+         });
+
+     Target Test => _ => _
+         .DependsOn(Clean)
+         .Executes(() =>
+         {
+             DotNetTest(s => s
+                 .SetProjectFile(RootDirectory / "src" / "Pickles" / "Pickles.sln")
+                 .SetLoggers("trx;LogFileName=TestResults.xml")
+             );
+         });
 
     Target Restore => _ => _
         .Executes(() =>
