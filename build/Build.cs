@@ -1,6 +1,10 @@
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Microsoft.Extensions.Configuration;
 using Nuke.Common;
 using Nuke.Common.CI;
@@ -128,4 +132,70 @@ class Build : NukeBuild
                  ZipFile.CreateFromDirectory(PowerShellDirectory / p.runtime, DeployDirectory / "zip" / "Pickles-powershell-" + p.runtime + "-" + Version + ".zip");
              }
          });
+
+     Target GenerateSampleOutput => _ => _
+         .DependsOn(Publish)
+         .Executes(() =>
+         {
+             string runtime = String.Empty;
+             var formats = new List<string> {"Html", "Dhtml", "Word", "Excel", "JSON", "Cucumber", "Markdown"};
+             string exampleSource = SourceDirectory / "Pickles" / "Examples";
+             string outputFolder = string.Empty;
+
+             bool isMac = RuntimeInformation.IsOSPlatform(OSPlatform.OSX);
+             bool isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+             bool isLinux = RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
+
+             if (isMac)
+             {
+                 runtime = "osx-x64";
+             } else if (isWindows)
+             {
+                 runtime = "win10-x86";
+             } else if (isLinux)
+             {
+                 runtime = "linux-x64";
+             }
+
+             foreach (var format in formats)
+             {
+                 outputFolder = OutputDirectory / format;
+
+                 ProcessStartInfo processStartInfo =
+                     new ProcessStartInfo(PublishDirectory / "exe" / runtime / "Pickles",
+                         $"-f={exampleSource} -o={outputFolder} -df={format} --sn=Pickles --sv={Version}");
+
+                 //TODO Repeat with experimental features
+
+                 processStartInfo.CreateNoWindow = false;
+                 processStartInfo.UseShellExecute = false;
+                 Process p = Process.Start(processStartInfo);
+                 p.WaitForExit();
+                 Console.WriteLine(p.ExitCode);
+
+                 // MSBuild(o => o
+                 //     .SetTargetPath(RootDirectory / "testOutput.proj")
+                 //
+                 //     .SetProperty("Version", Version)
+                 //     .SetProperty("ShouldIncludeExperimentalFeatures", false)
+                 // );
+             }
+
+             //Copy sample output to docs folder
+             EnsureCleanDirectory(RootDirectory / "docs" / "Output");
+             CopyFilesRecursively(new DirectoryInfo(RootDirectory / "Output"), new DirectoryInfo(RootDirectory / "docs" / "Output"));
+
+             //Update version in docs index
+             var index = File.ReadAllText(RootDirectory / "docs" / "index_template.html");
+             index = index.Replace("VERSION_PLACEHOLDER", Version);
+             File.WriteAllText(RootDirectory / "docs" / "index.html", index);
+         });
+
+     public static void CopyFilesRecursively(DirectoryInfo source, DirectoryInfo target)
+     {
+         foreach (DirectoryInfo dir in source.GetDirectories())
+             CopyFilesRecursively(dir, target.CreateSubdirectory(dir.Name));
+         foreach (FileInfo file in source.GetFiles())
+             file.CopyTo(Path.Combine(target.FullName, file.Name));
+     }
 }
