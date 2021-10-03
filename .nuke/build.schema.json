@@ -73,6 +73,7 @@
             "enum": [
               "Clean",
               "GenerateSampleOutput",
+              "Pack",
               "Publish",
               "Test"
             ]
@@ -90,6 +91,7 @@
             "enum": [
               "Clean",
               "GenerateSampleOutput",
+              "Pack",
               "Publish",
               "Test"
             ]
