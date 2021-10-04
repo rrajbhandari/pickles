@@ -83,7 +83,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
 
         private XElement AddNodeForHome(XNamespace xmlns, Uri file, IDirectoryInfo rootFolder)
         {
-            var rootfile = (IFileInfo)this.fileSystem.FileInfo.FromFileName(this.fileSystem.Path.Combine(rootFolder.FullName, "index.html"));
+            var rootfile =
+                (IFileInfo) this.fileSystem.FileInfo.FromFileName(
+                    this.fileSystem.Path.Combine(rootFolder.FullName, "index.html"));
             var xElement = new XElement(xmlns + "li", new XAttribute("class", "file"), new XAttribute("id", "root"));
 
             string nodeText = "Home";

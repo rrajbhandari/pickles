@@ -14,6 +14,23 @@ Features in Experimental are subject to change and removal without being conside
 
 This document is formatted according to the principles of [Keep A CHANGELOG](http://keepachangelog.com).
 
+## [3.0.1] - 2021-10-04
+
+### Updated
+- .NET Core 3.1/.NET 5 Support!
+- All libraries are .NET Standard 2.0 so they will work with anything from .NET Framework 4.6.1 to .NET 5.
+- Dropping support for the UI project for the time being until a cross-platform solution can be created.
+- Not including a Chocolatey distribution for the time being until a non-windows deployment can be created.
+- MsBuild NuGet package is still being worked on. Zip file will be available with this release.
+- Development can now be done on Windows, Mac or (potentially) Linux.
+- [Nuke](https://nuke.build/index.html) build will simplify and speed up releases. Removed old build files.
+- Multiple updates thanks to [Andrey Leskov](https://github.com/andrey-covergo)! (See PR [618](https://github.com/picklesdoc/pickles/pull/618))
+	- Update tests to launch on non-windows platform
+	- Update cucumber json report format to match official json schema
+	- Add feature uri to cucumer json report [#609](https://github.com/picklesdoc/pickles/issues/609)
+	- Add feature and step id, hidden field to Cucumber json report
+	- Make Pickles.CommandLine packable as dotnet tool
+
 ## [2.3.3] - 2021-03-11
 
 ### Fixed

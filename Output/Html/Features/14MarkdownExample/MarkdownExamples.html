@@ -257,23 +257,25 @@ $(document).ready(function() {
       <div id="feature">
         <h1>Sample Markdown Feature</h1>
         <div class="description">
-          <h1 id="header-1">Header 1</h1>
-          <h2 id="header-2">Header 2</h2>
-          <h3 id="header-3">Header 3</h3>
-          <h4 id="header-4">Header 4</h4>
-          <h5 id="header-5">Header 5</h5>
-          <h6 id="header-6">Header 6</h6>
+          <h1>Header 1</h1>
+          <h2>Header 2</h2>
+          <h3>Header 3</h3>
+          <h4>Header 4</h4>
+          <h5>Header 5</h5>
+          <h6>Header 6</h6>
           <p>This is a <em>significant</em> word</p>
           <ol>
             <li>Ordered #1</li>
             <li>Ordered #2</li>
-            <li>Ordered #3</li>
-          </ol>
-          <ul>
-            <li>Unordered #1</li>
+            <li>
+              <p>Ordered #3</p>
+            </li>
+            <li>
+              <p>Unordered #1</p>
+            </li>
             <li>Unordered #2</li>
             <li>Unordered #3</li>
-          </ul>
+          </ol>
           <p>Horizontal Rule:</p>
           <hr />
           <p>Table example:</p>
@@ -296,16 +298,10 @@ $(document).ready(function() {
             </tbody>
           </table>
           <hr />
-          <p>Including a picture: <img src="./image.png" alt="" /></p>
+          <p>Including a picture: <img src="./image.png" /></p>
         </div>
         <ul id="scenarios">
           <li class="scenario">
-            <div class="scenario-heading">
-              <h2></h2>
-              <div class="description">
-                <p>This is the <em>coolest</em> background</p>
-              </div>
-            </div>
             <div class="steps">
               <ul>
                 <li class="step">
@@ -325,12 +321,16 @@ $(document).ready(function() {
                   <code>var x = 2;
 </code>
                 </pre>
-                <p>Apple
-:   Pomaceous fruit of plants of the genus Malus in
-    the family Rosaceae.
-:   An American computer company.</p>
-                <p>Orange
-:   The fruit of an evergreen tree of the genus Citrus.</p>
+                <dl>
+                  <dt>Apple</dt>
+                  <dd>
+                    <p>Pomaceous fruit of plants of the genus Malus in
+the family Rosaceae.</p>
+                  </dd>
+                  <dd>An American computer company.</dd>
+                  <dt>Orange</dt>
+                  <dd>The fruit of an evergreen tree of the genus Citrus.</dd>
+                </dl>
               </div>
             </div>
             <div class="steps">
@@ -398,9 +398,9 @@ $(document).ready(function() {
         </ul>
       </div>
       <div id="footer">
-        <p>Test results generated for: Pickles, version 2.3.3</p>
-        <p>Generated on: 11 March 2021 17:02:52</p>
-        <p>Produced by Pickles, version 2.3.3.0</p>
+        <p>Test results generated for: Pickles, version 3.0.1</p>
+        <p>Generated on: 4 October 2021 17:16:07</p>
+        <p>Produced by Pickles, version 0.0.0.0</p>
       </div>
     </div>
   </body>

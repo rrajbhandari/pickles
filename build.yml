@@ -1,5 +1,0 @@
-name: build-pickles
-on: [push]
-jobs:
-    run-bat:
-        runs-on: windows-latest

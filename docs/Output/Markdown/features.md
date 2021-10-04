@@ -1,6 +1,6 @@
 # Features
 
-Generated on: 11 March 2021 at 17:02:55
+Generated on: 04 October 2021 at 17:16:12
 
 ### Showing basic gherkin syntax
 
@@ -162,7 +162,7 @@ As a SpecFlow evangelist
 
 I want to show how to use ScenarioOutline
 
-#### Scenario Outline: Add two positive numbers with many examples
+#### Scenario: Add two positive numbers with many examples
 >
 > **Given** I enter \<number 1\> into the calculator
 >
@@ -187,7 +187,7 @@ I want to show how to use ScenarioOutline
 > | 100 | 20 | 120 |
 > | 1000 | 20 | 1020 |
 >
-#### Scenario Outline: Add two negative numbers with many examples
+#### Scenario: Add two negative numbers with many examples
 >
 > **Given** I enter \<number 1\> into the calculator
 >
@@ -732,7 +732,7 @@ Including a picture: ![](./image.png)
 >
 *`@AddingATag`*
 
-#### Scenario Outline: Sample Markdown Scenario Outline Example
+#### Scenario: Sample Markdown Scenario Outline Example
 >
 > **Given** this: \<test\>
 >
