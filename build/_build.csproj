@@ -8,7 +8,7 @@
     <NukeRootDirectory>..</NukeRootDirectory>
     <NukeScriptDirectory>..</NukeScriptDirectory>
     <NukeTelemetryVersion>1</NukeTelemetryVersion>
-    <UserSecretsId>744ea00f-57bb-4509-acc1-25d8e783903d</UserSecretsId>
+    <UserSecretsId>e07f83f3-1c7c-480c-9443-a8ad1bfc6b83</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,6 +17,10 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="5.0.0" />
     <PackageReference Include="Nuke.Common" Version="5.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageDownload Include="NuGet.CommandLine" Version="[5.11.0]" />
   </ItemGroup>
 
 </Project>

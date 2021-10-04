@@ -14,6 +14,7 @@ using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tooling;
 using Nuke.Common.Tools.DotNet;
+using Nuke.Common.Tools.NuGet;
 using Nuke.Common.Utilities.Collections;
 using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
@@ -22,11 +23,6 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
 [ShutdownDotNetAfterServerBuild]
 class Build : NukeBuild
 {
-    /// Support plugins are available for:
-    ///   - JetBrains ReSharper        https://nuke.build/resharper
-    ///   - JetBrains Rider            https://nuke.build/rider
-    ///   - Microsoft VisualStudio     https://nuke.build/visualstudio
-    ///   - Microsoft VSCode           https://nuke.build/vscode
     public static int Main()
     {
         if (IsLocalBuild)
@@ -37,15 +33,15 @@ class Build : NukeBuild
                 .Build();
         }
 
-        return Execute<Build>(x => x.Publish);
+        return Execute<Build>(x => x.PublishNuGet);
     }
 
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
-    readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
+    //readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
+    readonly Configuration Configuration = Configuration.Release;
 
     static IConfiguration config;
     [Solution] readonly Solution Solution;
-    [GitRepository] readonly GitRepository GitRepository;
 
     AbsolutePath SourceDirectory => RootDirectory / "src";
     AbsolutePath ArtifactsDirectory => RootDirectory / "artifacts";
@@ -56,10 +52,11 @@ class Build : NukeBuild
     AbsolutePath DeployDirectory => ArtifactsDirectory / "deploy";
 
     AbsolutePath OutputDirectory => RootDirectory / "Output";
+    AbsolutePath DocsOutputDirectory => RootDirectory/ "docs" / "Output";
 
     String AssemblyProduct = "Pickles";
     String AssemblyCompany = "Pickles";
-    String Version = "3.0.0-alpha.2";
+    String Version = "3.0.1";
     String Copyright = "Copyright (c) Jeffrey Cameron 2010-2012, PicklesDoc 2012-present";
     String NuGetApiKey = "";
 
@@ -73,6 +70,7 @@ class Build : NukeBuild
             EnsureCleanDirectory(DeployDirectory / "zip");
             EnsureCleanDirectory(DeployDirectory / "nuget");
             EnsureCleanDirectory(OutputDirectory);
+            EnsureCleanDirectory(DocsOutputDirectory);
         });
 
     Target Test => _ => _
@@ -168,26 +166,19 @@ class Build : NukeBuild
                     new ProcessStartInfo(PublishDirectory / "exe" / runtime / "Pickles",
                         $"-f={exampleSource} -o={outputFolder} -df={format} --sn=Pickles --sv={Version}");
 
-                //TODO Repeat with experimental features
-
                 processStartInfo.CreateNoWindow = false;
                 processStartInfo.UseShellExecute = false;
                 Process p = Process.Start(processStartInfo);
                 p.WaitForExit();
                 Console.WriteLine(p.ExitCode);
 
-                // MSBuild(o => o
-                //     .SetTargetPath(RootDirectory / "testOutput.proj")
-                //
-                //     .SetProperty("Version", Version)
-                //     .SetProperty("ShouldIncludeExperimentalFeatures", false)
-                // );
+                //TODO Repeat with experimental features
+                //TODO Repeat with other runners
             }
 
             //Copy sample output to docs folder
-            EnsureCleanDirectory(RootDirectory / "docs" / "Output");
-            CopyFilesRecursively(new DirectoryInfo(RootDirectory / "Output"), new DirectoryInfo(RootDirectory / "docs" / "Output"));
-            EnsureCleanDirectory(RootDirectory / "Output");
+            CopyFilesRecursively(new DirectoryInfo(RootDirectory / "Output"),
+                new DirectoryInfo(RootDirectory / "docs" / "Output"));
 
             //Update version in docs index
             var index = File.ReadAllText(RootDirectory / "docs" / "index_template.html");
@@ -281,6 +272,7 @@ class Build : NukeBuild
 
             File.Delete(RootDirectory / "src" / "Pickles" / "Pickles.CommandLine" / "Pickles.CommandLine.linux.csproj");
 
+            //TODO Create MsBuild nuget package
             // DotNetPack(s => s
             //         .SetProject(RootDirectory / "src" / "Pickles" / "Pickles.MsBuild" / "Pickles.MsBuild.csproj")
             //         .SetConfiguration(Configuration)
@@ -300,4 +292,51 @@ class Build : NukeBuild
                 //.SetCopyright(Copyright)
             );
         });
+
+    Target PublishNuGet => _ => _
+        .DependsOn(Pack)
+        .Executes(() =>
+        {
+            if (IsLocalBuild)
+            {
+                NuGetApiKey = config["NugetApiKey"];
+            }
+
+            NuGetTasks.NuGetPush(s => s
+                .SetSource("https://www.nuget.org/api/v2/package")
+                .SetApiKey(NuGetApiKey)
+                .SetTargetPath(DeployDirectory / "nuget" / $"Pickles.{Version}.nupkg")
+            );
+
+            NuGetTasks.NuGetPush(s => s
+                .SetSource("https://www.nuget.org/api/v2/package")
+                .SetApiKey(NuGetApiKey)
+                .SetTargetPath(DeployDirectory / "nuget" / $"Pickles.CommandLine.{Version}.nupkg")
+            );
+
+            NuGetTasks.NuGetPush(s => s
+                .SetSource("https://www.nuget.org/api/v2/package")
+                .SetApiKey(NuGetApiKey)
+                .SetTargetPath(DeployDirectory / "nuget" / $"Pickles.CommandLine.win.{Version}.nupkg")
+            );
+
+            NuGetTasks.NuGetPush(s => s
+                .SetSource("https://www.nuget.org/api/v2/package")
+                .SetApiKey(NuGetApiKey)
+                .SetTargetPath(DeployDirectory / "nuget" / $"Pickles.CommandLine.mac.{Version}.nupkg")
+            );
+
+            NuGetTasks.NuGetPush(s => s
+                .SetSource("https://www.nuget.org/api/v2/package")
+                .SetApiKey(NuGetApiKey)
+                .SetTargetPath(DeployDirectory / "nuget" / $"Pickles.CommandLine.linux.{Version}.nupkg")
+            );
+
+            // NuGetTasks.NuGetPush(s => s
+            //     .SetSource("https://www.nuget.org/api/v2/package")
+            //     .SetApiKey(NuGetApiKey)
+            //     .SetTargetPath(DeployDirectory / "nuget" / $"Pickles.MsBuild.{Version}.nupkg")
+            // );
+        });
 }
+

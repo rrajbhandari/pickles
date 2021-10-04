@@ -75,6 +75,7 @@
               "GenerateSampleOutput",
               "Pack",
               "Publish",
+              "PublishNuGet",
               "Test"
             ]
           }
@@ -93,6 +94,7 @@
               "GenerateSampleOutput",
               "Pack",
               "Publish",
+              "PublishNuGet",
               "Test"
             ]
           }

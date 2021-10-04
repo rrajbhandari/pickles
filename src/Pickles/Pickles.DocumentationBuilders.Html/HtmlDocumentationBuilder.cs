@@ -81,7 +81,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
                 return;
             }
 
-            string nodePath = this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, node.RelativePathFromRoot);
+            //At least on MacOS, when relative path from root is .\ that gets turned into a literal folder name which crashes
+            //the dotnet runtime when trying to parse the project after generating the output
+            string nodePath = this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, node.RelativePathFromRoot == @".\" ? "" : node.RelativePathFromRoot);
+
             string htmlFilePath;
 
             if (node.NodeType == NodeType.Content)
