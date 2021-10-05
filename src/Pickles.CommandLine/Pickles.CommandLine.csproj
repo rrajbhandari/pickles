@@ -69,7 +69,6 @@
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NDesk.Options.Core" Version="1.2.5" />

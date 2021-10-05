@@ -79,7 +79,6 @@
       <LastGenOutput>TwoScenariosTransferingMoneyBetweenAccoutsWithSuccess.feature.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="FakeFolderStructures\JSON\results-example-failing-and-pasing-mstest.trx" />
-    <None Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Castle.Core" Version="4.2.1" />

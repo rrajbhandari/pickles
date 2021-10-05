@@ -58,9 +58,6 @@
     <ProjectReference Include="..\Pickles\Pickles.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Settings.StyleCop" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="System.Management.Automation" Version="6.0.4" />
   </ItemGroup>
 </Project>
