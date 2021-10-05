@@ -119,63 +119,25 @@ Scenario: Clear the screen
     testRunner.When("I generate the documentation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 21
-    testRunner.Then("the JSON file should contain", @"[
-  {
-    ""keyword"": ""Feature"",
-    ""name"": ""Clearing Screen"",
-    ""tags"": [],
-    ""line"": 1,
-    ""elements"": [
-      {
-        ""keyword"": ""Scenario"",
-        ""name"": ""Clear the screen"",
-        ""line"": 7,
-        ""type"": ""scenario"",
-        ""tags"": [
-          {
-            ""name"": ""@workflow""
-          },
-          {
-            ""name"": ""@slow""
-          }
-        ],
-        ""steps"": [
-          {
-            ""keyword"": ""Given"",
-            ""name"": ""I have entered 50 into the calculator"",
-            ""line"": 8,
-            ""result"": {
-              ""status"": ""Undefined"",
-              ""duration"": 1
-            }
-          },
-          {
-            ""keyword"": ""And"",
-            ""name"": ""I have entered 70 into the calculator"",
-            ""line"": 9,
-            ""result"": {
-              ""status"": ""Undefined"",
-              ""duration"": 1
-            }
-          },
-          {
-            ""keyword"": ""When"",
-            ""name"": ""I press C"",
-            ""line"": 10,
-            ""result"": {
-              ""status"": ""Undefined"",
-              ""duration"": 1
-            }
-          },
-          {
-            ""keyword"": ""Then"",
-            ""name"": ""the screen should be empty"",
-            ""line"": 11,
-            ""result"": {
-              ""status"": ""Undefined"",
-              ""duration"": 1
-            }
-          }", ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("the JSON file should contain", "[\n  {\n    \"id\": \"clearing-screen\",\n    \"keyword\": \"Feature\",\n    \"name\": \"Clearin" +
+                        "g Screen\",\n    \"tags\": [],\n    \"line\": 1,\n    \"elements\": [\n      {\n        \"id\"" +
+                        ": \"clearing-screen;clear-the-screen\",\n        \"keyword\": \"Scenario\",\n        \"na" +
+                        "me\": \"Clear the screen\",\n        \"line\": 7,\n        \"type\": \"scenario\",\n        " +
+                        "\"tags\": [\n          {\n            \"name\": \"@workflow\"\n          },\n          {\n " +
+                        "           \"name\": \"@slow\"\n          }\n        ],\n        \"steps\": [\n          {" +
+                        "\n            \"keyword\": \"Given\",\n            \"name\": \"I have entered 50 into the" +
+                        " calculator\",\n            \"line\": 8,\n            \"hidden\": false,\n            \"r" +
+                        "esult\": {\n              \"status\": \"Undefined\",\n              \"duration\": 1\n     " +
+                        "       }\n          },\n          {\n            \"keyword\": \"And\",\n            \"nam" +
+                        "e\": \"I have entered 70 into the calculator\",\n            \"line\": 9,\n            " +
+                        "\"hidden\": false,\n            \"result\": {\n              \"status\": \"Undefined\",\n  " +
+                        "            \"duration\": 1\n            }\n          },\n          {\n            \"ke" +
+                        "yword\": \"When\",\n            \"name\": \"I press C\",\n            \"line\": 10,\n       " +
+                        "     \"hidden\": false,\n            \"result\": {\n              \"status\": \"Undefined" +
+                        "\",\n              \"duration\": 1\n            }\n          },\n          {\n          " +
+                        "  \"keyword\": \"Then\",\n            \"name\": \"the screen should be empty\",\n         " +
+                        "   \"line\": 11,\n            \"hidden\": false,\n            \"result\": {\n            " +
+                        "  \"status\": \"Undefined\",\n              \"duration\": 1\n            }\n          }", ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -190,7 +152,7 @@ Scenario: Clear the screen
                     "cucumber"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A feature with a table", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 83
+#line 89
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -210,7 +172,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 85
+#line 91
     testRunner.Given("I have this feature description", @"Feature: Interactive DHTML View
     In order to increase stakeholder engagement with pickled specs
     As a SpecFlow evangelist
@@ -245,18 +207,20 @@ Scenario: Scenario with large data table
     When I click on the table heading
     Then the table body should collapse", ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 121
+#line 127
     testRunner.When("I generate the documentation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 122
+#line 128
     testRunner.Then("the JSON file should contain", @"[
   {
+    ""id"": ""interactive-dhtml-view"",
     ""keyword"": ""Feature"",
     ""name"": ""Interactive DHTML View"",
     ""tags"": [],
     ""line"": 1,
     ""elements"": [
       {
+        ""id"": ""interactive-dhtml-view;scenario-with-large-data-table"",
         ""keyword"": ""Scenario"",
         ""name"": ""Scenario with large data table"",
         ""line"": 7,
@@ -267,6 +231,7 @@ Scenario: Scenario with large data table
             ""keyword"": ""Given"",
             ""name"": ""a feature with a large table of data:"",
             ""line"": 8,
+            ""hidden"": false,
             ""result"": {
               ""status"": ""Undefined"",
               ""duration"": 1
@@ -276,6 +241,7 @@ Scenario: Scenario with large data table
             ""keyword"": ""When"",
             ""name"": ""I click on the table heading"",
             ""line"": 32,
+            ""hidden"": false,
             ""result"": {
               ""status"": ""Undefined"",
               ""duration"": 1
@@ -285,6 +251,7 @@ Scenario: Scenario with large data table
             ""keyword"": ""Then"",
             ""name"": ""the table body should collapse"",
             ""line"": 33,
+            ""hidden"": false,
             ""result"": {
               ""status"": ""Undefined"",
               ""duration"": 1

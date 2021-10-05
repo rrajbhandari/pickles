@@ -20,24 +20,23 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.AcceptanceTests.Feat
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.7.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Scenario Steps")]
-    public partial class ScenarioStepsFeature
+    [NUnit.Framework.DescriptionAttribute("Scenario Heading")]
+    public partial class ScenarioHeadingFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "Scenario Steps.feature"
+#line 1 "Scenario Heading.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Scenario Steps", "    In order to document the Gherkin steps\r\n    As a reader of the generated docu" +
-                    "mentation\r\n    I want the scenario steps to appear in order below the scenario h" +
-                    "eading.", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Scenario Heading", "    In order identify each scenario\n    As a reader of the generated documentatio" +
+                    "n\n    I want the heading included in the output.", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -76,13 +75,13 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.AcceptanceTests.Feat
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Output has simple given step for scenario")]
-        public virtual void OutputHasSimpleGivenStepForScenario()
+        [NUnit.Framework.DescriptionAttribute("Output has scenario heading")]
+        public virtual void OutputHasScenarioHeading()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Output has simple given step for scenario", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Output has scenario heading", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -102,47 +101,34 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
-    testRunner.Given("I have a feature called \'My Scenario Steps Feature\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 8
-    testRunner.And("I have a scenario called \'Simple Given Step\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-                TechTalk.SpecFlow.Table table20 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Keyword",
-                            "Step"});
-                table20.AddRow(new string[] {
-                            "Given",
-                            "I have a simple given step"});
 #line 9
-    testRunner.And("I have the scenario steps", ((string)(null)), table20, "And ");
+    testRunner.Given("I have a feature called \'My Scenario Heading\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 13
+#line 10
+    testRunner.And("I have a scenario called \'Scenario heading included in output\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 12
     testRunner.When("I generate Markdown output", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table21 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                             "Content"});
-                table21.AddRow(new string[] {
-                            "#### Scenario: Simple Given Step"});
-                table21.AddRow(new string[] {
-                            ">"});
-                table21.AddRow(new string[] {
-                            "> **Given** I have a simple given step"});
-#line 15
-    testRunner.Then("the Markdown output has the lines in the following order", ((string)(null)), table21, "Then ");
+                table8.AddRow(new string[] {
+                            "#### Scenario: Scenario heading included in output"});
+#line 14
+    testRunner.Then("the Markdown output has the lines", ((string)(null)), table8, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Output has simple given & and step for scenario")]
-        public virtual void OutputHasSimpleGivenAndStepForScenario()
+        [NUnit.Framework.DescriptionAttribute("Output has scenario heading for each scenario in different features")]
+        public virtual void OutputHasScenarioHeadingForEachScenarioInDifferentFeatures()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Output has simple given & and step for scenario", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 22
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Output has scenario heading for each scenario in different features", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 19
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -162,54 +148,46 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 23
-    testRunner.Given("I have a feature called \'My Scenario Steps Feature\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 21
+    testRunner.Given("I have a feature called \'My Scenario Heading A\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 22
+    testRunner.And("I have a scenario called \'Scenario heading included in output - A\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 24
-    testRunner.And("I have a scenario called \'Multiple Given Steps\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("I have a feature called \'My Scenario Heading B\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table22 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Keyword",
-                            "Step"});
-                table22.AddRow(new string[] {
-                            "Given",
-                            "I have a simple given step"});
-                table22.AddRow(new string[] {
-                            "And",
-                            "I have second given"});
 #line 25
-    testRunner.And("I have the scenario steps", ((string)(null)), table22, "And ");
+    testRunner.And("I have a scenario called \'Scenario heading included in output - B\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 30
+#line 27
     testRunner.When("I generate Markdown output", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table23 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
                             "Content"});
-                table23.AddRow(new string[] {
-                            "#### Scenario: Multiple Given Steps"});
-                table23.AddRow(new string[] {
-                            ">"});
-                table23.AddRow(new string[] {
-                            "> **Given** I have a simple given step"});
-                table23.AddRow(new string[] {
-                            ">"});
-                table23.AddRow(new string[] {
-                            "> **And** I have second given"});
-#line 32
-    testRunner.Then("the Markdown output has the lines in the following order", ((string)(null)), table23, "Then ");
+                table9.AddRow(new string[] {
+                            "### My Scenario Heading A"});
+                table9.AddRow(new string[] {
+                            "#### Scenario: Scenario heading included in output - A"});
+                table9.AddRow(new string[] {
+                            "### My Scenario Heading B"});
+                table9.AddRow(new string[] {
+                            "#### Scenario: Scenario heading included in output - B"});
+#line 29
+    testRunner.Then("the Markdown output has the lines in the following order", ((string)(null)), table9, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Output has a step with a table for scenario")]
-        public virtual void OutputHasAStepWithATableForScenario()
+        [NUnit.Framework.DescriptionAttribute("Output has scenario heading for each scenario in same feature")]
+        public virtual void OutputHasScenarioHeadingForEachScenarioInSameFeature()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Output has a step with a table for scenario", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 41
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Output has scenario heading for each scenario in same feature", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 37
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -229,47 +207,28 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 42
-    testRunner.Given("I have a feature called \'My Scenario Steps Feature\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 39
+    testRunner.Given("I have a feature called \'My Scenario Heading\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 40
+    testRunner.And("I have a scenario called \'Scenario heading included in output - 1\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 41
+    testRunner.And("I have a scenario called \'Scenario heading included in output - 2\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 43
-    testRunner.And("I have a scenario called \'Table Given Step\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-                TechTalk.SpecFlow.Table table24 = new TechTalk.SpecFlow.Table(new string[] {
-                            "TableColA",
-                            "TableColb"});
-                table24.AddRow(new string[] {
-                            "TDA1",
-                            "TDB1"});
-                table24.AddRow(new string[] {
-                            "TDA2",
-                            "TDB2"});
-#line 44
-    testRunner.And("I have the scenario step with table \'Given I have a table\'", ((string)(null)), table24, "And ");
-#line hidden
-#line 49
     testRunner.When("I generate Markdown output", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table25 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
                             "Content"});
-                table25.AddRow(new string[] {
-                            "#### Scenario: Table Given Step"});
-                table25.AddRow(new string[] {
-                            ">"});
-                table25.AddRow(new string[] {
-                            "> **Given** I have a table"});
-                table25.AddRow(new string[] {
-                            ">"});
-                table25.AddRow(new string[] {
-                            "> | TableColA | TableColb |"});
-                table25.AddRow(new string[] {
-                            "> | --- | --- |"});
-                table25.AddRow(new string[] {
-                            "> | TDA1 | TDB1 |"});
-                table25.AddRow(new string[] {
-                            "> | TDA2 | TDB2 |"});
-#line 51
-    testRunner.Then("the Markdown output has the lines in the following order", ((string)(null)), table25, "Then ");
+                table10.AddRow(new string[] {
+                            "### My Scenario Heading"});
+                table10.AddRow(new string[] {
+                            "#### Scenario: Scenario heading included in output - 1"});
+                table10.AddRow(new string[] {
+                            "#### Scenario: Scenario heading included in output - 2"});
+#line 45
+    testRunner.Then("the Markdown output has the lines in the following order", ((string)(null)), table10, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

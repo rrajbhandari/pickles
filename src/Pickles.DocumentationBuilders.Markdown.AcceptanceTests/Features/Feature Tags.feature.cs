@@ -20,24 +20,24 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.AcceptanceTests.Feat
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.7.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Feature Heading")]
-    public partial class FeatureHeadingFeature
+    [NUnit.Framework.DescriptionAttribute("Feature Tags")]
+    public partial class FeatureTagsFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "Feature Heading.feature"
+#line 1 "Feature Tags.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Feature Heading", "    In order to identify each feature file in the documentation\r\n    As a reader " +
-                    "of the generated documentation\r\n    I want the feature title visually differenti" +
-                    "ated from the other text.", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Feature Tags", "    In order to include the tags for each feature\n    As a reader of the generate" +
+                    "d documentation\n    I want the feature tags included in single line above the fe" +
+                    "ature heading.", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -76,12 +76,12 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.AcceptanceTests.Feat
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Output has feature section for each feature")]
-        public virtual void OutputHasFeatureSectionForEachFeature()
+        [NUnit.Framework.DescriptionAttribute("Output has tags for feature")]
+        public virtual void OutputHasTagsForFeature()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Output has feature section for each feature", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Output has tags for feature", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -102,23 +102,29 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 7
+    testRunner.Given("I have a feature called \'My Tagged Feature\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Tag"});
+                table6.AddRow(new string[] {
+                            "@ignore"});
+                table6.AddRow(new string[] {
+                            "@tagtwo"});
 #line 8
-    testRunner.Given("I have a feature called \'My First Feature\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.And("I have the tags", ((string)(null)), table6, "And ");
 #line hidden
-#line 9
-    testRunner.And("I have a feature called \'My Second Feature\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 11
+#line 13
     testRunner.When("I generate Markdown output", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                             "Content"});
-                table5.AddRow(new string[] {
-                            "### My First Feature"});
-                table5.AddRow(new string[] {
-                            "### My Second Feature"});
-#line 13
-    testRunner.Then("the Markdown output has the lines in the following order", ((string)(null)), table5, "Then ");
+                table7.AddRow(new string[] {
+                            "*`@ignore`* *`@tagtwo`*"});
+                table7.AddRow(new string[] {
+                            "### My Tagged Feature"});
+#line 15
+    testRunner.Then("the Markdown output has the lines in the following order", ((string)(null)), table7, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

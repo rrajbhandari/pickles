@@ -20,24 +20,23 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.AcceptanceTests.Feat
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.7.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Feature Description")]
-    public partial class FeatureDescriptionFeature
+    [NUnit.Framework.DescriptionAttribute("File Location")]
+    public partial class FileLocationFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "Feature Description.feature"
+#line 1 "File Location.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Feature Description", "    In order include the description (In order, As a, I want) for each feature\r\n " +
-                    "   As a reader of the generated documentation\r\n    I want the feature descriptio" +
-                    "n included below the feature heading.", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "File Location", "    In order to control where the document is created\n    As a document reader\n  " +
+                    "  I want a to be able to specify an output folder for the document", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -76,13 +75,13 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.AcceptanceTests.Feat
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Output has feature description for feature")]
-        public virtual void OutputHasFeatureDescriptionForFeature()
+        [NUnit.Framework.DescriptionAttribute("Output is written to specified location")]
+        public virtual void OutputIsWrittenToSpecifiedLocation()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Output has feature description for feature", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Output is written to specified location", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -102,35 +101,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
-    testRunner.Given("I have a feature called \'My Described Feature\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Description"});
-                table3.AddRow(new string[] {
-                            "In order to include the description (In order, As a, I want) for each feature"});
-                table3.AddRow(new string[] {
-                            "As a reader of the generated documentation"});
-                table3.AddRow(new string[] {
-                            "I want the feature description included below the feature heading."});
 #line 9
-    testRunner.And("I have the description", ((string)(null)), table3, "And ");
+    testRunner.Given("I specify the output folder as \'testing\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 15
+#line 11
     testRunner.When("I generate Markdown output", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Content"});
-                table4.AddRow(new string[] {
-                            "### My Described Feature"});
-                table4.AddRow(new string[] {
-                            "In order to include the description (In order, As a, I want) for each feature"});
-                table4.AddRow(new string[] {
-                            "As a reader of the generated documentation"});
-                table4.AddRow(new string[] {
-                            "I want the feature description included below the feature heading."});
-#line 17
-    testRunner.Then("the Markdown output has the lines in the following order", ((string)(null)), table4, "Then ");
+#line 13
+    testRunner.Then("the file \'features.md\' exists in folder \'testing\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

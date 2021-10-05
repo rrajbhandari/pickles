@@ -20,24 +20,23 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.AcceptanceTests.Feat
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.7.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Background Steps")]
-    public partial class BackgroundStepsFeature
+    [NUnit.Framework.DescriptionAttribute("Title")]
+    public partial class TitleFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "Feature Background.feature"
+#line 1 "Title.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Background Steps", "    In order to document the background Gherkin steps run before each scenario\r\n " +
-                    "   As a reader of the generated documentation\r\n    I want the background steps t" +
-                    "o be included in the Markdown output.", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Title", "    In order to easily tell that this file is a Gherkin output file\n    As a docu" +
+                    "ment reader\n    I want a title in the document as the first line", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -76,12 +75,12 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.AcceptanceTests.Feat
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Output has background given step for feature")]
-        public virtual void OutputHasBackgroundGivenStepForFeature()
+        [NUnit.Framework.DescriptionAttribute("Output has title on first line")]
+        public virtual void OutputHasTitleOnFirstLine()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Output has background given step for feature", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Output has title on first line", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -103,33 +102,16 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
-    testRunner.Given("I have a feature called \'My Background Steps Feature\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 9
-    testRunner.And("I have a background section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Keyword",
-                            "Step"});
-                table1.AddRow(new string[] {
-                            "Given",
-                            "I have a simple given step"});
-#line 10
-    testRunner.And("I have the background steps", ((string)(null)), table1, "And ");
-#line hidden
-#line 14
     testRunner.When("I generate Markdown output", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table28 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Line No.",
                             "Content"});
-                table2.AddRow(new string[] {
-                            "#### Background:"});
-                table2.AddRow(new string[] {
-                            ">"});
-                table2.AddRow(new string[] {
-                            "> **Given** I have a simple given step"});
-#line 16
-    testRunner.Then("the Markdown output has the lines in the following order", ((string)(null)), table2, "Then ");
+                table28.AddRow(new string[] {
+                            "1",
+                            "# Features"});
+#line 10
+    testRunner.Then("the Markdown output has the line", ((string)(null)), table28, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
