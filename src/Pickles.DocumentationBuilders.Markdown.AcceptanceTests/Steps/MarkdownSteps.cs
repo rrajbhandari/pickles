@@ -32,6 +32,12 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.AcceptanceTests.Step
     public sealed class MarkdownSteps : BaseFixture
     {
         private string filePath;
+        private ScenarioContext _scenarioContext;
+
+        public MarkdownSteps(ScenarioContext scenarioContext)
+        {
+            _scenarioContext = scenarioContext;
+        }
 
         [Given(@"I specify the output folder as '(.*)'")]
         public void Given_I_Specify_The_Output_File_As(string outputFolder)
@@ -44,9 +50,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.AcceptanceTests.Step
         {
             Tree featureTree = null;
 
-            if (ScenarioContext.Current.ContainsKey("Feature Tree"))
+            if (_scenarioContext.ContainsKey("Feature Tree"))
             {
-                featureTree = (Tree)ScenarioContext.Current["Feature Tree"];
+                featureTree = (Tree)_scenarioContext["Feature Tree"];
             }
 
             var configuration = this.Configuration;

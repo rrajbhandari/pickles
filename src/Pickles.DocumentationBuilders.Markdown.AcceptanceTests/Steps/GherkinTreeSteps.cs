@@ -30,6 +30,13 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.AcceptanceTests.Step
     [Binding]
     public sealed class GherkinTreeSteps : BaseFixture
     {
+        private ScenarioContext _scenarioContext;
+
+        public GherkinTreeSteps(ScenarioContext scenarioContext)
+        {
+            _scenarioContext = scenarioContext;
+        }
+
         [Given(@"I have a feature called '(.*)'")]
         public void GivenIHaveAFeatureCalled(string p0)
         {
@@ -43,9 +50,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.AcceptanceTests.Step
 
             Tree featureTree = null;
 
-            if (ScenarioContext.Current.ContainsKey("Feature Tree"))
+            if (_scenarioContext.ContainsKey("Feature Tree"))
             {
-                featureTree = (Tree)ScenarioContext.Current["Feature Tree"];
+                featureTree = (Tree)_scenarioContext["Feature Tree"];
             }
             else
             {
@@ -56,7 +63,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.AcceptanceTests.Step
 
             featureTree.Add(newNode);
 
-            ScenarioContext.Current["Feature Tree"] = featureTree;
+            _scenarioContext["Feature Tree"] = featureTree;
         }
 
         [Given(@"I have the description")]
@@ -169,7 +176,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.AcceptanceTests.Step
                 NativeKeyword = keyword,
                 Name = stepName
             };
-            
+
             var stepTable = ConvertSpecflowTableToPicklesTable(table);
 
             step.TableArgument = stepTable;
@@ -266,7 +273,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.AcceptanceTests.Step
 
             try
             {
-                featureTree = (Tree)ScenarioContext.Current["Feature Tree"];
+                featureTree = (Tree)_scenarioContext["Feature Tree"];
             }
             catch (Exception e)
             {
