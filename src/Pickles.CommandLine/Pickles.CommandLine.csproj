@@ -37,7 +37,7 @@
     <IconUrl>https://cdn.rawgit.com/picklesdoc/pickles/master/pickles.png</IconUrl>
     <PackageLicense>http://apache.org/licenses/LICENSE-2.0.html</PackageLicense>
     <PackageProjectUrl>http://www.picklesdoc.com/</PackageProjectUrl>
-    <PackageReleaseNotes>https://github.com/picklesdoc/pickles/blob/master/CHANGELOG.md</PackageReleaseNotes>
+    <PackageReleaseNotes>https://github.com/picklesdoc/pickles/blob/main/CHANGELOG.md</PackageReleaseNotes>
     <PackageTags>SpecificationByExample BDD SpecFlow Gherkin Cucumber SpecByEx LivingDocumentation Documentation</PackageTags>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>

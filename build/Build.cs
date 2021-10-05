@@ -78,7 +78,7 @@ class Build : NukeBuild
         .Executes(() =>
         {
             DotNetTest(s => s
-                .SetProjectFile(RootDirectory / "src" / "Pickles" / "Pickles.sln")
+                .SetProjectFile(RootDirectory / "Pickles.sln")
                 .SetLoggers("trx;LogFileName=TestResults.xml")
             );
         });
@@ -92,7 +92,7 @@ class Build : NukeBuild
                 select new {runtime};
 
             DotNetPublish(p => p
-                .SetProject(RootDirectory / "src" / "Pickles" / "Pickles.CommandLine")
+                .SetProject(RootDirectory / "src" / "Pickles.CommandLine")
                 .SetConfiguration(Configuration)
                 .SetVersion(Version)
                 .CombineWith(publishCombinations, (s, v) => s
@@ -102,7 +102,7 @@ class Build : NukeBuild
             );
 
             DotNetPublish(p => p
-                .SetProject(RootDirectory / "src" / "Pickles" / "Pickles.MsBuild")
+                .SetProject(RootDirectory / "src" / "Pickles.MsBuild")
                 .SetConfiguration(Configuration)
                 .SetVersion(Version)
                 .CombineWith(publishCombinations, (s, v) => s
@@ -112,7 +112,7 @@ class Build : NukeBuild
             );
 
             DotNetPublish(p => p
-                .SetProject(RootDirectory / "src" / "Pickles" / "Pickles.PowerShell")
+                .SetProject(RootDirectory / "src" / "Pickles.PowerShell")
                 .SetConfiguration(Configuration)
                 .SetVersion(Version)
                 .CombineWith(publishCombinations, (s, v) => s
@@ -138,7 +138,7 @@ class Build : NukeBuild
         {
             string runtime = String.Empty;
             var formats = new List<string> {"Html", "Dhtml", "Word", "Excel", "JSON", "Cucumber", "Markdown"};
-            string exampleSource = SourceDirectory / "Pickles" / "Examples";
+            string exampleSource = SourceDirectory / "Examples";
             string outputFolder = string.Empty;
 
             bool isMac = RuntimeInformation.IsOSPlatform(OSPlatform.OSX);
@@ -198,7 +198,7 @@ class Build : NukeBuild
         .DependsOn(GenerateSampleOutput)
         .Executes(() =>
         {
-            var commandLineProject = File.ReadAllText(RootDirectory / "src" / "Pickles" / "Pickles.CommandLine" /
+            var commandLineProject = File.ReadAllText(RootDirectory / "src" / "Pickles.CommandLine" /
                                                       "Pickles.CommandLine.csproj");
 
             //Setting PackageId via the dotnet pack command sets the id for all referenced projects and
@@ -206,10 +206,10 @@ class Build : NukeBuild
             //till this gets fixed.
             var clPackage = commandLineProject.Replace("PACKAGE_ID", "Pickles.CommandLine");
             File.WriteAllText(
-                RootDirectory / "src" / "Pickles" / "Pickles.CommandLine" / "Pickles.CommandLine.cl.csproj", clPackage);
+                RootDirectory / "src" / "Pickles.CommandLine" / "Pickles.CommandLine.cl.csproj", clPackage);
 
             DotNetPack(s => s
-                    .SetProject(RootDirectory / "src" / "Pickles" / "Pickles.CommandLine" /
+                    .SetProject(RootDirectory / "src" / "Pickles.CommandLine" /
                                 "Pickles.CommandLine.cl.csproj")
                     .SetConfiguration(Configuration)
                     .SetProperty("Version", Version)
@@ -219,14 +219,14 @@ class Build : NukeBuild
                 //.SetCopyright(Copyright)
             );
 
-            File.Delete(RootDirectory / "src" / "Pickles" / "Pickles.CommandLine" / "Pickles.CommandLine.cl.csproj");
+            File.Delete(RootDirectory / "src" / "Pickles.CommandLine" / "Pickles.CommandLine.cl.csproj");
 
             var winPackage = commandLineProject.Replace("PACKAGE_ID", "Pickles.CommandLine.win");
             File.WriteAllText(
-                RootDirectory / "src" / "Pickles" / "Pickles.CommandLine" / "Pickles.CommandLine.win.csproj", winPackage);
+                RootDirectory / "src" / "Pickles.CommandLine" / "Pickles.CommandLine.win.csproj", winPackage);
 
             DotNetPack(s => s
-                    .SetProject(RootDirectory / "src" / "Pickles" / "Pickles.CommandLine" /
+                    .SetProject(RootDirectory / "src" / "Pickles.CommandLine" /
                                 "Pickles.CommandLine.win.csproj")
                     .SetConfiguration(Configuration)
                     .SetProperty("Version", Version)
@@ -236,14 +236,14 @@ class Build : NukeBuild
                 //.SetCopyright(Copyright)
             );
 
-            File.Delete(RootDirectory / "src" / "Pickles" / "Pickles.CommandLine" / "Pickles.CommandLine.win.csproj");
+            File.Delete(RootDirectory / "src" / "Pickles.CommandLine" / "Pickles.CommandLine.win.csproj");
 
             var macPackage = commandLineProject.Replace("PACKAGE_ID", "Pickles.CommandLine.mac");
             File.WriteAllText(
-                RootDirectory / "src" / "Pickles" / "Pickles.CommandLine" / "Pickles.CommandLine.mac.csproj", macPackage);
+                RootDirectory / "src" / "Pickles.CommandLine" / "Pickles.CommandLine.mac.csproj", macPackage);
 
             DotNetPack(s => s
-                    .SetProject(RootDirectory / "src" / "Pickles" / "Pickles.CommandLine" /
+                    .SetProject(RootDirectory / "src" / "Pickles.CommandLine" /
                                 "Pickles.CommandLine.mac.csproj")
                     .SetConfiguration(Configuration)
                     .SetProperty("Version", Version)
@@ -253,14 +253,14 @@ class Build : NukeBuild
                 //.SetCopyright(Copyright)
             );
 
-            File.Delete(RootDirectory / "src" / "Pickles" / "Pickles.CommandLine" / "Pickles.CommandLine.mac.csproj");
+            File.Delete(RootDirectory / "src" / "Pickles.CommandLine" / "Pickles.CommandLine.mac.csproj");
 
             var linuxPackage = commandLineProject.Replace("PACKAGE_ID", "Pickles.CommandLine.linux");
             File.WriteAllText(
-                RootDirectory / "src" / "Pickles" / "Pickles.CommandLine" / "Pickles.CommandLine.linux.csproj", linuxPackage);
+                RootDirectory / "src" / "Pickles.CommandLine" / "Pickles.CommandLine.linux.csproj", linuxPackage);
 
             DotNetPack(s => s
-                    .SetProject(RootDirectory / "src" / "Pickles" / "Pickles.CommandLine" /
+                    .SetProject(RootDirectory / "src" / "Pickles.CommandLine" /
                                 "Pickles.CommandLine.linux.csproj")
                     .SetConfiguration(Configuration)
                     .SetProperty("Version", Version)
@@ -270,11 +270,11 @@ class Build : NukeBuild
                //.SetCopyright(Copyright)
              );
 
-            File.Delete(RootDirectory / "src" / "Pickles" / "Pickles.CommandLine" / "Pickles.CommandLine.linux.csproj");
+            File.Delete(RootDirectory / "src" / "Pickles.CommandLine" / "Pickles.CommandLine.linux.csproj");
 
             //TODO Create MsBuild nuget package
             // DotNetPack(s => s
-            //         .SetProject(RootDirectory / "src" / "Pickles" / "Pickles.MsBuild" / "Pickles.MsBuild.csproj")
+            //         .SetProject(RootDirectory / "src" / "Pickles.MsBuild" / "Pickles.MsBuild.csproj")
             //         .SetConfiguration(Configuration)
             //         .SetRuntime("win10-x86")
             //         .SetProperty("Version", Version)
@@ -283,7 +283,7 @@ class Build : NukeBuild
             // );
 
             DotNetPack(s => s
-                    .SetProject(RootDirectory / "src" / "Pickles" / "Pickles.PowerShell" /
+                    .SetProject(RootDirectory / "src" / "Pickles.PowerShell" /
                                 "Pickles.PowerShell.csproj")
                     .SetConfiguration(Configuration)
                     .SetRuntime("win10-x86")
