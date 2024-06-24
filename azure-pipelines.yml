@@ -9,7 +9,7 @@ trigger:
 pool: default
 
 variables:
-  solution: '**/Pickles.sln'
+  solution: '**/FooBar.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
