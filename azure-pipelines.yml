@@ -26,6 +26,13 @@ steps:
     msbuildArgs: '/p:OutputPath="$(Build.BinariesDirectory)"'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+- task: FileTransform@1
+  inputs:
+    folderPath: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    fileType: 'xml'
+    targetFiles: '*.config'
+
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: '$(Build.BinariesDirectory)'
@@ -33,6 +40,9 @@ steps:
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     replaceExistingArchive: true
+
+
+
 #- task: VSTest@2
 #  inputs:
 #    platform: '$(buildPlatform)'
