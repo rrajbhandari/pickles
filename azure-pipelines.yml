@@ -9,6 +9,7 @@ trigger:
 pool: default
 
 variables: 
+  group: 'production'
   solution: '**/FooBar.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
