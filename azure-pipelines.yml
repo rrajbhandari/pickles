@@ -29,7 +29,7 @@ steps:
 
 - task: FileTransform@1
   inputs:
-    folderPath: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    folderPath: '$(Build.BinariesDirectory)'
     fileType: 'xml'
     targetFiles: '*.config'
 
