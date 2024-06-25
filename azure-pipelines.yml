@@ -8,7 +8,7 @@ trigger:
 
 pool: default
 
-variables:
+variables: 
   solution: '**/FooBar.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
