@@ -9,10 +9,14 @@ trigger:
 pool: default
 
 variables: 
-  group: 'production'
-  solution: '**/FooBar.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
+- name: solution  
+  value: '**/FooBar.sln'
+- name: buildPlatform 
+  value: 'Any CPU'
+- name: buildConfiguration 
+  value: 'Release'
+- group: production
+  
 
 steps:
 - task: NuGetToolInstaller@1
